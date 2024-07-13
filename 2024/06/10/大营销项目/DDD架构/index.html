@@ -16,22 +16,22 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="DDD架构DDD 架构 | 小傅哥 bugstack 虫洞栈 架构的本质之DDD架构 —— Java简明教程，一套简单、清晰、明了的Java学习路线资料！！！_哔哩哔哩_bilibili VO和Entity的区别 Entity在整个生命周期中，有多个「状态」，也就是说「状态」是可变的（至于变不变就看实际情况了）  而VO在整个生命周期中，只有一个「状态」，也就是说「状态」不变  如何识别 一个对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/DDD%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="DDD架构DDD 架构 | 小傅哥 bugstack 虫洞栈 架构的本质之DDD架构 —— Java简明教程，一套简单、清晰、明了的Java学习路线资料！！！_哔哩哔哩_bilibili VO和Entity的区别 Entity在整个生命周期中，有多个「状态」，也就是说「状态」是可变的（至于变不变就看实际情况了）  而VO在整个生命周期中，只有一个「状态」，也就是说「状态」不变  如何识别 一个对象">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="article:published_time" content="2024-06-10T07:12:40.837Z">
+<meta property="article:modified_time" content="2024-06-18T09:08:32.144Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-10 15:12" pubdate>
+          2024年6月10日 下午
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          302 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -268,12 +268,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="DDD架构"><a href="#DDD架构" class="headerlink" title="DDD架构"></a>DDD架构</h2><p><a target="_blank" rel="noopener" href="https://bugstack.cn/md/road-map/ddd.html">DDD 架构 | 小傅哥 bugstack 虫洞栈</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1kV411g7GX/?t=44.614722&spm_id_from=333.1350.jump_directly&vd_source=08b017bec121a20e81681bf601db9437">架构的本质之DDD架构 —— Java简明教程，一套简单、清晰、明了的Java学习路线资料！！！_哔哩哔哩_bilibili</a></p>
+<h3 id="VO和Entity的区别"><a href="#VO和Entity的区别" class="headerlink" title="VO和Entity的区别"></a>VO和Entity的区别</h3><ul>
+<li>Entity在整个生命周期中，有多个「状态」，也就是说「状态」是可变的（至于变不变就看实际情况了） </li>
+<li>而VO在整个生命周期中，只有一个「状态」，也就是说「状态」不变</li>
+</ul>
+<p><strong>如何识别</strong></p>
+<p>一个对象是表示成Entity还是VO，取决于系统的关注点</p>
+<p>举个例子：</p>
+<p>「商品」在「订单系统」中是个VO，而在「商品管理系统」中是Entity</p>
+<ul>
+<li>在「商品管理系统」中，系统需要关注「商品」的「状态」，需要维护是否上架、库存多少、各种属性等信息（多种状态）。就是说在「商品管理系统」中，商品状态是可变的。所以它也有「标识」，即商品ID</li>
+<li>「订单系统」并不关心「商品」的「状态」变化，它只关注在创建订单时，这个「商品」的当前「状态」是什么，并且在订单创建完成后，这个「商品」的「状态」就不会再改变了</li>
+</ul>
+<h2 id="聚合对象"><a href="#聚合对象" class="headerlink" title="聚合对象"></a>聚合对象</h2><p>一般用在事务</p>
 
                 
               </div>
@@ -281,27 +295,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +305,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/10/大营销项目/DDD架构/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +318,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月10日</div>
         </div>
       
       
@@ -357,9 +350,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/11/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%8F%A3%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +360,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/" title="一些技巧">
+                        <span class="hidden-mobile">一些技巧</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,22 +16,22 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="DOCKER安装RABBITMQ教程（详细图文）1.下载Rabbitmq的镜像拉取最新的rabbitmq的镜像 docker pull rabbitmq拉取指定版本的rabbitmq镜像 docker pull rabbitmq:版本号2.创建并运行rabbitmq容器docker run -d -p 15673:15672 -p 5674:5672     –restart&#x3D;alway">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="DOCKER安装RABBITMQ教程（详细图文）1.下载Rabbitmq的镜像拉取最新的rabbitmq的镜像 docker pull rabbitmq拉取指定版本的rabbitmq镜像 docker pull rabbitmq:版本号2.创建并运行rabbitmq容器docker run -d -p 15673:15672 -p 5674:5672     –restart&#x3D;alway">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="article:published_time" content="2024-06-19T05:59:28.474Z">
+<meta property="article:modified_time" content="2024-06-19T06:04:13.031Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-19 13:59" pubdate>
+          2024年6月19日 下午
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          740 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -268,12 +268,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="DOCKER安装RABBITMQ教程（详细图文）"><a href="#DOCKER安装RABBITMQ教程（详细图文）" class="headerlink" title="DOCKER安装RABBITMQ教程（详细图文）"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/csjoz/p/18176355">DOCKER安装RABBITMQ教程（详细图文）</a></h2><p>1.下载Rabbitmq的镜像<br>拉取最新的rabbitmq的镜像</p>
+<p>docker pull rabbitmq<br>拉取指定版本的rabbitmq镜像</p>
+<p>docker pull rabbitmq:版本号<br>2.创建并运行rabbitmq容器<br>docker run -d -p 15673:15672 -p 5674:5672 <br>    –restart&#x3D;always <br>    -e RABBITMQ_DEFAULT_VHOST&#x3D;my_vhost  <br>    -e RABBITMQ_DEFAULT_USER&#x3D;admin <br>    -e RABBITMQ_DEFAULT_PASS&#x3D;admin123456 <br>    –hostname myRabbit <br>    –name rabbitmq-new<br>    rabbitmq:latest<br>注意：在映射的端口号的时候不要映射 5671端口，端口5671是 RabbitMQ 的默认AMQP over TLS&#x2F;SSL端口。AMQP（Advanced Message Queuing Protocol）是一种消息传递协议，用于在应用程序之间进行可靠的消息传递。</p>
+<p>参数说明：</p>
+<p>-d：表示在后台运行容器；<br>-p：将主机的端口 15673（Web访问端口号）对应当前rabbitmq容器中的 15672 端口，将主机的5674（应用访问端口）端口映射到rabbitmq中的5672端口；<br>–restart&#x3D;alawys：设置开机自启动<br>-e：指定环境变量：<br>  RABBITMQ_DEFAULT_VHOST：默认虚拟机名；<br>  RABBITMQ_DEFAULT_USER：默认的用户名；<br>  RABBITMQ_DEFAULT_PASS：默认的用户密码；<br>–hostname：指定主机名（RabbitMQ 的一个重要注意事项是它根据所谓的 节点名称 存储数据，默认为主机名）；<br>–name rabbitmq-new：设置容器名称；<br>查看启动情况</p>
+<p>3.启动web客户端<br>方法一：进入容器开启</p>
+<p>#进入rabbitmq容器<br>docker exec -it 容器名&#x2F;容器id &#x2F;bin&#x2F;bash<br>#开启web客户端<br>rabbitmq-plugins enable rabbitmq_management<br>方法二：不进入容器开启</p>
+<p>docker exec -it 容器名&#x2F;容器id rabbitmq-plugins enable rabbitmq_management<br>4.访问rabbitmq的微博客户端<br>在浏览器上输入 ip+端口 访问rabbitmq的web客户端</p>
+<p>输入上面在初始化Rabbitmq容器时我们自己指定了默认账号和密码：admin&#x2F;admin123456，如果没有指定的话那么rabbitmq的默认账号密码是:guest&#x2F;guest</p>
+<p>登录成功如下图所示：</p>
+<p> 如果提示网页无法访问的话，可检查服务器的防火墙是否开启了这个端口。</p>
+<p>#查看防火墙规则中打开的端口列表<br>firewall-cmd –list-ports<br>#添加端口<br>firewall-cmd –zone&#x3D;public –add-port&#x3D;15673&#x2F;tcp –permanent<br>#重新加载，使配置生效<br>firewall-cmd –reload<br>–zone&#x3D;public 指定了要添加规则的区域（这里是公共区域）<br>–add-port&#x3D;15673&#x2F;tcp 指定了要添加的端口及其协议（这里是 TCP 协议的 15673 端口）<br>–permanent 则表示将规则永久保存，使其在系统重启后仍然有效。<br>5.遇到的问题<br>问题描述：在rabbitmq的web客户端发现界面会弹出如下提示框Stats in management UI are disabled on this node</p>
+<p>解决方法<br>（1）进入到启动的rabbitmq的容器中<br>docker exec -it 容器名称&#x2F;容器id &#x2F;bin&#x2F;bash</p>
+<p>（2）切换到rabbitmq的配置文件目录<br>cd &#x2F;etc&#x2F;rabbitmq&#x2F;conf.d&#x2F;</p>
+<p>（3）修改配置文件- management_agent.disable_metrics_collector.conf<br>echo management_agent.disable_metrics_collector &#x3D; false &gt; management_agent.disable_metrics_collector.conf<br>（4）查看配置文件-cat</p>
+<p>（5）退出容器<br>exit</p>
+<p>（6）重启容器<br> docker restart 容器名称&#x2F;容器id</p>
+<p>再次进入rabbitmq的web客户端页面，点击各个页面就不会出现那个提示，并且出现了统计图表以及可以添加一下展示的信息字段。</p>
 
                 
               </div>
@@ -281,27 +298,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +308,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/19/rabbitMQ使用总结/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +321,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月19日</div>
         </div>
       
       
@@ -357,9 +353,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/21/linux%E4%B8%ADvip/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +363,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/17/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,22 +16,27 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="桥接模式虚拟机可以和外部系统通讯，但会浪费宿主的ip     NAT模式虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯  内部网络虚拟机之间可以互相通讯，但和外部无联系  仅主机模式独立系统，不和外部发生联系     docker中的网络默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="桥接模式虚拟机可以和外部系统通讯，但会浪费宿主的ip     NAT模式虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯  内部网络虚拟机之间可以互相通讯，但和外部无联系  仅主机模式独立系统，不和外部发生联系     docker中的网络默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="og:image" content="http://example.com/2024/06/17/images/image-20240711200106245.png">
+<meta property="og:image" content="http://example.com/images/image-20240711201909422.png">
+<meta property="og:image" content="http://example.com/images/image-20240711195727113.png">
+<meta property="og:image" content="http://example.com/2024/06/17/images/image-20240711202304552.png">
+<meta property="article:published_time" content="2024-06-17T07:24:29.565Z">
+<meta property="article:modified_time" content="2024-07-11T12:24:24.534Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
+<meta name="twitter:image" content="http://example.com/2024/06/17/images/image-20240711200106245.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-17 15:24" pubdate>
+          2024年6月17日 下午
         </time>
       </span>
     
@@ -220,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          129 字
         
       </span>
     
@@ -231,7 +236,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -268,12 +273,26 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>虚拟机可以和外部系统通讯，但会浪费宿主的ip</p>
+<img src="../images/image-20240711200106245.png" srcset="/img/loading.gif" lazyload alt="image-20240711200106245" style="zoom: 50%;" />
+
+
+
+<h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><p>虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯</p>
+<p><img src="/../images/image-20240711201909422.png" srcset="/img/loading.gif" lazyload alt="image-20240711201909422"></p>
+<h2 id="内部网络"><a href="#内部网络" class="headerlink" title="内部网络"></a>内部网络</h2><p>虚拟机之间可以互相通讯，但和外部无联系</p>
+<p><img src="/../images/image-20240711195727113.png" srcset="/img/loading.gif" lazyload alt="image-20240711195727113"></p>
+<h2 id="仅主机模式"><a href="#仅主机模式" class="headerlink" title="仅主机模式"></a>仅主机模式</h2><p>独立系统，不和外部发生联系</p>
+<img src="../images/image-20240711202304552.png" srcset="/img/loading.gif" lazyload alt="image-20240711202304552" style="zoom:50%;" />
+
+
+
+<h2 id="docker中的网络"><a href="#docker中的网络" class="headerlink" title="docker中的网络"></a>docker中的网络</h2><p>默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上：</p>
 
                 
               </div>
@@ -281,27 +300,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +310,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/17/网络知识/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +323,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月17日</div>
         </div>
       
       
@@ -357,9 +355,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/17/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +365,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/12/%E7%A7%91%E7%A0%94/%E5%8E%8B%E7%BC%A9/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/07/12/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/"/>
+    <url>/2024/07/12/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</url>
+    
+    <content type="html"><![CDATA[<h2 id="需要的项目"><a href="#需要的项目" class="headerlink" title="需要的项目"></a><strong>需要的项目</strong></h2><p> <a href="........%5Cjavaproject%5Cbig-market-front">big-market-front</a>（前端） 、 <a href="........%5Cjavaproject%5Cbig-market">big-market</a> （后端）、 <a href="........%5Cjavaproject%5Cbig-market-dev-ops">big-market-dev-ops</a> （部署）</p><h2 id="构建后端镜像"><a href="#构建后端镜像" class="headerlink" title="构建后端镜像"></a>构建后端镜像</h2><p>1.进入后端项目，切换到指定分支</p><p>2.mvn clean install</p><p>3.根据dockfile文件docker build创建后端镜像</p><h2 id="构建前端镜像"><a href="#构建前端镜像" class="headerlink" title="构建前端镜像"></a>构建前端镜像</h2><p>1.进入前端项目，切换到相应分支</p><p>2.修改.env文件相应内容</p><p>3.根据dockfile文件docker build构建镜像</p><h2 id="整体构建"><a href="#整体构建" class="headerlink" title="整体构建"></a>整体构建</h2><p>1.进入部署项目</p><p>2.运行两个docker-compose文件</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/07/11/git%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/"/>
+    <url>/2024/07/11/git%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h2 id="克隆不通怎么办"><a href="#克隆不通怎么办" class="headerlink" title="克隆不通怎么办"></a>克隆不通怎么办</h2><p>一般从http换成git克隆就可以了。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/27/%E7%A7%91%E7%A0%94/6.27/"/>
+    <url>/2024/06/27/%E7%A7%91%E7%A0%94/6.27/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/22/docker/"/>
+    <url>/2024/06/22/docker/</url>
+    
+    <content type="html"><![CDATA[<h2 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h2><p>例如启动一个MySQL容器需要开机自启则使用以下命令启动容器</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">#  docker run -d <span class="hljs-attr">--name</span> mysql -<span class="hljs-selector-tag">p</span> <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> --restart=always<br>always - 无论退出状态是如何，都重启容器<br></code></pre></td></tr></table></figure><p>如果在启动的时候忘记加该参数两个方法实现自启动</p><ol><li>删除容器重新创建</li><li>更新容器<br>下面介绍如何更新<br>更新之前查看容器重启策略</li></ol><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># docker inspect 521b7fb8f7da|grep -i <span class="hljs-string">&quot;RestartPolicy&quot;</span> -A 2</span><br>            <span class="hljs-string">&quot;RestartPolicy&quot;</span>: &#123;<br>                <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>                <span class="hljs-string">&quot;MaximumRetryCount&quot;</span>: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure><p>解析</p><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-comment"># 通过容器id查看容器信息</span><br>docker inspect <span class="hljs-number">521</span>b7fb8f7da<br><span class="hljs-comment"># 管道符</span><br>|<br><span class="hljs-comment"># 通过关键字RestartPolicy匹配容器重启策略</span><br><span class="hljs-keyword">grep</span> -i <span class="hljs-string">&quot;RestartPolicy&quot;</span> <br><span class="hljs-comment"># 除了匹配的关键字还列出关键字下面两行</span><br>-A <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure><p>可以看到重启策略关键字RestartPolicy对应的name为空<br>通过容器ID更新容器重启策略</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"># docker <span class="hljs-keyword">update</span> <span class="hljs-comment">--restart=always 521b7fb8f7da</span><br></code></pre></td></tr></table></figure><p>再次查看容器信息<br>已经设置为总是启动了</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># docker inspect 521b7fb8f7da|grep -i <span class="hljs-string">&quot;RestartPolicy&quot;</span> -A 2</span><br>            <span class="hljs-string">&quot;RestartPolicy&quot;</span>: &#123;<br>                <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>                <span class="hljs-string">&quot;MaximumRetryCount&quot;</span>: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure><p>如果想要重启不自动启动则使用以下命令</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"># docker <span class="hljs-keyword">update</span> <span class="hljs-comment">--restart=no 75038d7a530f</span><br></code></pre></td></tr></table></figure><h2 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="docker拉取镜像报错"><a href="#docker拉取镜像报错" class="headerlink" title="docker拉取镜像报错"></a>docker拉取镜像报错</h2><p><strong>报错</strong></p><p> error pulling image configuration: Get <a href="https://production.cloudflare.docker.com/">https://production.cloudflare.docker.com</a></p><p><strong>解决</strong></p><p>能加多少镜像就加多少到&#x2F;etc&#x2F;docker&#x2F;daemon.json文件中，以下是阿里云镜像加速：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /etc/docker<br>sudo <span class="hljs-built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="hljs-string">&#x27;EOF&#x27;</span><br>&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://9rfsxolh.mirror.aliyuncs.com&quot;</span>]<br>&#125;<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure><p>还有其他镜像：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>,<br><span class="hljs-string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span>,<br><span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>,<br><span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>,<br><span class="hljs-string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span>,<br><span class="hljs-string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span>,<br><span class="hljs-string">&quot;https://hccwwfjl.mirror.aliyuncs.com&quot;</span><br></code></pre></td></tr></table></figure><p>最新镜像去github上看看</p><p><a href="https://github.com/sky22333/Docker-Hub">sky22333&#x2F;Docker-Hub: Docker Hub镜像加速or项目收集 (github.com)</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/21/linux%E4%B8%ADvip/"/>
+    <url>/2024/06/21/linux%E4%B8%ADvip/</url>
+    
+    <content type="html"><![CDATA[<h2 id="防止IP变化"><a href="#防止IP变化" class="headerlink" title="防止IP变化"></a>防止IP变化</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化：</p><p>主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；<br>主机关机，重新开机；<br>卸载VMware，重新导入虚拟机。</p><h3 id="解决（固定ip地址）"><a href="#解决（固定ip地址）" class="headerlink" title="解决（固定ip地址）"></a>解决（固定ip地址）</h3><p><strong>（一）准备工作</strong><br>1.查询虚拟机ip地址</p><p>ifconfig</p><p>2.查询网关ip</p><p>编辑一&gt;虚拟网络编译器一&gt;更改设置一&gt;上方选择NAT模式，下方选择NAT设置一&gt;网关IP</p><p><strong>（二）固定ip</strong><br>位置一&gt;计算机</p><p>进入以下位置<br>etc&#x2F;sysconfig&#x2F;network-scripts</p><p>右键进入终端，并打开虚拟机网卡配置文件 ifcfg-ens33</p><p>vim ifcfg-ens33</p><p>将dhcp更改为static，让IP分配规则静态化，不再改变<br>BOOTPROTO&#x3D;”static”</p><p> 在网卡配置文件的结尾处配置上虚拟机ip地址，网关IP，以及域名解析服务器。<br>IPADDR&#x3D;”自己的IP地址”<br>GATEWAY&#x3D;”自己的网关IP”</p><p>NAS1&#x3D;”同网关IP”</p><p>退出编辑并保存退出<br>Esc一&gt;:wq </p><p>重启网卡</p><p>systemctl restart network</p><p><strong>（三）查看网络是否联通</strong><br>1.本机查看</p><blockquote><p>ping 虚拟机的IP</p></blockquote><p>2.虚拟机查看</p><p>ping 本机IP</p><h2 id="虚拟ip的原理及使用"><a href="#虚拟ip的原理及使用" class="headerlink" title="虚拟ip的原理及使用"></a>虚拟ip的原理及使用</h2><p><a href="https://www.cnblogs.com/jmcui/p/13055283.html">虚拟IP原理及使用 - JMCui - 博客园 (cnblogs.com)</a></p><p><strong>举个通俗的例子</strong></p><p>老王开了一个会所，地址是虹X路1.1.1.1，经营范围不太正规，经常被封，顾客以为店已经关门，其实里面热火朝天，所以老王急啊，于是开了一个后门，地址是2.2.2.1，于是顾客纷纷从后门进入，老王笑开了花…</p><p>过几天大门解封了，但后门由于弄堂改造，临时关闭了，<strong>熟门熟路</strong>的顾客从后门进不来了，有同学会问，大门都开着，顾客为何不从前门进店？因为这些<strong>顾客头脑比较简单</strong>，老王苦啊，痛定思痛，老王想出了一个好主意。</p><p>老王给顾客自己的电话号码<strong>4.4.4.1</strong>，叮嘱他们，以后来店消费之前，只要电话能打通（4.4.4.1路由可达），说明店还营业，前门进不来（1.1.1.1接口down）就走后门（2.2.2.1接口UP)；同理，如果后门进不来，可以走前门。</p><p>如果电话打不通（4.4.4.1路由消失），说明老王被关进去了，顾客就别来了，因为前门被封（1.1.1.1接口down)，后门也被封（2.2.2.1接口down），来了也是白来。</p><p><strong>谈点正经的</strong></p><p>其实电脑上的<strong>127.0.0.1</strong>也是一个VIP，只是用于本机进程间的通信标识符。</p><p>如果没有127.0.0.1，那么一旦物理接口down，TCP&#x2F;IP协议栈绑定在此接口上的IP就无法提供进程间的通信，所以非常不方便。</p><p>而有了127.0.0.1，不管物理接口状态如何，都可以进程间通信。</p><p>题主问题里的VIP，也是不依赖于任何物理接口，只要有一个物理接口处于工作状态（UP，可以和外部联系），就可以提供服务器的访问，当然需要通过路由发布将4.4.4.1发布出去，别的三层设备、主机需要知道如何到达4.4.4.1。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"/>
+    <url>/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h2 id="DOCKER安装RABBITMQ教程（详细图文）"><a href="#DOCKER安装RABBITMQ教程（详细图文）" class="headerlink" title="DOCKER安装RABBITMQ教程（详细图文）"></a><a href="https://www.cnblogs.com/csjoz/p/18176355">DOCKER安装RABBITMQ教程（详细图文）</a></h2><p>1.下载Rabbitmq的镜像<br>拉取最新的rabbitmq的镜像</p><p>docker pull rabbitmq<br>拉取指定版本的rabbitmq镜像</p><p>docker pull rabbitmq:版本号<br>2.创建并运行rabbitmq容器<br>docker run -d -p 15673:15672 -p 5674:5672 <br>    –restart&#x3D;always <br>    -e RABBITMQ_DEFAULT_VHOST&#x3D;my_vhost  <br>    -e RABBITMQ_DEFAULT_USER&#x3D;admin <br>    -e RABBITMQ_DEFAULT_PASS&#x3D;admin123456 <br>    –hostname myRabbit <br>    –name rabbitmq-new<br>    rabbitmq:latest<br>注意：在映射的端口号的时候不要映射 5671端口，端口5671是 RabbitMQ 的默认AMQP over TLS&#x2F;SSL端口。AMQP（Advanced Message Queuing Protocol）是一种消息传递协议，用于在应用程序之间进行可靠的消息传递。</p><p>参数说明：</p><p>-d：表示在后台运行容器；<br>-p：将主机的端口 15673（Web访问端口号）对应当前rabbitmq容器中的 15672 端口，将主机的5674（应用访问端口）端口映射到rabbitmq中的5672端口；<br>–restart&#x3D;alawys：设置开机自启动<br>-e：指定环境变量：<br>  RABBITMQ_DEFAULT_VHOST：默认虚拟机名；<br>  RABBITMQ_DEFAULT_USER：默认的用户名；<br>  RABBITMQ_DEFAULT_PASS：默认的用户密码；<br>–hostname：指定主机名（RabbitMQ 的一个重要注意事项是它根据所谓的 节点名称 存储数据，默认为主机名）；<br>–name rabbitmq-new：设置容器名称；<br>查看启动情况</p><p>3.启动web客户端<br>方法一：进入容器开启</p><p>#进入rabbitmq容器<br>docker exec -it 容器名&#x2F;容器id &#x2F;bin&#x2F;bash<br>#开启web客户端<br>rabbitmq-plugins enable rabbitmq_management<br>方法二：不进入容器开启</p><p>docker exec -it 容器名&#x2F;容器id rabbitmq-plugins enable rabbitmq_management<br>4.访问rabbitmq的微博客户端<br>在浏览器上输入 ip+端口 访问rabbitmq的web客户端</p><p>输入上面在初始化Rabbitmq容器时我们自己指定了默认账号和密码：admin&#x2F;admin123456，如果没有指定的话那么rabbitmq的默认账号密码是:guest&#x2F;guest</p><p>登录成功如下图所示：</p><p> 如果提示网页无法访问的话，可检查服务器的防火墙是否开启了这个端口。</p><p>#查看防火墙规则中打开的端口列表<br>firewall-cmd –list-ports<br>#添加端口<br>firewall-cmd –zone&#x3D;public –add-port&#x3D;15673&#x2F;tcp –permanent<br>#重新加载，使配置生效<br>firewall-cmd –reload<br>–zone&#x3D;public 指定了要添加规则的区域（这里是公共区域）<br>–add-port&#x3D;15673&#x2F;tcp 指定了要添加的端口及其协议（这里是 TCP 协议的 15673 端口）<br>–permanent 则表示将规则永久保存，使其在系统重启后仍然有效。<br>5.遇到的问题<br>问题描述：在rabbitmq的web客户端发现界面会弹出如下提示框Stats in management UI are disabled on this node</p><p>解决方法<br>（1）进入到启动的rabbitmq的容器中<br>docker exec -it 容器名称&#x2F;容器id &#x2F;bin&#x2F;bash</p><p>（2）切换到rabbitmq的配置文件目录<br>cd &#x2F;etc&#x2F;rabbitmq&#x2F;conf.d&#x2F;</p><p>（3）修改配置文件- management_agent.disable_metrics_collector.conf<br>echo management_agent.disable_metrics_collector &#x3D; false &gt; management_agent.disable_metrics_collector.conf<br>（4）查看配置文件-cat</p><p>（5）退出容器<br>exit</p><p>（6）重启容器<br> docker restart 容器名称&#x2F;容器id</p><p>再次进入rabbitmq的web客户端页面，点击各个页面就不会出现那个提示，并且出现了统计图表以及可以添加一下展示的信息字段。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/17/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/"/>
+    <url>/2024/06/17/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="TDengine中的TSZ压缩算法"><a href="#TDengine中的TSZ压缩算法" class="headerlink" title="TDengine中的TSZ压缩算法"></a>TDengine中的TSZ压缩算法</h2><p>TDengine 支持版本为 3.2.0.0 或以上。默认不开启，可通过修改配置文件开启。</p><img src="../images/image-20240705094845784.png" alt="image-20240705094845784" style="zoom:67%;" /><p><a href="https://docs.taosdata.com/tdinternal/tsz/">TSZ 压缩算法 | TDengine 文档 | 涛思数据 (taosdata.com)</a></p><p><a href="https://www.taosdata.com/tdengine-engineering/22274.html?spm=a2c6h.12873639.article-detail.8.379936780mTq0Q">TDengine Contributor 钟宇讲述 TSZ 压缩算法优化背后的故事 - TDengine | 涛思数据 (taosdata.com)</a></p><h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>是对SZ压缩算法的改进。</p><img src="../images/image-20240705103113561.png" alt="image-20240705103113561" style="zoom: 67%;" /><h2 id="《Fast-Error-bounded-Lossy-HPC-Data-Compression-with-SZ》"><a href="#《Fast-Error-bounded-Lossy-HPC-Data-Compression-with-SZ》" class="headerlink" title="《Fast Error-bounded Lossy HPC Data Compression with SZ》"></a>《Fast Error-bounded Lossy HPC Data Compression with SZ》</h2><p>2016 IPDPS</p><p>开源</p><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>针对的是HPC数据，浮点数据。</p><p>显着减小要转储的数据大小，同时保持相当低的计算成本和所需的压缩误差界限。</p><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>三个步骤：</p><p>给定一个 d 维浮点数组，整个压缩过程可以分为三个步骤：</p><p>（1）将 d 维浮点数组转换为一维数组。</p><p>（2）压缩一维数组</p><p>逐一检查一维数组中的每个数据点，看看是否可以通过某种曲线拟合模型。 如果可以，我们记录该点对应的曲线拟合模型。 </p><p>对于数据预测，我们采用三种曲线拟合模型，先行邻域拟合（PNF）、线性曲线拟合（LCF）和二次曲线拟合(QCF)，描述如下：</p><ul><li>PNF</li></ul><p><img src="/../images/image-20240703141812263.png" alt="image-20240703141812263"></p><ul><li>LCF</li></ul><p><img src="/../images/image-20240703141821182.png" alt="image-20240703141821182"></p><ul><li>QCF</li></ul><p><img src="/../images/image-20240703141828188.png" alt="image-20240703141828188"></p><p><img src="/../images/image-20240703142806963.png" alt="image-20240703142806963"></p><p>（3）对于不可压缩的数据点</p><p>无法预测的数据称为不可预测数据，它们将通过分析 IEEE 754 二进制表示进行压缩，然后单独存储。</p><p>简单来说，我们根据用户指定的误差界限和数据值范围推导所需的最小尾数位数，从而可以截断无意义的位。</p><h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>这一系列trick使得SZ在浮点有损压缩时错误范围限定在10^-4时压缩比可以达到5.4，解压不会超过制定错误范围，且解压较快O(N)。</p><h2 id="《A-Time-Series-Compression-Technique-and-its-Application-to-the-Smart-Grid》"><a href="#《A-Time-Series-Compression-Technique-and-its-Application-to-the-Smart-Grid》" class="headerlink" title="《A Time-Series Compression Technique and its Application to the Smart Grid》"></a><strong>《A Time-Series Compression Technique and its Application to the Smart Grid》</strong></h2><p><strong>VLDB.2014</strong></p><p>本文介绍了一种有损压缩技术，建立在分段回归的基础上，学习不同程度的多项式回归函数。压缩技术保证压缩时间序列中的任何点都不会超过用户定义的与原始值的最大偏差。</p><p><img src="/../images/image-20240620092148893.png" alt="image-20240620092148893"></p><p><strong>压缩方法</strong></p><p>本文的分段回归技术采用贪婪策略来压缩时间序列的间隔。 在内部，我们的技术使用三种在线回归算法，每一个都专门研究以下一类多项式函数：常数函数（零次多项式）、直线函数（一次多项式）和大于或等于二次的多项式。压缩结果取决于用户定义的最大可容忍偏差。</p><img src="../images/image-20240620100703301.png" alt="image-20240620100703301" style="zoom: 80%;" /><p>1.从两点的线段开始，按次数 k 循环多项式回归函数，从 k &#x3D; 0 到 k &#x3D; 2。 根据 k 的值，我们从上面列出的三种算法中采用相应的专用回归算法。</p><p>2.在每一步中，只要使用 k 次多项式函数对当前段的逼近达到精度保证，我们就会将时间序列的下一个点添加到当前段。一旦不再达到精度，我们就暂时保存当前多项式参数和相应近似值已达到精度保证的线段长度。</p><p>3.然后我们传递到下一次多项式并重复该过程。当我们达到最高次数的多项式并且循环无法再以所要求的精度逼近当前段时，循环终止。 然后，我们选择实现最高压缩比的多项式。 </p><p>4.我们通过保存其开始和结束位置以及多项式的系数来压缩相应的段。 然后，刚刚描述的分段压缩过程从下一段开始重新开始。</p><p><strong>回归函数的选择</strong></p><p>本文选择了三种在线回归算法，分别针对不同次数的多项式。</p><p>常数函数：I. Lazaridisand and S. Mehrotra. 2003. Capturing sensor-generated time series with quality guarantees. In Proceedings<br>ofthe 19th International Conference on Data Engineering. 429–440.</p><p>直线函数：M. Dalai and R. Leonardi. 2006. Approximations ofone-dimensional digital signals under thelinftynorm. IEEETrans-<br>actions on Signal Processing 54, 8 (2006), 3111–3124.</p><p>大于或等于二次的多项式：R. Seidel. 1991. Small-dimensional linear programming and convex hulls made easy. Discrete and Computational Ge-ometry 6, 3 (1991), 423–434.</p><p>可以针对具体的数据集选择更合适的函数，比如正弦函数等。</p><p><strong>如何存储压缩数据</strong></p><p>将压缩数据存储在关系数据库系统中</p><p><img src="/../images/image-20240620170314345.png" alt="image-20240620170314345"></p><p><strong>参数</strong></p><p>允许的最大偏差、最大多项式次数</p><p><strong>实验</strong></p><p>准确性、压缩、性能</p><h2 id="《NUMARCK-Machine-Learning-Algorithm-for-Resiliency-and-Checkpointing》"><a href="#《NUMARCK-Machine-Learning-Algorithm-for-Resiliency-and-Checkpointing》" class="headerlink" title="《NUMARCK: Machine Learning Algorithm for Resiliency and Checkpointing》"></a><strong>《NUMARCK: Machine Learning Algorithm for Resiliency and Checkpointing》</strong></h2><p><strong>SC.2014</strong></p><p><strong>针对的数据</strong></p><p>科学数据，在单个迭代中没有任何明显的重复模式，寻找重复模式的传统无损压缩技术对于使用高精度数据的科学数据来说是无效的。</p><p>从一次模拟迭代到下一次模拟迭代的数据值的相对变化不是非常显着。</p><p>许多科学应用可以容忍模拟数据准确性的一些有限误差损失。</p><p><img src="/../images/image-20240620142828816.png" alt="image-20240620142828816"></p><h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a><strong>算法流程</strong></h3><p><strong>1.前向预测编码</strong></p><p>首先计算两个迭代之间数据值的相对变化率，如下所示：</p><p><img src="/../images/image-20240620123826887.png" alt="image-20240620123826887"></p><p>第一个点存储原始数值。</p><p><strong>2.学习变化率的分布</strong></p><p>用户容忍错误率<strong>E</strong>，</p><p>变化率 &lt; E，我们使用0作为其近似值，因为它已经满足用户容忍误差阈值。 </p><p>变化率 &gt;&#x3D; E，我们设计了几种策略来学习变化率的分布，并根据数据的相似性对变化率中的数据进行划分。</p><p><img src="/../images/image-20240620144339573.png" alt="image-20240620144339573"></p><p>最简单的，如图所示，使用直方图学习变化率的分布。</p><p>划分为k（用户可控制）个桶，将变化率分配到相应的桶中，落在每个桶的变化率使用桶编号来编码，整个桶的值使用桶区间中点来表示。各种变化率转化为桶编号，进一步缩短长度。</p><p>它依赖于桶的宽度，桶的宽度与E相关，桶太宽，不能满足用户容忍错误率的要求。</p><p>提出了几种改进：聚类方法</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
+    <url>/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</url>
+    
+    <content type="html"><![CDATA[<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>虚拟机可以和外部系统通讯，但会浪费宿主的ip</p><img src="../images/image-20240711200106245.png" alt="image-20240711200106245" style="zoom: 50%;" /><h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><p>虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯</p><p><img src="/../images/image-20240711201909422.png" alt="image-20240711201909422"></p><h2 id="内部网络"><a href="#内部网络" class="headerlink" title="内部网络"></a>内部网络</h2><p>虚拟机之间可以互相通讯，但和外部无联系</p><p><img src="/../images/image-20240711195727113.png" alt="image-20240711195727113"></p><h2 id="仅主机模式"><a href="#仅主机模式" class="headerlink" title="仅主机模式"></a>仅主机模式</h2><p>独立系统，不和外部发生联系</p><img src="../images/image-20240711202304552.png" alt="image-20240711202304552" style="zoom:50%;" /><h2 id="docker中的网络"><a href="#docker中的网络" class="headerlink" title="docker中的网络"></a>docker中的网络</h2><p>默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上：</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/12/%E7%A7%91%E7%A0%94/%E5%8E%8B%E7%BC%A9/"/>
+    <url>/2024/06/12/%E7%A7%91%E7%A0%94/%E5%8E%8B%E7%BC%A9/</url>
+    
+    <content type="html"><![CDATA[<h2 id="预计算的压缩"><a href="#预计算的压缩" class="headerlink" title="预计算的压缩"></a>预计算的压缩</h2><p>设计一个针对预计算结果的压缩算法，最终达到：针对一批工作负载，在某个存储空间的限制下，使用我们的压缩算法可以达到更高的预计算的收益。</p><p>​</p><p>在预计算的基础上对结果进行压缩存储，以实现查询效率和存储效率的双重优化。</p><h3 id="两个指标"><a href="#两个指标" class="headerlink" title="两个指标"></a>两个指标</h3><p>压缩比和效率</p><p>压缩比越高，越可以装下更多的数据。</p><p>效率越高，越不会影响查询的性能。</p><h3 id="和普通的针对时序场景下的数据有什么不同"><a href="#和普通的针对时序场景下的数据有什么不同" class="headerlink" title="和普通的针对时序场景下的数据有什么不同"></a>和普通的针对时序场景下的数据有什么不同</h3><p>预计算表的特性和普通的时序数据略有不同：生成速度慢、量少、结果为聚合结果。</p><h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>1.比较多种压缩算法的压缩和解压缩的效率。</p><p>2.比较多种压缩算法的压缩和解压缩的压缩比。</p><h2 id="为什么TDengine压缩率这么高"><a href="#为什么TDengine压缩率这么高" class="headerlink" title="为什么TDengine压缩率这么高"></a>为什么TDengine压缩率这么高</h2><p>关系型压缩率50%，TDengine10%。</p><p>1.列式存储</p><p>相同类型数据存在一起，压缩率更高；</p><p>2.两级压缩</p><p><img src="/../images/image-20240612153829056.png" alt="image-20240612153829056"></p><ul><li>第一级根据个性进行压缩</li></ul><p>时间序列数据：差值记录技术。</p><p>依然通过一组时间戳数据来直观感受下 delta-of-delta 编码的压缩效果：</p><table><thead><tr><th align="center">Unix时间戳</th><th align="center">delta</th><th align="center">delta-of-delta</th></tr></thead><tbody><tr><td align="center">1571889600000</td><td align="center">0</td><td align="center">0</td></tr><tr><td align="center">1571889600010</td><td align="center">10</td><td align="center">10</td></tr><tr><td align="center">1571889600010</td><td align="center">0</td><td align="center">-10</td></tr><tr><td align="center">1571889600011</td><td align="center">1</td><td align="center">1</td></tr><tr><td align="center">1571889600012</td><td align="center">1</td><td align="center">0</td></tr><tr><td align="center">1571889600013</td><td align="center">1</td><td align="center">0</td></tr><tr><td align="center">1571889600015</td><td align="center">2</td><td align="center">1</td></tr><tr><td align="center">1571889600017</td><td align="center">2</td><td align="center">0</td></tr></tbody></table><table><thead><tr><th align="center">data</th><th align="center">标识位</th><th align="center">占用总bits</th></tr></thead><tbody><tr><td align="center">0</td><td align="center">0</td><td align="center">1</td></tr><tr><td align="center">[-63, 64]</td><td align="center">10</td><td align="center">2+7&#x3D;9</td></tr><tr><td align="center">[-255, 256]</td><td align="center">110</td><td align="center">3+9&#x3D;12</td></tr><tr><td align="center">[-2047, 2048]</td><td align="center">1110</td><td align="center">4+12&#x3D;16</td></tr><tr><td align="center">&gt; 2048</td><td align="center">1111</td><td align="center">4+32&#x3D;36</td></tr></tbody></table><p>整型数据：数字重编码技术。</p><p>浮点数：多种符合压缩技术。</p><ul><li>第二级从整体上进行压缩</li></ul><p>LZ4算法：LZ4是一种高效的无损数据压缩算法，由Yann Collet开发。它特别注重压缩和解压缩的速度，同时提供合理的压缩比。</p><p>现给定字符串 df<strong>abcd</strong>efghijklmn<strong>abcd</strong>kkkkkk ，后面出现的“abcd”能够用前面的“abcd”经过偏移量offset与匹配长度matchLength进行代替，实际上这就是LZ4算法的主要思想。</p><h2 id="论文阅读"><a href="#论文阅读" class="headerlink" title="论文阅读"></a>论文阅读</h2><p>Yu X, Peng Y, Li F, et al. </p><p>《Two-level data compression using machine learning in time series database》</p><p>2020 ICDE</p><p><strong>现有方法的弊端</strong></p><p>有很多现成的压缩方案可供使用。 然而，方案的有效性在很大程度上取决于其输入，其中每个方案仅对特定类型的输入（即模式）有效。</p><img src="../images/image-20240614100039052.png" alt="image-20240614100039052" style="zoom: 33%;" /><p>迫切需要一种在模式多样性存在的情况下始终能够实现高压缩比的压缩方法。</p><p><strong>本文方法</strong></p><p>我们提出了一种两级压缩模型，我们致力于<strong>实现自动每点压缩方案</strong>选择，以在实际应用中实现令人满意的压缩比和效率。</p><img src="../images/image-20240614100124086.png" alt="image-20240614100124086" style="zoom:50%;" /><p>设计并实现了 AMMMO 框架，分为两层。</p><p>在顶层使用一组控制参数定义了4个主要模式，我们把输入的时间线划分为为4个主要模式中某一个，顶层要做的就是选定主要模式，填充一组控制参数。</p><p>在底层，一个主要模式中包含4个定义好的子模式，子模式相当于一个压缩方案，我们针对每个点进行遍历即可，压缩空间小了很多。</p><p><strong>如何选择主要模式并填充参数</strong></p><p>1.基于规则</p><p>本文预定义了一些压缩方案，</p><p>创建各个压缩方案的benefitscore（即在这条timeline上的压缩和），然后遍历一个timeline里的所有点并进行分析记录，然后再经过统计分析比较等选择最好的主模式。</p><p>缺点：如果预定义的压缩方案做了修改，那么整个代码都需要重构，需要一种自动且较智能的方法支撑不停的演化等。想到使用机器学习的方法。</p><p>2.基于学习</p><p>监督学习不可行，因为无标签，原因如下：</p><ul><li>去创建有label的样本很难：32个样本256B，理论上sample有256^256种可能性，对每个这种样本，需要遍历300K的可能性才能找出最好的那一个。创建及选择sample，create label的工作量都非常大；</li><li>这不是普通的one-class-label问题：给定一个样本，并不是有唯一的最好的一个结果，很有可能很多的选择都能取得相同的压缩效果；</li><li>需要一种自动化的方法：预定义的压缩方案有可能是需要扩展的，如果发生整个训练样本的创建等都需要重新再来。需要一种自动化的办法。</li></ul><p>采用强化学习方案。</p><img src="../images/image-20240614102616379.png" alt="image-20240614102616379" style="zoom: 80%;" /><p>每个时间线进一步分为固定大小的block</p><p>在训练端：</p><p>随机选择M个block，每个block复制N份，然后输入到有3个隐含层的全连接网络中，用region softmax得到各参数各种选择的概率，然后按照概率去sample每个参数的值，得到参数后输入到底层的压缩算法进行实际压缩并得到压缩值。复制的N个block相互比较计算loss然后做反向传播。loss的整体设计为：</p><p><img src="https://pic4.zhimg.com/80/v2-c3bafc6bbe7f9c794edd7cde2f5388d7_720w.webp" alt="img"></p><p>fn(copi)描述了压缩效果，比N个block的均值高就正反馈，Hcs(copi)是交叉熵，希望得分高的概率越大越确定越好；反之亦然。后面的H（cop)是交叉熵作为正则化因子来尽量避免网络固化且收敛到局部最优。</p><p><strong>实验</strong></p><p>压缩比</p><p><img src="/../images/image-20240614103529511.png" alt="image-20240614103529511"></p><p>效率</p><img src="../images/image-20240614103536826.png" alt="image-20240614103536826" style="zoom: 50%;" /><p>基于机器学习有损压缩+回归算法  怎么用</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/11/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/map%E6%B3%A8%E5%85%A5/"/>
+    <url>/2024/06/11/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/map%E6%B3%A8%E5%85%A5/</url>
+    
+    <content type="html"><![CDATA[<p>通过map的自动注入，第一次见，有点优雅</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DefaultChainFactory</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, ILogicChain&gt; logicChainGroup;<br>    <span class="hljs-keyword">protected</span> IStrategyRepository repository;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">DefaultChainFactory</span><span class="hljs-params">(Map&lt;String, ILogicChain&gt; logicChainGroup, IStrategyRepository repository)</span> &#123;<br>        <span class="hljs-built_in">this</span>.logicChainGroup = logicChainGroup;<br>        <span class="hljs-built_in">this</span>.repository = repository;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>其中logicChainGroup这个map会自动注入所有实现类责任链节点<br>每个实现了ILogicChain的类会在component中指定一个名称，注入后为map的key</p><p><img src="/../images/image-20240611165918419.png" alt="image-20240611165918419"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/11/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%8F%A3%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8/"/>
+    <url>/2024/06/11/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%8F%A3%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h2 id="云服务器端口不能使用"><a href="#云服务器端口不能使用" class="headerlink" title="云服务器端口不能使用"></a>云服务器端口不能使用</h2><p>本人在部署短链接过程中，所以需要开启某个端口，遇到以下两种端口情况，希望能帮助到你！</p><h3 id="1-首先需要去阿里云服务器中开放端口"><a href="#1-首先需要去阿里云服务器中开放端口" class="headerlink" title="1.首先需要去阿里云服务器中开放端口"></a>1.首先需要去阿里云服务器中开放端口</h3><p>安全组中：</p><p><img src="/../images/image-20240611140843963.png" alt="image-20240611140843963"></p><h3 id="2-除了上述端口开启完，你还需要让这个端口在终端可以使用！"><a href="#2-除了上述端口开启完，你还需要让这个端口在终端可以使用！" class="headerlink" title="2.除了上述端口开启完，你还需要让这个端口在终端可以使用！"></a>2.除了上述端口开启完，你还需要让这个端口在终端可以使用！</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用这个命令查看，端口开放的情况，是否由于该端口已被占用</span><br>ss -tuln | grep :80<br></code></pre></td></tr></table></figure><p>若上述没有查找到指定端口被占用，并且端口也没有开放，则使用如下命令，因为阿里云服务器除了在安全组开放外，还要在服务器防火墙手动开启，<strong>除非你禁用服务器</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 如，我需要开启8888端口</span><br><span class="hljs-comment"># 即命令 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8888 -j ACCEPT</span><br>iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 端口 -j ACCEPT<br>iptables -I INPUT -m state --state NEW -m udp -p udp --dport 端口 -j ACCEPT<br> <br><span class="hljs-comment"># 删除防火墙规则，内容一样把 -I 换成 -D 就行了：</span><br>iptables -D INPUT -m state --state NEW -m tcp -p tcp --dport 端口 -j ACCEPT<br>iptables -D INPUT -m state --state NEW -m udp -p udp --dport 端口 -j ACCEPT<br></code></pre></td></tr></table></figure><h3 id="常用的操作端口的命令"><a href="#常用的操作端口的命令" class="headerlink" title="常用的操作端口的命令"></a><strong>常用的操作端口的命令</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">查看端口是否开启：<br>ss -tuln | grep :80<br><br>查看某端口上的进程：<br>lsof -i :5127<br></code></pre></td></tr></table></figure><p>测试端口是否开启的网站：</p><p><a href="https://tool.chinaz.com/port">端口扫描 - 站长工具 (chinaz.com)</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/DDD%E6%9E%B6%E6%9E%84/"/>
+    <url>/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/DDD%E6%9E%B6%E6%9E%84/</url>
+    
+    <content type="html"><![CDATA[<h2 id="DDD架构"><a href="#DDD架构" class="headerlink" title="DDD架构"></a>DDD架构</h2><p><a href="https://bugstack.cn/md/road-map/ddd.html">DDD 架构 | 小傅哥 bugstack 虫洞栈</a></p><p><a href="https://www.bilibili.com/video/BV1kV411g7GX/?t=44.614722&spm_id_from=333.1350.jump_directly&vd_source=08b017bec121a20e81681bf601db9437">架构的本质之DDD架构 —— Java简明教程，一套简单、清晰、明了的Java学习路线资料！！！_哔哩哔哩_bilibili</a></p><h3 id="VO和Entity的区别"><a href="#VO和Entity的区别" class="headerlink" title="VO和Entity的区别"></a>VO和Entity的区别</h3><ul><li>Entity在整个生命周期中，有多个「状态」，也就是说「状态」是可变的（至于变不变就看实际情况了） </li><li>而VO在整个生命周期中，只有一个「状态」，也就是说「状态」不变</li></ul><p><strong>如何识别</strong></p><p>一个对象是表示成Entity还是VO，取决于系统的关注点</p><p>举个例子：</p><p>「商品」在「订单系统」中是个VO，而在「商品管理系统」中是Entity</p><ul><li>在「商品管理系统」中，系统需要关注「商品」的「状态」，需要维护是否上架、库存多少、各种属性等信息（多种状态）。就是说在「商品管理系统」中，商品状态是可变的。所以它也有「标识」，即商品ID</li><li>「订单系统」并不关心「商品」的「状态」变化，它只关注在创建订单时，这个「商品」的当前「状态」是什么，并且在订单创建完成后，这个「商品」的「状态」就不会再改变了</li></ul><h2 id="聚合对象"><a href="#聚合对象" class="headerlink" title="聚合对象"></a>聚合对象</h2><p>一般用在事务</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一些技巧</title>
+    <link href="/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/"/>
+    <url>/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/</url>
+    
+    <content type="html"><![CDATA[<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/10/%E7%A7%91%E7%A0%94/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2024/06/10/%E7%A7%91%E7%A0%94/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul><li>DQN：Deep Q network，比较符合人的直观感受逻辑的一种类型，它会训练一个评估Q-value的网络，对任一state能给出各个Action的reward，然后最终选择reward最大的那个action进行操作即可。训练过程通过评估”估计的Q-value“”和“真正得到的Q-value”的结果进行反向传递，最终让网络估计Q-value越来越准。</li><li>Policy Gradient：是更加端到端的一种类型，训练一个网络，对任一state直接给出最终的action。DQN的适用范围需要连续state的Q-value也比较连续（下围棋等不适用这种情况），而Policy Gradient由于忽略内部过程直接给出action，具有更大的普适性。但它的缺点是更难以评价及收敛。一般的训练过程是：对某一state，同时随机的采取多种action，评价各种action的结果进行反向传递，最终让网络输出效果更好的action。</li><li>Actor-Critic：试着糅合前面两种网络，取长补短，一方面用policy Gradient网络进行任一state的action输出，另外一方面用DQN网络对policy gradient的action输出进行较好的量化评价并以之来指导policy gradient的更新。如名字所示，就像表演者和评论家的关系。训练过程需要同时训练actor（policy Graident）和critic(DQN)网络，但actor的训练只需要follow critic的指引就好。它有很多的变种，也是当前DRL理论研究上不断发展的主要方向。</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/10/%E7%A7%91%E7%A0%94/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/%E6%96%B0%E5%BB%BA%20Markdown/"/>
+    <url>/2024/06/10/%E7%A7%91%E7%A0%94/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/%E6%96%B0%E5%BB%BA%20Markdown/</url>
+    
+    <content type="html"><![CDATA[<p>逻辑1：</p><p>整个搜索空间太大——预定义了一组搜索空间——但每个点逐个遍历元数据太大——分层</p><p>逻辑2：</p><p>基于规则的算法是使用每个压缩算法在整个timeline上跑一遍，而不是针对每个点遍历所有压缩算法，性能提升了不少</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/10/%E7%A7%91%E7%A0%94/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/delta%20of%20delta%E7%BC%96%E7%A0%81/"/>
+    <url>/2024/06/10/%E7%A7%91%E7%A0%94/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/delta%20of%20delta%E7%BC%96%E7%A0%81/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要讨论时序数据库中常见的一种时间戳或者数值压缩方法：delta-of-delta 算法，可以极大地降低数据存储的成本和提高数据写入、查询的性能。</p><p>delta-of-delta 压缩时间戳是 Facebook Gorilla 论文中所提到的，论文地址：<a href="http://www.vldb.org/pvldb/vol8/p1816-teller.pdf%E3%80%82%E7%A4%BE%E5%8C%BA%E6%AF%94%E8%BE%83%E7%81%AB%E7%83%AD%E7%9A%84">http://www.vldb.org/pvldb/vol8/p1816-teller.pdf。社区比较火热的</a> Prometheus TSDB 项目也是借鉴了 Facebook Gorilla 论文中的思路，可以实现很高的时序数据压缩率。</p><h2 id="delta-时间戳压缩"><a href="#delta-时间戳压缩" class="headerlink" title="delta 时间戳压缩"></a>delta 时间戳压缩</h2><p>时间戳一般采用 long 类型进行存储，需要占用 8byte 存储空间。最直接的优化就是存储时间戳的差值，这里需要起始时间戳和 delta 的最大范围阈值。有两种常用的实现思路：</p><p>1.存储相邻两个时间戳差值 Delta(n) &#x3D; T(n) - T(n-1)</p><table><thead><tr><th align="center">Unix时间戳</th><th align="center">Delta</th></tr></thead><tbody><tr><td align="center">1571889600000</td><td align="center">0</td></tr><tr><td align="center">1571889600010</td><td align="center">10</td></tr><tr><td align="center">1571889600025</td><td align="center">15</td></tr><tr><td align="center">1571889600030</td><td align="center">5</td></tr><tr><td align="center">1571889600040</td><td align="center">10</td></tr></tbody></table><h3 id="delta-of-delta"><a href="#delta-of-delta" class="headerlink" title="delta of delta"></a>delta of delta</h3><p>又名二阶差分编码，是在Delta编码的基础上再一次使用Delta编码，比较适合编码单调递增或者递减的序列数据。</p><p>Facebook Gorilla 有详细阐述 delta-of-delta 编码的计算方式，针对不同时间跨度的数据，Facebook Gorilla 给出了一种较为通用的处理方案。</p><table><thead><tr><th align="center">data</th><th align="center">标识位</th><th align="center">占用总bits</th></tr></thead><tbody><tr><td align="center">0</td><td align="center">0</td><td align="center">1</td></tr><tr><td align="center">[-63, 64]</td><td align="center">10</td><td align="center">2+7&#x3D;9</td></tr><tr><td align="center">[-255, 256]</td><td align="center">110</td><td align="center">3+9&#x3D;12</td></tr><tr><td align="center">[-2047, 2048]</td><td align="center">1110</td><td align="center">4+12&#x3D;16</td></tr><tr><td align="center">&gt; 2048</td><td align="center">1111</td><td align="center">4+32&#x3D;36</td></tr></tbody></table><p>依然通过一组时间戳数据来直观感受下 delta-of-delta 编码的压缩效果：</p><table><thead><tr><th align="center">Unix时间戳</th><th align="center">delta</th><th align="center">delta-of-delta</th><th align="center">压缩后总bits</th></tr></thead><tbody><tr><td align="center">1571889600000</td><td align="center">0</td><td align="center">0</td><td align="center"></td></tr><tr><td align="center">1571889600010</td><td align="center">10</td><td align="center">10</td><td align="center">9</td></tr><tr><td align="center">1571889600010</td><td align="center">0</td><td align="center">-10</td><td align="center">9</td></tr><tr><td align="center">1571889600011</td><td align="center">1</td><td align="center">1</td><td align="center">9</td></tr><tr><td align="center">1571889600012</td><td align="center">1</td><td align="center">0</td><td align="center">1</td></tr><tr><td align="center">1571889600013</td><td align="center">1</td><td align="center">0</td><td align="center">1</td></tr><tr><td align="center">1571889600015</td><td align="center">2</td><td align="center">1</td><td align="center">9</td></tr><tr><td align="center">1571889600017</td><td align="center">2</td><td align="center">0</td><td align="center">1</td></tr></tbody></table><p>依然假设起始时间戳为 1571889600000，delta 的最大范围阈值为 3600s，占用存储空间对比如下：</p><p>delta 算法： 64 + 13 * 7 &#x3D; 155bit 。<br>delta-of-delta 算法： 64 + 9 * 4 + 1 * 3 &#x3D; 103bit 。<br>可以看出 delta-of-delta 算法相比 delta 算法进一步获得了更高的压缩率。在实际应用场景中，海量时序数据的时间戳都是密集且连续的，绝大部分都满足 delta-of-delta&#x3D;0 的条件，这样可以大幅度降低时间戳的存储空间。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/09/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/"/>
+    <url>/2024/06/09/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</url>
+    
+    <content type="html"><![CDATA[<h3 id="运行命令"><a href="#运行命令" class="headerlink" title="运行命令"></a>运行命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">nohup</span> /usr/local/java/jdk17.0.8.1/bin/java \<br>-Dshort-link.domain.default=120.26.138.90:8003 \<br>-jar /home/shortlink/shortlink-aggregation.jar &gt; logs/shortlink-aggregation.file 2&gt;&amp;1 &amp;<br><br><br><span class="hljs-built_in">nohup</span> /usr/local/java/jdk17.0.8.1/bin/java \<br>-jar /home/shortlink/shortlink-gateway.jar &gt; logs/shortlink-gateway.file 2&gt;&amp;1 &amp;<br></code></pre></td></tr></table></figure><h3 id="查看是否启动成功"><a href="#查看是否启动成功" class="headerlink" title="查看是否启动成功"></a>查看是否启动成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#聚合项目</span><br><span class="hljs-built_in">tail</span> -f logs/shortlink-aggregation.file<br><br><span class="hljs-comment">#网关项目</span><br><span class="hljs-built_in">tail</span> -f logs/shortlink-gateway.file<br></code></pre></td></tr></table></figure><h3 id="查看服务状态"><a href="#查看服务状态" class="headerlink" title="查看服务状态"></a>查看服务状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef | grep java<br><br><span class="hljs-comment">#关闭服务</span><br><span class="hljs-built_in">kill</span> -9 [进程号]<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>大营销项目流程的梳理</title>
+    <link href="/2024/06/09/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/"/>
+    <url>/2024/06/09/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h2 id="第5节：抽奖前置规则过滤"><a href="#第5节：抽奖前置规则过滤" class="headerlink" title="第5节：抽奖前置规则过滤"></a>第5节：抽奖前置规则过滤</h2><h2 id="抽奖流程"><a href="#抽奖流程" class="headerlink" title="抽奖流程"></a>抽奖流程</h2><img src="../images/image-20240610141256331.png" alt="image-20240610141256331" style="zoom: 33%;" /><p><strong>1.参数校验</strong></p><p>检查userid和strategyid是否为空</p><p><strong>2.策略查询</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">StrategyEntity</span> <span class="hljs-variable">strategy</span> <span class="hljs-operator">=</span> repository.queryStrategyEntityByStrategyId(strategyId)<br></code></pre></td></tr></table></figure><p>根据策略id从strategy表中获取实体StrategyEntity</p><p><strong>3.抽奖前——规则过滤doCheckRaffleBeforeLogic</strong></p><p>根据StrategyEntity中的ruleModels执行不同的规则，返回的是RuleActionEntity。</p><p><strong>4.执行默认抽奖流程</strong></p><p><strong>5.查询奖品规则</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">repository.queryStrategyAwardRuleModelVO(strategyId, awardId);<br></code></pre></td></tr></table></figure><p>获得ruleModels</p><p><strong>6.抽奖中——规则过滤</strong></p><ul><li>从ruleModels获得center的规则</li><li>doCheckRaffleCenterLogic</li></ul><p>获取RuleActionEntity</p><h3 id="其他类"><a href="#其他类" class="headerlink" title="其他类"></a>其他类</h3><p><strong>DefaultLogicFactory</strong></p><ul><li>构造方法</li></ul><p>构造一个map，key为rule，value为该rule对应的filter</p><p>比如key：“rule_lock”，value：RuleLockLogicFilter类</p><ul><li>openLogicFilter</li></ul><p>把map返回</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>设计模式的总结</title>
+    <link href="/2024/06/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <url>/2024/06/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    
+    <content type="html"><![CDATA[<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>定义一组算法，将每个算法都封装起来，并且使它们之间可以互换。策略模式让算法独立于使用它的客户而变化，比如以下例子：</p><img src="../images/image-20240609111329679.png" alt="image-20240609111329679" style="zoom:50%;" /><p>类图</p><img src="../images/image-20240609111416047.png" alt="image-20240609111416047" style="zoom: 50%;" /><h3 id="具体例子"><a href="#具体例子" class="headerlink" title="具体例子"></a>具体例子</h3><p>线程池构造方法中指定拒绝策略，指定不同的拒绝策略，相当于选择不同的策略。</p><h3 id="我们的项目中"><a href="#我们的项目中" class="headerlink" title="我们的项目中"></a><strong>我们的项目中</strong></h3><p>ILogicFilter</p><h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/09/nginx%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"/>
+    <url>/2024/06/09/nginx%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#启动脚本是在</span><br>/usr/local/nginx/sbin/nginx<br><span class="hljs-comment">#启动,</span><br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br><span class="hljs-comment">#停止</span><br>/usr/local/nginx/sbin/nginx -s stop<br><span class="hljs-comment">#重载</span><br>/usr/local/nginx/sbin/nginx -s reload<br><span class="hljs-comment">#杀掉nginx</span><br>/usr/local/nginx/sbin/nginx -s quit<br></code></pre></td></tr></table></figure><h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/06/08/%E7%AE%97%E6%B3%95/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/"/>
+    <url>/2024/06/08/%E7%AE%97%E6%B3%95/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h3 id="6-9戳气球"><a href="#6-9戳气球" class="headerlink" title="6.9戳气球"></a>6.9戳气球</h3><p>记忆化搜索或者动态规划</p><h3 id="6-10"><a href="#6-10" class="headerlink" title="6.10"></a>6.10</h3><p>简单的双指针，但想不到。</p><h3 id="6-11"><a href="#6-11" class="headerlink" title="6.11"></a>6.11</h3><p>简单题，但没做出来</p><p>二分查找的变体，看灵神的总结</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo初学第一天</title>
+    <link href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+    <url>/2024/06/08/hexo/hexo%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
+    
+    <content type="html"><![CDATA[<p>配置hexo环境，并推送到github上。</p><p>详细过程参考如下地址：</p><p><a href="https://www.bilibili.com/video/BV1Yb411a7ty/?spm_id_from=333.880.my_history.page.click">手把手教你从0开始搭建自己的个人博客 |无坑版视频教程| hexo_哔哩哔哩_bilibili</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>hexo</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo初学第二天</title>
+    <link href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/"/>
+    <url>/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/</url>
+    
+    <content type="html"><![CDATA[<h3 id="每次修改后需要做的"><a href="#每次修改后需要做的" class="headerlink" title="每次修改后需要做的"></a>每次修改后需要做的</h3><p>完成任意配置后,输入以下指令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure><p>在本地localhost:4000 预览效果。然后运行以下命令推送到github</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo d<br></code></pre></td></tr></table></figure><h3 id="添加图片"><a href="#添加图片" class="headerlink" title="添加图片"></a>添加图片</h3><p>1.在source文件夹下创建images文件夹，以后所有的图片都放这边。</p><p>2.需要将typora中图片显示修改为相对位置才行。</p><h3 id="Front-matter的设置"><a href="#Front-matter的设置" class="headerlink" title="Front-matter的设置"></a>Front-matter的设置</h3><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">World</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2013</span><span class="hljs-string">/7/13</span> <span class="hljs-number">20</span><span class="hljs-string">:46:25</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><p>常用参数见<a href="https://hexo.io/zh-cn/docs/front-matter">Front-matter | Hexo</a></p><h3 id="主题修改（以fluid主题为例）"><a href="#主题修改（以fluid主题为例）" class="headerlink" title="主题修改（以fluid主题为例）"></a>主题修改（以fluid主题为例）</h3><p>1.使用npm安装主题</p><p>2.创建新的_config.fluid.yml配置文件</p><p>3.在_config.yml文件中修改theme配置</p><p>4.重新加载</p><p>参考地址：<a href="https://github.com/fluid-dev/hexo-theme-fluid">fluid-dev&#x2F;hexo-theme-fluid: :ocean: 一款 Material Design 风格的 Hexo 主题 &#x2F; An elegant Material-Design theme for Hexo (github.com)</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>hexo</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test</title>
+    <link href="/2024/06/07/test/"/>
+    <url>/2024/06/07/test/</url>
+    
+    <content type="html"><![CDATA[<p><img src="/../images/image-20240607181136720.png" alt="image-20240607181136720"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>hexo</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>redis的一些配置问题</title>
+    <link href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/"/>
+    <url>/2024/06/07/redis%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h2 id="redis取消密码"><a href="#redis取消密码" class="headerlink" title="redis取消密码"></a>redis取消密码</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>docker exec -it 027e redis-cli</p><p>AUTH 现有密码</p><p>config set requirepass ‘’</p><p>使用SAVE命令保存更改</p><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>永久取消密码要去redis.config中设置。</p><p>官方的Redis镜像默认是没有配置文件的。</p><p><a href="https://blog.51cto.com/u_16213420/10677688">redis容器没有配置文件_mob64ca12edad02的技术博客_51CTO博客</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>

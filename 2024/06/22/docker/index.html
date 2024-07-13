@@ -16,22 +16,22 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="设置开机自启动例如启动一个MySQL容器需要开机自启则使用以下命令启动容器 12#  docker run -d --name mysql -p 3306:3306 --restart&#x3D;alwaysalways - 无论退出状态是如何，都重启容器  如果在启动的时候忘记加该参数两个方法实现自启动  删除容器重新创建 更新容器下面介绍如何更新更新之前查看容器重启策略  1234# docker in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/22/docker/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="设置开机自启动例如启动一个MySQL容器需要开机自启则使用以下命令启动容器 12#  docker run -d --name mysql -p 3306:3306 --restart&#x3D;alwaysalways - 无论退出状态是如何，都重启容器  如果在启动的时候忘记加该参数两个方法实现自启动  删除容器重新创建 更新容器下面介绍如何更新更新之前查看容器重启策略  1234# docker in">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="article:published_time" content="2024-06-22T02:31:37.718Z">
+<meta property="article:modified_time" content="2024-07-10T10:00:47.337Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-22 10:31" pubdate>
+          2024年6月22日 上午
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          434 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -268,12 +268,44 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="设置开机自启动"><a href="#设置开机自启动" class="headerlink" title="设置开机自启动"></a>设置开机自启动</h2><p>例如启动一个MySQL容器需要开机自启则使用以下命令启动容器</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">#  docker run -d <span class="hljs-attr">--name</span> mysql -<span class="hljs-selector-tag">p</span> <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> --restart=always<br>always - 无论退出状态是如何，都重启容器<br></code></pre></td></tr></table></figure>
+
+<p>如果在启动的时候忘记加该参数两个方法实现自启动</p>
+<ol>
+<li>删除容器重新创建</li>
+<li>更新容器<br>下面介绍如何更新<br>更新之前查看容器重启策略</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># docker inspect 521b7fb8f7da|grep -i <span class="hljs-string">&quot;RestartPolicy&quot;</span> -A 2</span><br>            <span class="hljs-string">&quot;RestartPolicy&quot;</span>: &#123;<br>                <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>                <span class="hljs-string">&quot;MaximumRetryCount&quot;</span>: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>解析</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs perl"><span class="hljs-comment"># 通过容器id查看容器信息</span><br>docker inspect <span class="hljs-number">521</span>b7fb8f7da<br><span class="hljs-comment"># 管道符</span><br>|<br><span class="hljs-comment"># 通过关键字RestartPolicy匹配容器重启策略</span><br><span class="hljs-keyword">grep</span> -i <span class="hljs-string">&quot;RestartPolicy&quot;</span> <br><span class="hljs-comment"># 除了匹配的关键字还列出关键字下面两行</span><br>-A <span class="hljs-number">2</span><br></code></pre></td></tr></table></figure>
+
+<p>可以看到重启策略关键字RestartPolicy对应的name为空<br>通过容器ID更新容器重启策略</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"># docker <span class="hljs-keyword">update</span> <span class="hljs-comment">--restart=always 521b7fb8f7da</span><br></code></pre></td></tr></table></figure>
+
+<p>再次查看容器信息<br>已经设置为总是启动了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta"># docker inspect 521b7fb8f7da|grep -i <span class="hljs-string">&quot;RestartPolicy&quot;</span> -A 2</span><br>            <span class="hljs-string">&quot;RestartPolicy&quot;</span>: &#123;<br>                <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>                <span class="hljs-string">&quot;MaximumRetryCount&quot;</span>: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p>如果想要重启不自动启动则使用以下命令</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"># docker <span class="hljs-keyword">update</span> <span class="hljs-comment">--restart=no 75038d7a530f</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="docker拉取镜像报错"><a href="#docker拉取镜像报错" class="headerlink" title="docker拉取镜像报错"></a>docker拉取镜像报错</h2><p><strong>报错</strong></p>
+<p> error pulling image configuration: Get <a target="_blank" rel="noopener" href="https://production.cloudflare.docker.com/">https://production.cloudflare.docker.com</a></p>
+<p><strong>解决</strong></p>
+<p>能加多少镜像就加多少到&#x2F;etc&#x2F;docker&#x2F;daemon.json文件中，以下是阿里云镜像加速：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /etc/docker<br>sudo <span class="hljs-built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="hljs-string">&#x27;EOF&#x27;</span><br>&#123;<br>  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://9rfsxolh.mirror.aliyuncs.com&quot;</span>]<br>&#125;<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure>
+
+<p>还有其他镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>,<br><span class="hljs-string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span>,<br><span class="hljs-string">&quot;https://registry.docker-cn.com&quot;</span>,<br><span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>,<br><span class="hljs-string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span>,<br><span class="hljs-string">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span>,<br><span class="hljs-string">&quot;https://hccwwfjl.mirror.aliyuncs.com&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>最新镜像去github上看看</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/sky22333/Docker-Hub">sky22333&#x2F;Docker-Hub: Docker Hub镜像加速or项目收集 (github.com)</a></p>
 
                 
               </div>
@@ -281,27 +313,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +323,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/22/docker/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +336,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月22日</div>
         </div>
       
       
@@ -357,9 +368,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/27/%E7%A7%91%E7%A0%94/6.27/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +378,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/21/linux%E4%B8%ADvip/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

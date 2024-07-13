@@ -16,22 +16,30 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="预计算的压缩设计一个针对预计算结果的压缩算法，最终达到：针对一批工作负载，在某个存储空间的限制下，使用我们的压缩算法可以达到更高的预计算的收益。 ​	 在预计算的基础上对结果进行压缩存储，以实现查询效率和存储效率的双重优化。 两个指标压缩比和效率 压缩比越高，越可以装下更多的数据。 效率越高，越不会影响查询的性能。 和普通的针对时序场景下的数据有什么不同预计算表的特性和普通的时序数据略有不同：生成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/12/%E7%A7%91%E7%A0%94/%E5%8E%8B%E7%BC%A9/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="预计算的压缩设计一个针对预计算结果的压缩算法，最终达到：针对一批工作负载，在某个存储空间的限制下，使用我们的压缩算法可以达到更高的预计算的收益。 ​	 在预计算的基础上对结果进行压缩存储，以实现查询效率和存储效率的双重优化。 两个指标压缩比和效率 压缩比越高，越可以装下更多的数据。 效率越高，越不会影响查询的性能。 和普通的针对时序场景下的数据有什么不同预计算表的特性和普通的时序数据略有不同：生成">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="og:image" content="http://example.com/images/image-20240612153829056.png">
+<meta property="og:image" content="http://example.com/2024/06/12/%E7%A7%91%E7%A0%94/images/image-20240614100039052.png">
+<meta property="og:image" content="http://example.com/2024/06/12/%E7%A7%91%E7%A0%94/images/image-20240614100124086.png">
+<meta property="og:image" content="http://example.com/2024/06/12/%E7%A7%91%E7%A0%94/images/image-20240614102616379.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-c3bafc6bbe7f9c794edd7cde2f5388d7_720w.webp">
+<meta property="og:image" content="http://example.com/images/image-20240614103529511.png">
+<meta property="og:image" content="http://example.com/2024/06/12/%E7%A7%91%E7%A0%94/images/image-20240614103536826.png">
+<meta property="article:published_time" content="2024-06-12T07:35:42.466Z">
+<meta property="article:modified_time" content="2024-06-16T03:05:19.193Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
+<meta name="twitter:image" content="http://example.com/images/image-20240612153829056.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-12 15:35" pubdate>
+          2024年6月12日 下午
         </time>
       </span>
     
@@ -220,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.4k 字
         
       </span>
     
@@ -231,7 +239,7 @@
         
         
         
-          1 分钟
+          12 分钟
         
       </span>
     
@@ -268,12 +276,162 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="预计算的压缩"><a href="#预计算的压缩" class="headerlink" title="预计算的压缩"></a>预计算的压缩</h2><p>设计一个针对预计算结果的压缩算法，最终达到：针对一批工作负载，在某个存储空间的限制下，使用我们的压缩算法可以达到更高的预计算的收益。</p>
+<p>​	</p>
+<p>在预计算的基础上对结果进行压缩存储，以实现查询效率和存储效率的双重优化。</p>
+<h3 id="两个指标"><a href="#两个指标" class="headerlink" title="两个指标"></a>两个指标</h3><p>压缩比和效率</p>
+<p>压缩比越高，越可以装下更多的数据。</p>
+<p>效率越高，越不会影响查询的性能。</p>
+<h3 id="和普通的针对时序场景下的数据有什么不同"><a href="#和普通的针对时序场景下的数据有什么不同" class="headerlink" title="和普通的针对时序场景下的数据有什么不同"></a>和普通的针对时序场景下的数据有什么不同</h3><p>预计算表的特性和普通的时序数据略有不同：生成速度慢、量少、结果为聚合结果。</p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>1.比较多种压缩算法的压缩和解压缩的效率。</p>
+<p>2.比较多种压缩算法的压缩和解压缩的压缩比。</p>
+<h2 id="为什么TDengine压缩率这么高"><a href="#为什么TDengine压缩率这么高" class="headerlink" title="为什么TDengine压缩率这么高"></a>为什么TDengine压缩率这么高</h2><p>关系型压缩率50%，TDengine10%。</p>
+<p>1.列式存储</p>
+<p>相同类型数据存在一起，压缩率更高；</p>
+<p>2.两级压缩</p>
+<p><img src="/../images/image-20240612153829056.png" srcset="/img/loading.gif" lazyload alt="image-20240612153829056"></p>
+<ul>
+<li>第一级根据个性进行压缩</li>
+</ul>
+<p>时间序列数据：差值记录技术。</p>
+<p>依然通过一组时间戳数据来直观感受下 delta-of-delta 编码的压缩效果：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Unix时间戳</th>
+<th align="center">delta</th>
+<th align="center">delta-of-delta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1571889600000</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1571889600010</td>
+<td align="center">10</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">1571889600010</td>
+<td align="center">0</td>
+<td align="center">-10</td>
+</tr>
+<tr>
+<td align="center">1571889600011</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1571889600012</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1571889600013</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1571889600015</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1571889600017</td>
+<td align="center">2</td>
+<td align="center">0</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">data</th>
+<th align="center">标识位</th>
+<th align="center">占用总bits</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">[-63, 64]</td>
+<td align="center">10</td>
+<td align="center">2+7&#x3D;9</td>
+</tr>
+<tr>
+<td align="center">[-255, 256]</td>
+<td align="center">110</td>
+<td align="center">3+9&#x3D;12</td>
+</tr>
+<tr>
+<td align="center">[-2047, 2048]</td>
+<td align="center">1110</td>
+<td align="center">4+12&#x3D;16</td>
+</tr>
+<tr>
+<td align="center">&gt; 2048</td>
+<td align="center">1111</td>
+<td align="center">4+32&#x3D;36</td>
+</tr>
+</tbody></table>
+<p>整型数据：数字重编码技术。</p>
+<p>浮点数：多种符合压缩技术。</p>
+<ul>
+<li>第二级从整体上进行压缩</li>
+</ul>
+<p>LZ4算法：LZ4是一种高效的无损数据压缩算法，由Yann Collet开发。它特别注重压缩和解压缩的速度，同时提供合理的压缩比。</p>
+<p>现给定字符串 df<strong>abcd</strong>efghijklmn<strong>abcd</strong>kkkkkk ，后面出现的“abcd”能够用前面的“abcd”经过偏移量offset与匹配长度matchLength进行代替，实际上这就是LZ4算法的主要思想。</p>
+<h2 id="论文阅读"><a href="#论文阅读" class="headerlink" title="论文阅读"></a>论文阅读</h2><p>Yu X, Peng Y, Li F, et al. </p>
+<p>《Two-level data compression using machine learning in time series database》</p>
+<p>2020 ICDE</p>
+<p><strong>现有方法的弊端</strong></p>
+<p>有很多现成的压缩方案可供使用。 然而，方案的有效性在很大程度上取决于其输入，其中每个方案仅对特定类型的输入（即模式）有效。</p>
+<img src="../images/image-20240614100039052.png" srcset="/img/loading.gif" lazyload alt="image-20240614100039052" style="zoom: 33%;" />
+
+<p>迫切需要一种在模式多样性存在的情况下始终能够实现高压缩比的压缩方法。</p>
+<p><strong>本文方法</strong></p>
+<p>我们提出了一种两级压缩模型，我们致力于<strong>实现自动每点压缩方案</strong>选择，以在实际应用中实现令人满意的压缩比和效率。</p>
+<img src="../images/image-20240614100124086.png" srcset="/img/loading.gif" lazyload alt="image-20240614100124086" style="zoom:50%;" />
+
+<p>设计并实现了 AMMMO 框架，分为两层。</p>
+<p>在顶层使用一组控制参数定义了4个主要模式，我们把输入的时间线划分为为4个主要模式中某一个，顶层要做的就是选定主要模式，填充一组控制参数。</p>
+<p>在底层，一个主要模式中包含4个定义好的子模式，子模式相当于一个压缩方案，我们针对每个点进行遍历即可，压缩空间小了很多。</p>
+<p><strong>如何选择主要模式并填充参数</strong></p>
+<p>1.基于规则</p>
+<p>本文预定义了一些压缩方案，</p>
+<p>创建各个压缩方案的benefitscore（即在这条timeline上的压缩和），然后遍历一个timeline里的所有点并进行分析记录，然后再经过统计分析比较等选择最好的主模式。</p>
+<p>缺点：如果预定义的压缩方案做了修改，那么整个代码都需要重构，需要一种自动且较智能的方法支撑不停的演化等。想到使用机器学习的方法。</p>
+<p>2.基于学习</p>
+<p>监督学习不可行，因为无标签，原因如下：</p>
+<ul>
+<li>去创建有label的样本很难：32个样本256B，理论上sample有256^256种可能性，对每个这种样本，需要遍历300K的可能性才能找出最好的那一个。创建及选择sample，create label的工作量都非常大；</li>
+<li>这不是普通的one-class-label问题：给定一个样本，并不是有唯一的最好的一个结果，很有可能很多的选择都能取得相同的压缩效果；</li>
+<li>需要一种自动化的方法：预定义的压缩方案有可能是需要扩展的，如果发生整个训练样本的创建等都需要重新再来。需要一种自动化的办法。</li>
+</ul>
+<p>采用强化学习方案。</p>
+<img src="../images/image-20240614102616379.png" srcset="/img/loading.gif" lazyload alt="image-20240614102616379" style="zoom: 80%;" />
+
+<p>每个时间线进一步分为固定大小的block</p>
+<p>在训练端：</p>
+<p>随机选择M个block，每个block复制N份，然后输入到有3个隐含层的全连接网络中，用region softmax得到各参数各种选择的概率，然后按照概率去sample每个参数的值，得到参数后输入到底层的压缩算法进行实际压缩并得到压缩值。复制的N个block相互比较计算loss然后做反向传播。loss的整体设计为：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-c3bafc6bbe7f9c794edd7cde2f5388d7_720w.webp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>fn(copi)描述了压缩效果，比N个block的均值高就正反馈，Hcs(copi)是交叉熵，希望得分高的概率越大越确定越好；反之亦然。后面的H（cop)是交叉熵作为正则化因子来尽量避免网络固化且收敛到局部最优。</p>
+<p><strong>实验</strong></p>
+<p>压缩比</p>
+<p><img src="/../images/image-20240614103529511.png" srcset="/img/loading.gif" lazyload alt="image-20240614103529511"></p>
+<p>效率</p>
+<img src="../images/image-20240614103536826.png" srcset="/img/loading.gif" lazyload alt="image-20240614103536826" style="zoom: 50%;" />
+
+<p>基于机器学习有损压缩+回归算法  怎么用</p>
 
                 
               </div>
@@ -281,27 +439,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +449,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/12/科研/压缩/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +462,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月12日</div>
         </div>
       
       
@@ -357,9 +494,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +504,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/11/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/map%E6%B3%A8%E5%85%A5/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

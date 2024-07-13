@@ -16,22 +16,22 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="分类 DQN：Deep Q network，比较符合人的直观感受逻辑的一种类型，它会训练一个评估Q-value的网络，对任一state能给出各个Action的reward，然后最终选择reward最大的那个action进行操作即可。训练过程通过评估”估计的Q-value“”和“真正得到的Q-value”的结果进行反向传递，最终让网络估计Q-value越来越准。 Policy Gradient：是更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/10/%E7%A7%91%E7%A0%94/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="分类 DQN：Deep Q network，比较符合人的直观感受逻辑的一种类型，它会训练一个评估Q-value的网络，对任一state能给出各个Action的reward，然后最终选择reward最大的那个action进行操作即可。训练过程通过评估”估计的Q-value“”和“真正得到的Q-value”的结果进行反向传递，最终让网络估计Q-value越来越准。 Policy Gradient：是更">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="article:published_time" content="2024-06-10T04:17:25.875Z">
+<meta property="article:modified_time" content="2024-06-10T04:17:41.908Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-10 12:17" pubdate>
+          2024年6月10日 中午
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          381 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -268,12 +268,16 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>DQN：Deep Q network，比较符合人的直观感受逻辑的一种类型，它会训练一个评估Q-value的网络，对任一state能给出各个Action的reward，然后最终选择reward最大的那个action进行操作即可。训练过程通过评估”估计的Q-value“”和“真正得到的Q-value”的结果进行反向传递，最终让网络估计Q-value越来越准。</li>
+<li>Policy Gradient：是更加端到端的一种类型，训练一个网络，对任一state直接给出最终的action。DQN的适用范围需要连续state的Q-value也比较连续（下围棋等不适用这种情况），而Policy Gradient由于忽略内部过程直接给出action，具有更大的普适性。但它的缺点是更难以评价及收敛。一般的训练过程是：对某一state，同时随机的采取多种action，评价各种action的结果进行反向传递，最终让网络输出效果更好的action。</li>
+<li>Actor-Critic：试着糅合前面两种网络，取长补短，一方面用policy Gradient网络进行任一state的action输出，另外一方面用DQN网络对policy gradient的action输出进行较好的量化评价并以之来指导policy gradient的更新。如名字所示，就像表演者和评论家的关系。训练过程需要同时训练actor（policy Graident）和critic(DQN)网络，但actor的训练只需要follow critic的指引就好。它有很多的变种，也是当前DRL理论研究上不断发展的主要方向。</li>
+</ul>
 
                 
               </div>
@@ -281,27 +285,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +295,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/10/科研/强化学习/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +308,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月10日</div>
         </div>
       
       
@@ -357,9 +340,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/10/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/" title="一些技巧">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile">一些技巧</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +350,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/10/%E7%A7%91%E7%A0%94/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9/%E6%96%B0%E5%BB%BA%20Markdown/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

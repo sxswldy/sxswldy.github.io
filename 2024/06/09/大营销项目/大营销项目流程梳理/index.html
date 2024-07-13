@@ -16,22 +16,24 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="第5节：抽奖前置规则过滤抽奖流程  1.参数校验 检查userid和strategyid是否为空 2.策略查询 1StrategyEntity strategy &#x3D; repository.queryStrategyEntityByStrategyId(strategyId)  根据策略id从strategy表中获取实体StrategyEntity 3.抽奖前——规则过滤doCheckRaffleB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大营销项目流程的梳理">
+<meta property="og:url" content="http://example.com/2024/06/09/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="第5节：抽奖前置规则过滤抽奖流程  1.参数校验 检查userid和strategyid是否为空 2.策略查询 1StrategyEntity strategy &#x3D; repository.queryStrategyEntityByStrategyId(strategyId)  根据策略id从strategy表中获取实体StrategyEntity 3.抽奖前——规则过滤doCheckRaffleB">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="og:image" content="http://example.com/2024/06/09/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/images/image-20240610141256331.png">
+<meta property="article:published_time" content="2024-06-09T03:21:41.969Z">
+<meta property="article:modified_time" content="2024-06-10T07:51:53.847Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
+<meta name="twitter:image" content="http://example.com/2024/06/09/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/images/image-20240610141256331.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>大营销项目流程的梳理 - 李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text="大营销项目流程的梳理"></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-09 11:21" pubdate>
+          2024年6月9日 上午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          139 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -268,12 +270,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header">大营销项目流程的梳理</h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="第5节：抽奖前置规则过滤"><a href="#第5节：抽奖前置规则过滤" class="headerlink" title="第5节：抽奖前置规则过滤"></a>第5节：抽奖前置规则过滤</h2><h2 id="抽奖流程"><a href="#抽奖流程" class="headerlink" title="抽奖流程"></a>抽奖流程</h2><img src="../images/image-20240610141256331.png" srcset="/img/loading.gif" lazyload alt="image-20240610141256331" style="zoom: 33%;" />
+
+<p><strong>1.参数校验</strong></p>
+<p>检查userid和strategyid是否为空</p>
+<p><strong>2.策略查询</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">StrategyEntity</span> <span class="hljs-variable">strategy</span> <span class="hljs-operator">=</span> repository.queryStrategyEntityByStrategyId(strategyId)<br></code></pre></td></tr></table></figure>
+
+<p>根据策略id从strategy表中获取实体StrategyEntity</p>
+<p><strong>3.抽奖前——规则过滤doCheckRaffleBeforeLogic</strong></p>
+<p>根据StrategyEntity中的ruleModels执行不同的规则，返回的是RuleActionEntity。</p>
+<p><strong>4.执行默认抽奖流程</strong></p>
+<p><strong>5.查询奖品规则</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">repository.queryStrategyAwardRuleModelVO(strategyId, awardId);<br></code></pre></td></tr></table></figure>
+
+<p>获得ruleModels</p>
+<p><strong>6.抽奖中——规则过滤</strong></p>
+<ul>
+<li>从ruleModels获得center的规则</li>
+<li>doCheckRaffleCenterLogic</li>
+</ul>
+<p>获取RuleActionEntity</p>
+<h3 id="其他类"><a href="#其他类" class="headerlink" title="其他类"></a>其他类</h3><p><strong>DefaultLogicFactory</strong></p>
+<ul>
+<li>构造方法</li>
+</ul>
+<p>构造一个map，key为rule，value为该rule对应的filter</p>
+<p>比如key：“rule_lock”，value：RuleLockLogicFilter类</p>
+<ul>
+<li>openLogicFilter</li>
+</ul>
+<p>把map返回</p>
 
                 
               </div>
@@ -281,27 +313,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +323,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div>大营销项目流程的梳理</div>
+      <div>http://example.com/2024/06/09/大营销项目/大营销项目流程梳理/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +336,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月9日</div>
         </div>
       
       
@@ -357,9 +368,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/09/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +378,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/09/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式的总结">
+                        <span class="hidden-mobile">设计模式的总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

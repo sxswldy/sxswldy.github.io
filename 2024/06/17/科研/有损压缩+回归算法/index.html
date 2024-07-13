@@ -16,22 +16,35 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2024/06/07/test/index.html">
+    <meta name="description" content="TDengine中的TSZ压缩算法TDengine 支持版本为 3.2.0.0 或以上。默认不开启，可通过修改配置文件开启。   TSZ 压缩算法 | TDengine 文档 | 涛思数据 (taosdata.com) TDengine Contributor 钟宇讲述 TSZ 压缩算法优化背后的故事 - TDengine | 涛思数据 (taosdata.com) 实现原理是对SZ压缩算法的改进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/06/17/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
+<meta property="og:description" content="TDengine中的TSZ压缩算法TDengine 支持版本为 3.2.0.0 或以上。默认不开启，可通过修改配置文件开启。   TSZ 压缩算法 | TDengine 文档 | 涛思数据 (taosdata.com) TDengine Contributor 钟宇讲述 TSZ 压缩算法优化背后的故事 - TDengine | 涛思数据 (taosdata.com) 实现原理是对SZ压缩算法的改进">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240607181136720.png">
-<meta property="article:published_time" content="2024-06-07T10:11:18.234Z">
-<meta property="article:modified_time" content="2024-06-07T10:11:51.056Z">
+<meta property="og:image" content="http://example.com/2024/06/17/%E7%A7%91%E7%A0%94/images/image-20240705094845784.png">
+<meta property="og:image" content="http://example.com/2024/06/17/%E7%A7%91%E7%A0%94/images/image-20240705103113561.png">
+<meta property="og:image" content="http://example.com/images/image-20240703141812263.png">
+<meta property="og:image" content="http://example.com/images/image-20240703141821182.png">
+<meta property="og:image" content="http://example.com/images/image-20240703141828188.png">
+<meta property="og:image" content="http://example.com/images/image-20240703142806963.png">
+<meta property="og:image" content="http://example.com/images/image-20240620092148893.png">
+<meta property="og:image" content="http://example.com/2024/06/17/%E7%A7%91%E7%A0%94/images/image-20240620100703301.png">
+<meta property="og:image" content="http://example.com/images/image-20240620170314345.png">
+<meta property="og:image" content="http://example.com/images/image-20240620142828816.png">
+<meta property="og:image" content="http://example.com/images/image-20240620123826887.png">
+<meta property="og:image" content="http://example.com/images/image-20240620144339573.png">
+<meta property="article:published_time" content="2024-06-17T08:16:17.760Z">
+<meta property="article:modified_time" content="2024-07-05T07:28:06.030Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240607181136720.png">
+<meta name="twitter:image" content="http://example.com/2024/06/17/%E7%A7%91%E7%A0%94/images/image-20240705094845784.png">
   
   
   
-  <title>test - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +210,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="test"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +221,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-07 18:11" pubdate>
-          2024年6月7日 晚上
+        <time datetime="2024-06-17 16:16" pubdate>
+          2024年6月17日 下午
         </time>
       </span>
     
@@ -220,7 +233,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.4k 字
         
       </span>
     
@@ -231,7 +244,7 @@
         
         
         
-          1 分钟
+          13 分钟
         
       </span>
     
@@ -268,12 +281,91 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">test</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <p><img src="/../images/image-20240607181136720.png" srcset="/img/loading.gif" lazyload alt="image-20240607181136720"></p>
+                <h2 id="TDengine中的TSZ压缩算法"><a href="#TDengine中的TSZ压缩算法" class="headerlink" title="TDengine中的TSZ压缩算法"></a>TDengine中的TSZ压缩算法</h2><p>TDengine 支持版本为 3.2.0.0 或以上。默认不开启，可通过修改配置文件开启。</p>
+<img src="../images/image-20240705094845784.png" srcset="/img/loading.gif" lazyload alt="image-20240705094845784" style="zoom:67%;" />
+
+<p><a target="_blank" rel="noopener" href="https://docs.taosdata.com/tdinternal/tsz/">TSZ 压缩算法 | TDengine 文档 | 涛思数据 (taosdata.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.taosdata.com/tdengine-engineering/22274.html?spm=a2c6h.12873639.article-detail.8.379936780mTq0Q">TDengine Contributor 钟宇讲述 TSZ 压缩算法优化背后的故事 - TDengine | 涛思数据 (taosdata.com)</a></p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>是对SZ压缩算法的改进。</p>
+<img src="../images/image-20240705103113561.png" srcset="/img/loading.gif" lazyload alt="image-20240705103113561" style="zoom: 67%;" />
+
+
+
+<h2 id="《Fast-Error-bounded-Lossy-HPC-Data-Compression-with-SZ》"><a href="#《Fast-Error-bounded-Lossy-HPC-Data-Compression-with-SZ》" class="headerlink" title="《Fast Error-bounded Lossy HPC Data Compression with SZ》"></a>《Fast Error-bounded Lossy HPC Data Compression with SZ》</h2><p>2016 IPDPS</p>
+<p>开源</p>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>针对的是HPC数据，浮点数据。</p>
+<p>显着减小要转储的数据大小，同时保持相当低的计算成本和所需的压缩误差界限。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>三个步骤：</p>
+<p>给定一个 d 维浮点数组，整个压缩过程可以分为三个步骤：</p>
+<p>（1）将 d 维浮点数组转换为一维数组。</p>
+<p>（2）压缩一维数组</p>
+<p>逐一检查一维数组中的每个数据点，看看是否可以通过某种曲线拟合模型。 如果可以，我们记录该点对应的曲线拟合模型。 </p>
+<p>对于数据预测，我们采用三种曲线拟合模型，先行邻域拟合（PNF）、线性曲线拟合（LCF）和二次曲线拟合(QCF)，描述如下：</p>
+<ul>
+<li>PNF</li>
+</ul>
+<p><img src="/../images/image-20240703141812263.png" srcset="/img/loading.gif" lazyload alt="image-20240703141812263"></p>
+<ul>
+<li>LCF</li>
+</ul>
+<p><img src="/../images/image-20240703141821182.png" srcset="/img/loading.gif" lazyload alt="image-20240703141821182"></p>
+<ul>
+<li>QCF</li>
+</ul>
+<p><img src="/../images/image-20240703141828188.png" srcset="/img/loading.gif" lazyload alt="image-20240703141828188"></p>
+<p><img src="/../images/image-20240703142806963.png" srcset="/img/loading.gif" lazyload alt="image-20240703142806963"></p>
+<p>（3）对于不可压缩的数据点</p>
+<p>无法预测的数据称为不可预测数据，它们将通过分析 IEEE 754 二进制表示进行压缩，然后单独存储。</p>
+<p>简单来说，我们根据用户指定的误差界限和数据值范围推导所需的最小尾数位数，从而可以截断无意义的位。</p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>这一系列trick使得SZ在浮点有损压缩时错误范围限定在10^-4时压缩比可以达到5.4，解压不会超过制定错误范围，且解压较快O(N)。</p>
+<h2 id="《A-Time-Series-Compression-Technique-and-its-Application-to-the-Smart-Grid》"><a href="#《A-Time-Series-Compression-Technique-and-its-Application-to-the-Smart-Grid》" class="headerlink" title="《A Time-Series Compression Technique and its Application to the Smart Grid》"></a><strong>《A Time-Series Compression Technique and its Application to the Smart Grid》</strong></h2><p><strong>VLDB.2014</strong></p>
+<p>本文介绍了一种有损压缩技术，建立在分段回归的基础上，学习不同程度的多项式回归函数。压缩技术保证压缩时间序列中的任何点都不会超过用户定义的与原始值的最大偏差。</p>
+<p><img src="/../images/image-20240620092148893.png" srcset="/img/loading.gif" lazyload alt="image-20240620092148893"></p>
+<p><strong>压缩方法</strong></p>
+<p>本文的分段回归技术采用贪婪策略来压缩时间序列的间隔。 在内部，我们的技术使用三种在线回归算法，每一个都专门研究以下一类多项式函数：常数函数（零次多项式）、直线函数（一次多项式）和大于或等于二次的多项式。压缩结果取决于用户定义的最大可容忍偏差。</p>
+<img src="../images/image-20240620100703301.png" srcset="/img/loading.gif" lazyload alt="image-20240620100703301" style="zoom: 80%;" />
+
+<p>1.从两点的线段开始，按次数 k 循环多项式回归函数，从 k &#x3D; 0 到 k &#x3D; 2。 根据 k 的值，我们从上面列出的三种算法中采用相应的专用回归算法。</p>
+<p>2.在每一步中，只要使用 k 次多项式函数对当前段的逼近达到精度保证，我们就会将时间序列的下一个点添加到当前段。一旦不再达到精度，我们就暂时保存当前多项式参数和相应近似值已达到精度保证的线段长度。</p>
+<p>3.然后我们传递到下一次多项式并重复该过程。当我们达到最高次数的多项式并且循环无法再以所要求的精度逼近当前段时，循环终止。 然后，我们选择实现最高压缩比的多项式。 </p>
+<p>4.我们通过保存其开始和结束位置以及多项式的系数来压缩相应的段。 然后，刚刚描述的分段压缩过程从下一段开始重新开始。</p>
+<p><strong>回归函数的选择</strong></p>
+<p>本文选择了三种在线回归算法，分别针对不同次数的多项式。</p>
+<p>常数函数：I. Lazaridisand and S. Mehrotra. 2003. Capturing sensor-generated time series with quality guarantees. In Proceedings<br>ofthe 19th International Conference on Data Engineering. 429–440.</p>
+<p>直线函数：M. Dalai and R. Leonardi. 2006. Approximations ofone-dimensional digital signals under thelinftynorm. IEEETrans-<br>actions on Signal Processing 54, 8 (2006), 3111–3124.</p>
+<p>大于或等于二次的多项式：R. Seidel. 1991. Small-dimensional linear programming and convex hulls made easy. Discrete and Computational Ge-ometry 6, 3 (1991), 423–434.</p>
+<p>可以针对具体的数据集选择更合适的函数，比如正弦函数等。</p>
+<p><strong>如何存储压缩数据</strong></p>
+<p>将压缩数据存储在关系数据库系统中</p>
+<p><img src="/../images/image-20240620170314345.png" srcset="/img/loading.gif" lazyload alt="image-20240620170314345"></p>
+<p><strong>参数</strong></p>
+<p>允许的最大偏差、最大多项式次数</p>
+<p><strong>实验</strong></p>
+<p>准确性、压缩、性能</p>
+<h2 id="《NUMARCK-Machine-Learning-Algorithm-for-Resiliency-and-Checkpointing》"><a href="#《NUMARCK-Machine-Learning-Algorithm-for-Resiliency-and-Checkpointing》" class="headerlink" title="《NUMARCK: Machine Learning Algorithm for Resiliency and Checkpointing》"></a><strong>《NUMARCK: Machine Learning Algorithm for Resiliency and Checkpointing》</strong></h2><p><strong>SC.2014</strong></p>
+<p><strong>针对的数据</strong></p>
+<p>科学数据，在单个迭代中没有任何明显的重复模式，寻找重复模式的传统无损压缩技术对于使用高精度数据的科学数据来说是无效的。</p>
+<p>从一次模拟迭代到下一次模拟迭代的数据值的相对变化不是非常显着。</p>
+<p>许多科学应用可以容忍模拟数据准确性的一些有限误差损失。</p>
+<p><img src="/../images/image-20240620142828816.png" srcset="/img/loading.gif" lazyload alt="image-20240620142828816"></p>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a><strong>算法流程</strong></h3><p><strong>1.前向预测编码</strong></p>
+<p>首先计算两个迭代之间数据值的相对变化率，如下所示：</p>
+<p><img src="/../images/image-20240620123826887.png" srcset="/img/loading.gif" lazyload alt="image-20240620123826887"></p>
+<p>第一个点存储原始数值。</p>
+<p><strong>2.学习变化率的分布</strong></p>
+<p>用户容忍错误率<strong>E</strong>，</p>
+<p>变化率 &lt; E，我们使用0作为其近似值，因为它已经满足用户容忍误差阈值。 </p>
+<p>变化率 &gt;&#x3D; E，我们设计了几种策略来学习变化率的分布，并根据数据的相似性对变化率中的数据进行划分。</p>
+<p><img src="/../images/image-20240620144339573.png" srcset="/img/loading.gif" lazyload alt="image-20240620144339573"></p>
+<p>最简单的，如图所示，使用直方图学习变化率的分布。</p>
+<p>划分为k（用户可控制）个桶，将变化率分配到相应的桶中，落在每个桶的变化率使用桶编号来编码，整个桶的值使用桶区间中点来表示。各种变化率转化为桶编号，进一步缩短长度。</p>
+<p>它依赖于桶的宽度，桶的宽度与E相关，桶太宽，不能满足用户容忍错误率的要求。</p>
+<p>提出了几种改进：聚类方法</p>
 
                 
               </div>
@@ -281,27 +373,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/hexo/" class="category-chain-item">hexo</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -312,8 +383,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>test</div>
-      <div>http://example.com/2024/06/07/test/</div>
+      <div></div>
+      <div>http://example.com/2024/06/17/科研/有损压缩+回归算法/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +396,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月7日</div>
+          <div>2024年6月17日</div>
         </div>
       
       
@@ -357,9 +428,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/08/hexo/hexo%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="hexo初学第二天">
+                      <a href="/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo初学第二天</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -367,8 +438,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/07/redis%E9%85%8D%E7%BD%AE/" title="redis的一些配置问题">
-                        <span class="hidden-mobile">redis的一些配置问题</span>
+                      <a href="/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
