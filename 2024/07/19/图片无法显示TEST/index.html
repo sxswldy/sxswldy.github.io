@@ -16,22 +16,24 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta name="description" content="防止IP变化问题​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。 原因因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化： 主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；主机关机，重新开机；卸载VMware，重新导入虚拟机。 解决（固定ip地址">
+    <meta name="description" content="大撒大撒大撒">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录linux的一些问题及解决方法">
-<meta property="og:url" content="http://example.com/2024/06/21/linux%E4%B8%ADvip/index.html">
+<meta property="og:title" content="李东阳的个人博客">
+<meta property="og:url" content="http://example.com/2024/07/19/%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BATEST/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
-<meta property="og:description" content="防止IP变化问题​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。 原因因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化： 主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；主机关机，重新开机；卸载VMware，重新导入虚拟机。 解决（固定ip地址">
+<meta property="og:description" content="大撒大撒大撒">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-21T04:43:33.001Z">
-<meta property="article:modified_time" content="2024-07-13T07:08:06.088Z">
+<meta property="og:image" content="http://example.com/images/image-20240719131702852.png">
+<meta property="article:published_time" content="2024-07-19T05:16:43.625Z">
+<meta property="article:modified_time" content="2024-07-19T05:18:35.378Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/image-20240719131702852.png">
   
   
   
-  <title>记录linux的一些问题及解决方法 - 李东阳的个人博客</title>
+  <title>李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录linux的一些问题及解决方法"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-21 12:43" pubdate>
-          2024年6月21日 下午
+        <time datetime="2024-07-19 13:16" pubdate>
+          2024年7月19日 下午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          914 字
+          6 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          8 分钟
+          1 分钟
         
       </span>
     
@@ -268,45 +270,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录linux的一些问题及解决方法</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="防止IP变化"><a href="#防止IP变化" class="headerlink" title="防止IP变化"></a>防止IP变化</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化：</p>
-<p>主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；<br>主机关机，重新开机；<br>卸载VMware，重新导入虚拟机。</p>
-<h3 id="解决（固定ip地址）"><a href="#解决（固定ip地址）" class="headerlink" title="解决（固定ip地址）"></a>解决（固定ip地址）</h3><p><strong>（一）准备工作</strong><br>1.查询虚拟机ip地址</p>
-<p>ifconfig</p>
-<p>2.查询网关ip</p>
-<p>编辑一&gt;虚拟网络编译器一&gt;更改设置一&gt;上方选择NAT模式，下方选择NAT设置一&gt;网关IP</p>
-<p><strong>（二）固定ip</strong><br>位置一&gt;计算机</p>
-<p>进入以下位置<br>etc&#x2F;sysconfig&#x2F;network-scripts</p>
-<p>右键进入终端，并打开虚拟机网卡配置文件 ifcfg-ens33</p>
-<p>vim ifcfg-ens33</p>
-<p>将dhcp更改为static，让IP分配规则静态化，不再改变<br>BOOTPROTO&#x3D;”static”</p>
-<p> 在网卡配置文件的结尾处配置上虚拟机ip地址，网关IP，以及域名解析服务器。<br>IPADDR&#x3D;”自己的IP地址”<br>GATEWAY&#x3D;”自己的网关IP”</p>
-<p>NAS1&#x3D;”同网关IP”</p>
-<p>退出编辑并保存退出<br>Esc一&gt;:wq </p>
-<p>重启网卡</p>
-<p>systemctl restart network</p>
-<p><strong>（三）查看网络是否联通</strong><br>1.本机查看</p>
-<blockquote>
-<p>ping 虚拟机的IP</p>
-</blockquote>
-<p>2.虚拟机查看</p>
-<p>ping 本机IP</p>
-<h2 id="虚拟ip的原理及使用"><a href="#虚拟ip的原理及使用" class="headerlink" title="虚拟ip的原理及使用"></a>虚拟ip的原理及使用</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jmcui/p/13055283.html">虚拟IP原理及使用 - JMCui - 博客园 (cnblogs.com)</a></p>
-<p><strong>举个通俗的例子</strong></p>
-<p>老王开了一个会所，地址是虹X路1.1.1.1，经营范围不太正规，经常被封，顾客以为店已经关门，其实里面热火朝天，所以老王急啊，于是开了一个后门，地址是2.2.2.1，于是顾客纷纷从后门进入，老王笑开了花…</p>
-<p>过几天大门解封了，但后门由于弄堂改造，临时关闭了，<strong>熟门熟路</strong>的顾客从后门进不来了，有同学会问，大门都开着，顾客为何不从前门进店？因为这些<strong>顾客头脑比较简单</strong>，老王苦啊，痛定思痛，老王想出了一个好主意。</p>
-<p>老王给顾客自己的电话号码<strong>4.4.4.1</strong>，叮嘱他们，以后来店消费之前，只要电话能打通（4.4.4.1路由可达），说明店还营业，前门进不来（1.1.1.1接口down）就走后门（2.2.2.1接口UP)；同理，如果后门进不来，可以走前门。</p>
-<p>如果电话打不通（4.4.4.1路由消失），说明老王被关进去了，顾客就别来了，因为前门被封（1.1.1.1接口down)，后门也被封（2.2.2.1接口down），来了也是白来。</p>
-<p><strong>谈点正经的</strong></p>
-<p>其实电脑上的<strong>127.0.0.1</strong>也是一个VIP，只是用于本机进程间的通信标识符。</p>
-<p>如果没有127.0.0.1，那么一旦物理接口down，TCP&#x2F;IP协议栈绑定在此接口上的IP就无法提供进程间的通信，所以非常不方便。</p>
-<p>而有了127.0.0.1，不管物理接口状态如何，都可以进程间通信。</p>
-<p>题主问题里的VIP，也是不依赖于任何物理接口，只要有一个物理接口处于工作状态（UP，可以和外部联系），就可以提供服务器的访问，当然需要通过路由发布将4.4.4.1发布出去，别的三层设备、主机需要知道如何到达4.4.4.1。</p>
+                <p><img src="/./../images/image-20240719131702852.png" srcset="/img/loading.gif" lazyload alt="image-20240719131702852"></p>
+<p>大撒大撒大撒</p>
 
                 
               </div>
@@ -314,27 +284,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/linux/" class="category-chain-item">linux</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -345,8 +294,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>记录linux的一些问题及解决方法</div>
-      <div>http://example.com/2024/06/21/linux中vip/</div>
+      <div></div>
+      <div>http://example.com/2024/07/19/图片无法显示TEST/</div>
     </div>
     <div class="license-meta">
       
@@ -358,7 +307,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月21日</div>
+          <div>2024年7月19日</div>
         </div>
       
       
@@ -390,18 +339,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/22/docker/" title="记录docker的一些问题及解决方法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">记录docker的一些问题及解决方法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="rabbitMQ">
-                        <span class="hidden-mobile">rabbitMQ</span>
+                      <a href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/" title="虚拟机克隆">
+                        <span class="hidden-mobile">虚拟机克隆</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
