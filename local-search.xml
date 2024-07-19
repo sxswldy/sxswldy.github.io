@@ -21,7 +21,7 @@
     <link href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/"/>
     <url>/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/</url>
     
-    <content type="html"><![CDATA[<h1 id="克隆虚拟机后无法上网问题"><a href="#克隆虚拟机后无法上网问题" class="headerlink" title="克隆虚拟机后无法上网问题"></a>克隆虚拟机后无法上网问题</h1><p>解决方法：在克隆的虚拟机关闭状态，重新自动配置网络</p><p><img src="/./assets/image-20240715125801353.png" alt="image-20240715125801353"></p><p>然后点击移除该网络适配器，然后再添加一个新的网络适配器即可，生成网络适配器后，进行新的mac地址生成。</p><p><img src="/./assets/image-20240715125820730.png" alt="image-20240715125820730"></p><p>进入&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth33文件把uuid删除，然后重启即可。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">service network restart<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="克隆虚拟机后无法上网问题"><a href="#克隆虚拟机后无法上网问题" class="headerlink" title="克隆虚拟机后无法上网问题"></a>克隆虚拟机后无法上网问题</h1><p>解决方法：在克隆的虚拟机关闭状态，重新自动配置网络</p><p><img src="/./../images/image-20240715125801353.png" alt="image-20240715125801353"></p><p>然后点击移除该网络适配器，然后再添加一个新的网络适配器即可，生成网络适配器后，进行新的mac地址生成。</p><p><img src="/./../images/image-20240715125820730.png" alt="image-20240715125820730"></p><p>进入&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth33文件把uuid删除，然后重启即可。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">service network restart<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
