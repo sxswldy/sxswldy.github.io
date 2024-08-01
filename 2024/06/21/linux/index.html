@@ -24,7 +24,7 @@
 <meta property="og:description" content="防止IP变化问题​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。 原因因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化： 主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；主机关机，重新开机；卸载VMware，重新导入虚拟机。 解决（固定ip地址">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-21T04:43:33.001Z">
-<meta property="article:modified_time" content="2024-07-17T03:02:48.786Z">
+<meta property="article:modified_time" content="2024-07-31T09:52:30.244Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          914 字
+          1k 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -273,10 +273,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="防止IP变化"><a href="#防止IP变化" class="headerlink" title="防止IP变化"></a>防止IP变化</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。</p>
-<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化：</p>
+                <h1 id="防止IP变化"><a href="#防止IP变化" class="headerlink" title="防止IP变化"></a>防止IP变化</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化：</p>
 <p>主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；<br>主机关机，重新开机；<br>卸载VMware，重新导入虚拟机。</p>
-<h3 id="解决（固定ip地址）"><a href="#解决（固定ip地址）" class="headerlink" title="解决（固定ip地址）"></a>解决（固定ip地址）</h3><p><strong>（一）准备工作</strong><br>1.查询虚拟机ip地址</p>
+<h2 id="解决（固定ip地址）"><a href="#解决（固定ip地址）" class="headerlink" title="解决（固定ip地址）"></a>解决（固定ip地址）</h2><p><strong>（一）准备工作</strong><br>1.查询虚拟机ip地址</p>
 <p>ifconfig</p>
 <p>2.查询网关ip</p>
 <p>编辑一&gt;虚拟网络编译器一&gt;更改设置一&gt;上方选择NAT模式，下方选择NAT设置一&gt;网关IP</p>
@@ -296,7 +296,10 @@
 </blockquote>
 <p>2.虚拟机查看</p>
 <p>ping 本机IP</p>
-<h2 id="虚拟ip的原理及使用"><a href="#虚拟ip的原理及使用" class="headerlink" title="虚拟ip的原理及使用"></a>虚拟ip的原理及使用</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jmcui/p/13055283.html">虚拟IP原理及使用 - JMCui - 博客园 (cnblogs.com)</a></p>
+<h1 id="未知的名称或服务"><a href="#未知的名称或服务" class="headerlink" title="未知的名称或服务"></a>未知的名称或服务</h1><p>有时候ping baidu.com会出现报错，未知的名称或服务</p>
+<p>对接口添加dns信息；编辑&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ethxxxxxxx，x可能是其他数字，但一般是ifcfg-eth0的，具体的X根据你的网卡确定，在最下面添加：<br>DNS1&#x3D;8.8.8.8<br>DNS2&#x3D;114.114.114.114<br>保存后重启网络</p>
+<p>systemctl restart NetworkManager.service</p>
+<h1 id="虚拟ip的原理及使用"><a href="#虚拟ip的原理及使用" class="headerlink" title="虚拟ip的原理及使用"></a><strong>虚拟ip的原理及使用</strong></h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jmcui/p/13055283.html">虚拟IP原理及使用 - JMCui - 博客园 (cnblogs.com)</a></p>
 <p><strong>举个通俗的例子</strong></p>
 <p>老王开了一个会所，地址是虹X路1.1.1.1，经营范围不太正规，经常被封，顾客以为店已经关门，其实里面热火朝天，所以老王急啊，于是开了一个后门，地址是2.2.2.1，于是顾客纷纷从后门进入，老王笑开了花…</p>
 <p>过几天大门解封了，但后门由于弄堂改造，临时关闭了，<strong>熟门熟路</strong>的顾客从后门进不来了，有同学会问，大门都开着，顾客为何不从前门进店？因为这些<strong>顾客头脑比较简单</strong>，老王苦啊，痛定思痛，老王想出了一个好主意。</p>
@@ -325,7 +328,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/linux/" class="category-chain-item">linux</a>
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
   
   
 
@@ -390,9 +393,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/22/docker/" title="记录docker的一些问题及解决方法">
+                      <a href="/2024/07/11/git%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/" title="记录git的一些问题及解决方法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">记录docker的一些问题及解决方法</span>
+                        <span class="hidden-mobile">记录git的一些问题及解决方法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

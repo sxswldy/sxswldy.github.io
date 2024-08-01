@@ -227,15 +227,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/" target="_self">
-          虚拟机克隆
+        <a href="/2024/12/20/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/" target="_self">
+          表的设计
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/12/20/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/" target="_self">
         <div>
-          克隆虚拟机后无法上网问题解决方法：在克隆的虚拟机关闭状态，重新自动配置网络  然后点击移除该网络适配器，然后再添加一个新的网络适配器即可，生成网络适配器后，进行新的mac地址生成。  进入&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth33文件把uuid删除，然后重启即可。 1service network restart
+          表的关系经常容易搞混，所以记录一下，方便回忆。 系统表策略表（strategy）：定义了不同的抽奖策略：不同策略抽奖的概率不同，抽奖的规则不同。 策略奖品表（strategy_award）：不同策略对应的奖品信息：包含奖品的概率、奖品的库存、抽到奖品的后置规则等。 策略规则表（strategy_rule）：不同策略有哪些前置规则：比如配置的黑名单、权重信息。 规则树表（rule_tree）、规则树
         </div>
       </a>
 
@@ -243,149 +243,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-15 12:32" pubdate>
-              2024-07-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/linux/" class="category-chain-item">linux</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/13/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" target="_self">
-          
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/13/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" target="_self">
-        <div>
-          title：接口性能测试迭代点
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-13 16:36" pubdate>
-              2024-07-13
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/13/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90/" target="_self">
-          短链接生成
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/13/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90/" target="_self">
-        <div>
-          使用的什么方式生成短链接？主要就是两个方面，通过 Hash 算法将原始连接转换成一个 Hash 码，这里使用了 Google 出品的 MurmurHash 算法。因为生成的 Hash 码是十进制的，整体较长不利于短链接传播。为此，我们将十进制转换为 62 进制，也就是咱们最终的短链接。 1. MurmurHash 算法对于选择哈希函数，有很多人可能会提到使用 MD5、SHA 等加密算法。其实我们
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-13 15:00" pubdate>
-              2024-07-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%AD%E9%93%BE%E6%8E%A5/" class="category-chain-item">短链接</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/07/12/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" target="_self">
-          抽奖系统部署
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/12/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" target="_self">
-        <div>
-          需要的项目 big-market-front（前端） 、 big-market （后端）、 big-market-dev-ops （部署） 构建后端镜像1.进入后端项目，切换到指定分支 2.mvn clean install 3.根据dockfile文件docker build创建后端镜像 构建前端镜像1.进入前端项目，切换到相应分支 2.修改.env文件相应内容 3.根据dockfile文件do
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-07-12 13:35" pubdate>
-              2024-07-12
+            <time datetime="2024-12-20 00:00" pubdate>
+              2024-12-20
             </time>
           </div>
         
@@ -422,6 +281,168 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2024/07/29/C/gcc/" target="_self">
+          C项目的编译
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/29/C/gcc/" target="_self">
+        <div>
+          当前编译命令gcc -I &#x2F;root&#x2F;SZ&#x2F;include&#x2F; -o tsf testfloat_compress.o &#x2F;root&#x2F;SZ&#x2F;lib&#x2F;libSZ.a  编译过程预处理——编译——汇编——链接 只编译不链接，生成.o gcc -c main.c 进行链接 gcc -o main main.o 多个文件编译一个.
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-29 18:42" pubdate>
+              2024-07-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94/" class="category-chain-item">科研</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/24/%E7%A7%91%E7%A0%94/word/" target="_self">
+          word
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/24/%E7%A7%91%E7%A0%94/word/" target="_self">
+        <div>
+          word中插入mathtype公式行间距变化，要求固定值20磅1.设置间距单倍行距 不推荐，和固定值不一致 2.设置mathtype中的格式——间距  并取消文档网格设置
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-24 11:44" pubdate>
+              2024-07-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/" target="_self">
+          虚拟机克隆
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/" target="_self">
+        <div>
+          克隆虚拟机后无法上网问题解决方法：在克隆的虚拟机关闭状态，重新自动配置网络  然后点击移除该网络适配器，然后再添加一个新的网络适配器即可，生成网络适配器后，进行新的mac地址生成。  进入&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-eth33文件把uuid删除，然后重启即可。 1service network restart
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-07-15 12:32" pubdate>
+              2024-07-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2024/07/11/git%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/" target="_self">
           记录git的一些问题及解决方法
         </a>
@@ -430,7 +451,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/07/11/git%E6%8A%A5%E9%94%99%E6%80%BB%E7%BB%93/" target="_self">
         <div>
-          克隆不通怎么办一般从http换成git克隆就可以了。 解决Git报错：fatal: detected dubious ownership in repository at原因这是因为该项目的所有者与现在的Windows用户不一致，从而Git触发了对仓库不安全操作的保护机制 比如说： 该项目的所有者是 Administrator，而当前用户是pengmude, 那么就会导致上面的错误 解决输入以下命
+          克隆不通怎么办1.一般从http换成git克隆就可以了。 2.开启git代理 先本机打开代理，  然后虚拟机设置： git config –global http.proxy “本机ip:7890”git config –global https.proxy “本机ip:7890” ps：取消代理可输入以下命令： git config –global –unset http.proxy git c
         </div>
       </a>
 
@@ -454,61 +475,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/git/" class="category-chain-item">git</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/06/22/docker/" target="_self">
-          记录docker的一些问题及解决方法
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/06/22/docker/" target="_self">
-        <div>
-          设置开机自启动例如启动一个MySQL容器需要开机自启则使用以下命令启动容器 12#  docker run -d --name mysql -p 3306:3306 --restart=alwaysalways - 无论退出状态是如何，都重启容器  如果在启动的时候忘记加该参数两个方法实现自启动  删除容器重新创建 更新容器下面介绍如何更新更新之前查看容器重启策略  1234# docker in
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-06-22 10:31" pubdate>
-              2024-06-22
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/docker/" class="category-chain-item">docker</a>
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
   
   
 
@@ -562,7 +529,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/linux/" class="category-chain-item">linux</a>
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
   
   
 
@@ -616,7 +583,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" class="category-chain-item">中间件</a>
+  <a href="/categories/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
   
   
 
@@ -639,7 +606,7 @@
       <h2 class="index-header">
         
         <a href="/2024/06/17/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" target="_self">
-          
+          压缩
         </a>
       </h2>
 
@@ -659,6 +626,27 @@
             </time>
           </div>
         
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E7%A0%94/" class="category-chain-item">科研</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
         
         
       </div>
@@ -703,7 +691,61 @@
     
       <span class="category-chain">
         
-  <a href="/categories/linux/" class="category-chain-item">linux</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">计算机基础知识</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/05/05/docker/" target="_self">
+          记录docker的一些问题及解决方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/05/05/docker/" target="_self">
+        <div>
+          设置开机自启动例如启动一个MySQL容器需要开机自启则使用以下命令启动容器 12#  docker run -d --name mysql -p 3306:3306 --restart=alwaysalways - 无论退出状态是如何，都重启容器  如果在启动的时候忘记加该参数两个方法实现自启动  删除容器重新创建 更新容器下面介绍如何更新更新之前查看容器重启策略  1234# docker in
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-05-05 00:00" pubdate>
+              2024-05-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
   
   
 
@@ -723,7 +765,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
