@@ -23,23 +23,25 @@
 <meta property="og:site_name" content="李东阳的个人博客">
 <meta property="og:description" content="面向时序数据库的预计算推荐系统摘要随着数据量的激增，时序数据库在面对复杂查询分析时，往往效率不高。为了解决该问题，预计算发挥着重要作用，因为它可以将复杂查询的结果持久化存储，为后续查询省去了重新计算的时间。然而，当前所有时序数据库都需要用户手动去创建预计算，需要对具体场景有较为深入的理解，对普通用户极为不友好。因此本文设计了面向时序数据库的预计算推荐系统，自动分析数据库中的负载信息，并根据基于规则">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/image-20240808142336747.png">
+<meta property="og:image" content="http://example.com/images/image-20240808142359395.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132244736.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132300145.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132306617.png">
-<meta property="og:image" content="http://example.com/images/image-20240804132335533.png">
+<meta property="og:image" content="http://example.com/images/image-20240808142459313.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132514321.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132522509.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132402817.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132537557.png">
-<meta property="og:image" content="http://example.com/images/image-20240804132550573.png">
+<meta property="og:image" content="http://example.com/images/image-20240808142606361.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132713893.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132746455.png">
 <meta property="article:published_time" content="2024-07-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-04T05:28:40.679Z">
+<meta property="article:modified_time" content="2024-08-08T06:26:15.944Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240804132244736.png">
+<meta name="twitter:image" content="http://example.com/images/image-20240808142336747.png">
   
   
   
@@ -232,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.9k 字
+          6.4k 字
         
       </span>
     
@@ -243,7 +245,7 @@
         
         
         
-          50 分钟
+          54 分钟
         
       </span>
     
@@ -307,7 +309,18 @@
 <p>（2）索引优化：InfluxDB[5]主要通过时间戳索引来加速时间范围查询。时间戳是所有数据点的关键属性，查询通常基于时间范围进行。除了时间戳索引，还使用了标签来标识数据点的属性，标签索引可以加速基于标签的过滤查询。标签是键值对形式，可以用于高效查询和聚合。TDengine同样使用了多级索引结构，包括时间索引和标签索引，以加速时间范围查询和标签过滤查询。</p>
 <p>（3）预计算：OpenTSDB[4]中实现了Rollup和Pre-aggregates，Rollup是一种数据汇总技术，它可以将原始的高分辨率数据按照一定的规则进行聚合，生成低分辨率的数据。这样做的好处是可以减少存储需求，提高查询性能，并且可以更好地处理大规模的时间序列数据。Rollup可以按照时间间隔（例如每小时、每天、每周等）来进行数据聚合，也可以按照指定的标签（例如按照不同的设备、地区等）来进行聚合。Pre-Aggregates是一种预先计算并存储好的聚合数据，在OpenTSDB中，用户可以通过定义预先计算的聚合函数（例如求和、平均值、最大值、最小值等）和时间间隔来创建Pre-Aggregates。一旦创建了Pre-Aggregates，系统就会在后台定期计算并存储好这些聚合数据，用户可以在查询时直接使用这些预先计算好的聚合数据，而不需要实时计算。这样可以大大提高查询性能，并且可以降低对底层存储的压力。InfluxDB支持CQ(continous query)的功能，CQ通过定期 pull 原始时序数据进行计算，将计算结果存储在内部特殊metric 中。用户通过创建 CQ 来实现对数据预处理。TDengine中实现了SMA索引，即Small Materialized Aggregates，提供基于数据块的自定义预计算功能。如果查询处理涉及整个数据块的全部数据，直接使用预计算结果，完全不需要读取数据块的内容。由于预计算数据量远小于磁盘上存储的数据块数据的大小，对于磁盘 I&#x2F;O 为瓶颈的查询处理，使用预计算结果可以极大地减小读取 I&#x2F;O 压力，加速查询处理的流程。</p>
 <p>然而，分布式架构和索引优化在查询执行时仍然无可避免地需要对已有数据进行大量计算，导致查询响应时间较长。相比之下，预计算技术具有很多好处，通过预先计算和存储查询结果避免了大量计算。但是，预计算都需要用户手动生成，需要用户对具体场景有较为深入的理解，对于普通用户极为不友好。因此我们设计了一种面向时序数据库的预计算推荐系统，自动分析数据库中的负载信息，并根据基于规则和基于收益两种算法自动为用户推荐合适的预计算，以提升数据库的查询性能，减少用户的响应时间。</p>
-<h1 id="3-问题定义"><a href="#3-问题定义" class="headerlink" title="3.问题定义"></a>3.问题定义</h1><p>后续补充</p>
+<h1 id="3-问题定义"><a href="#3-问题定义" class="headerlink" title="3.问题定义"></a>3.问题定义</h1><h2 id="3-1查询和预计算"><a href="#3-1查询和预计算" class="headerlink" title="3.1查询和预计算"></a>3.1查询和预计算</h2><p>时序数据库中的查询带有特有的时间信息，查询语句主要由以下几点构成：时间间隔，聚合函数，时间范围。以如下KaiwuDB中的一条普通查询为例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> time_bucket(k_timestamp, <span class="hljs-string">&#x27;60s&#x27;</span>) <span class="hljs-keyword">as</span> k_timestamp, <span class="hljs-built_in">max</span>(usage_user)<br><span class="hljs-keyword">FROM</span> cpu<br><span class="hljs-keyword">WHERE</span> k_timestamp <span class="hljs-operator">&gt;=</span> <span class="hljs-string">&#x27;2023-01-01 00:00:00&#x27;</span> <span class="hljs-keyword">AND</span> k_timestamp <span class="hljs-operator">&lt;</span> <span class="hljs-string">&#x27;2023-01-06 00:00:00&#x27;</span> <br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> time_bucket(k_timestamp, <span class="hljs-string">&#x27;60s&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>该查询是指在cpu这张表上，在时间范围为[2023-01-01 00:00:00，2023-01-06 00:00:00]内，每隔时间间隔60s，生成usage_user列上的max聚合结果。</p>
+<p>预计算语句类似于查询语句，不同的地方在于预计算语句无需指定时间范围，它会自动在表上进行预计算任务。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> time_bucket(k_timestamp, <span class="hljs-string">&#x27;60s&#x27;</span>) <span class="hljs-keyword">as</span> k_timestamp, <span class="hljs-built_in">max</span>(usage_user)<br><span class="hljs-keyword">FROM</span> cpu<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> time_bucket(k_timestamp, <span class="hljs-string">&#x27;60s&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>该预计算语句是指在cpu这张表上进行预计算任务，即每隔时间间隔60s对usage_user列进行max聚合计算。</p>
+<h2 id="3-2预计算匹配"><a href="#3-2预计算匹配" class="headerlink" title="3.2预计算匹配"></a>3.2预计算匹配</h2><p><img src="/../../images/image-20240808142336747.png" srcset="/img/loading.gif" lazyload alt="image-20240808142336747"></p>
+<h2 id="3-3预计算收益和成本"><a href="#3-3预计算收益和成本" class="headerlink" title="3.3预计算收益和成本"></a>3.3预计算收益和成本</h2><p><img src="/../../images/image-20240808142359395.png" srcset="/img/loading.gif" lazyload alt="image-20240808142359395"></p>
+<h2 id="3-4整数规划问题求解器"><a href="#3-4整数规划问题求解器" class="headerlink" title="3.4整数规划问题求解器"></a>3.4整数规划问题求解器</h2><p>Gurobi是由美国Gurobi Optimization公司开发新一代大规模优化器。无论在生产制造领域，还是在金融、保险、交通、服务等其他各种领域，当实际问题越来越复杂，问题规模越来越庞大的时候，需要一个经过证明可以信赖的大规模优化工具，为决策提供质量保证。在理论和实践中，Gurobi优化工具都被证明是全球性能领先的大规模优化器，具有突出的性价比，可以为客户在开发和实施中极大降低成本。</p>
+<p>应用最广泛的数学规划问题类型包括：混合整数线性规划（MILP）、混合整数二次凸规划（MIQP&#x2F;MIQCQP）、混合整数非线性规划等。Gurobi 是唯一一个可以适用上述全部类型，并且在每一个类型中都排名第一，并且大幅度领先第二名的优化器。第三方评比报告做出了明确说明[1]。</p>
 <h1 id="4、预计算推荐系统的整体架构"><a href="#4、预计算推荐系统的整体架构" class="headerlink" title="4、预计算推荐系统的整体架构"></a>4、预计算推荐系统的整体架构</h1><p>在本节中，我们介绍了面向时序数据库的预计算推荐系统的整体架构，主要分为三个部分，如图1所示，包括数据采集、负载分析和预计算推荐三个部分。在数据采集和负载分析中，我们采集相应的数据并对数据进行分析，从而理解数据库的使用模式和用户行为，为预计算推荐算法做支撑。在预计算推荐中，我们首先实现了一种基于规则的预计算推荐算法，该算法采用贪心的思想为用户推荐出相应的预计算以提升数据库的运行效率。接着，为了克服基于规则的预计算推荐算法在存储空间受限的场景下不适用的缺点，我们又提出了基于收益的预计算推荐算法，采用深度学习的方法对预计算收益进行估计，实现了更好的推荐效果。</p>
 <p> <img src="/../../images/image-20240804132244736.png" srcset="/img/loading.gif" lazyload alt="image-20240804132244736"></p>
 <h2 id="4-1数据采集"><a href="#4-1数据采集" class="headerlink" title="4.1数据采集"></a>4.1数据采集</h2><p>数据采集是预计算推荐系统中的入口，负责采集数据库中的历史负载信息  和预计算元信息  ，如图2所示。这些信息的收集对于深入理解数据库的使用模式、用户行为以及优化查询性能至关重要。</p>
@@ -320,7 +333,7 @@
 <p>总而言之，负载分析是预计算推荐系统中不可或缺的一环，通过对采集数据的全面分析，负载分析不仅为预计算推荐算法提供了坚实的数据基础，还为用户提供了宝贵的洞察，帮助他们更好地理解和利用预计算，从而实现数据库查询性能的持续优化和提升。</p>
 <h2 id="4-3预计算推荐"><a href="#4-3预计算推荐" class="headerlink" title="4.3预计算推荐"></a>4.3预计算推荐</h2><p>在本节中，我们首先实现了一种基于规则的预计算推荐算法，可以为用户推荐出相应的预计算以提升数据库的运行效率。接着，为了克服基于规则的预计算推荐算法在存储空间受限的场景下不适用的缺点，我们又提出了基于收益的预计算推荐算法，实现更好的推荐效果。</p>
 <h3 id="4-3-1基于规则的预计算推荐算法"><a href="#4-3-1基于规则的预计算推荐算法" class="headerlink" title="4.3.1基于规则的预计算推荐算法"></a>4.3.1基于规则的预计算推荐算法</h3><p>基于规则的推荐算法采用贪心的思想，即一个预计算表尽可能支持匹配更多的查询，预计算与用户查询的关系为1:n的关系，即一个预计算可以服务多个不同的查询，所以推荐的预计算结果的聚合函数集合应该尽可能包含更多查询的聚合函数。推荐结果中的时间间隔尽可能采用匹配此预计算的历史负载中更小的时间间隔。具体算法如下：</p>
-<p><img src="/../../images/image-20240804132335533.png" srcset="/img/loading.gif" lazyload alt="image-20240804132335533"></p>
+<p><img src="/../../images/image-20240808142459313.png" srcset="/img/loading.gif" lazyload alt="image-20240808142459313"></p>
 <h3 id="4-3-2基于收益的预计算推荐算法"><a href="#4-3-2基于收益的预计算推荐算法" class="headerlink" title="4.3.2基于收益的预计算推荐算法"></a>4.3.2基于收益的预计算推荐算法</h3><p>由于基于规则的预计算推荐算法采用贪心的思想，推荐的预计算结果不考虑成本，在存储空间受限的场景下就不再适用。因此我们提出了一种基于收益的预计算推荐算法，采用深度学习的方法对预计算的收益进行估计，并建模为整数规划问题，可以在存储空间受限的场景下推荐收益最高的预计算。我们的算法包括以下步骤：预计算候选的生成、预计算估计、预计算选择，下面我将详细说明。</p>
 <ul>
 <li>成本估计公式如下：</li>
@@ -336,7 +349,7 @@
 </ul>
 <p><img src="/../../images/image-20240804132537557.png" srcset="/img/loading.gif" lazyload alt="image-20240804132537557"></p>
 <p>算法如下：</p>
-<p><img src="/../../images/image-20240804132550573.png" srcset="/img/loading.gif" lazyload alt="image-20240804132550573"></p>
+<p><img src="/../../images/image-20240808142606361.png" srcset="/img/loading.gif" lazyload alt="image-20240808142606361"></p>
 <h1 id="5、预计算推荐算法实验与结果分析"><a href="#5、预计算推荐算法实验与结果分析" class="headerlink" title="5、预计算推荐算法实验与结果分析"></a>5、预计算推荐算法实验与结果分析</h1><h2 id="5-1实验设置"><a href="#5-1实验设置" class="headerlink" title="5.1实验设置"></a>5.1实验设置</h2><h3 id="5-1-1实验环境"><a href="#5-1-1实验环境" class="headerlink" title="5.1.1实验环境"></a>5.1.1实验环境</h3><p>本文的实验由Python语言进行编写，操作系统以及一些用到的软件的版本分别如下：</p>
 <ul>
 <li><p>操作系统：Windows 10</p>
