@@ -16,22 +16,22 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta name="description" content="看代码时很多细节不记得了，所以用图帮助回忆下。 抽奖规则使用模板模式、责任链模式、组合模式定义抽奖规则  抽奖流程(draw)逻辑流程 与代码结合 签到返利（calendarSignRebate）日常的返利会根据用户所完成的行为动作来触达，这包括；打卡、签到、连签、支付、开户、交易、信贷、拉新等各类的动作。 我们以签到为例子： 逻辑流程 与代码结合 积分兑换sku商品（creditPayExcha">
+    <meta name="description" content="看代码时很多细节不记得了，所以用图帮助回忆项目的主要部分。 抽奖规则使用模板模式、责任链模式、组合模式定义抽奖规则，详情请见设计模式一节内容。  抽奖流程(draw)逻辑流程 与代码结合 签到返利（calendarSignRebate）日常的返利会根据用户所完成的行为动作来触达，这包括；打卡、签到、连签、支付、开户、交易、信贷、拉新等各类的动作。 我们以签到为例子： 逻辑流程 与代码结合 积分兑换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="主要接口的流程梳理">
 <meta property="og:url" content="http://example.com/2024/02/11/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%8A%BD%E5%A5%96%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
-<meta property="og:description" content="看代码时很多细节不记得了，所以用图帮助回忆下。 抽奖规则使用模板模式、责任链模式、组合模式定义抽奖规则  抽奖流程(draw)逻辑流程 与代码结合 签到返利（calendarSignRebate）日常的返利会根据用户所完成的行为动作来触达，这包括；打卡、签到、连签、支付、开户、交易、信贷、拉新等各类的动作。 我们以签到为例子： 逻辑流程 与代码结合 积分兑换sku商品（creditPayExcha">
+<meta property="og:description" content="看代码时很多细节不记得了，所以用图帮助回忆项目的主要部分。 抽奖规则使用模板模式、责任链模式、组合模式定义抽奖规则，详情请见设计模式一节内容。  抽奖流程(draw)逻辑流程 与代码结合 签到返利（calendarSignRebate）日常的返利会根据用户所完成的行为动作来触达，这包括；打卡、签到、连签、支付、开户、交易、信贷、拉新等各类的动作。 我们以签到为例子： 逻辑流程 与代码结合 积分兑换">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/image-20240801161653031.png">
 <meta property="og:image" content="http://example.com/images/image-20240801154950350.png">
-<meta property="og:image" content="http://example.com/images/image-20240801155546242.png">
+<meta property="og:image" content="http://example.com/images/image-20240810184901602.png">
 <meta property="og:image" content="http://example.com/images/image-20240801161007955.png">
-<meta property="og:image" content="http://example.com/images/image-20240801161449077.png">
+<meta property="og:image" content="http://example.com/images/image-20240810184919925.png">
 <meta property="og:image" content="http://example.com/images/image-20240801161956950.png">
-<meta property="og:image" content="http://example.com/images/image-20240801163206431.png">
+<meta property="og:image" content="http://example.com/images/image-20240810185606976.png">
 <meta property="article:published_time" content="2024-02-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-01T08:37:43.600Z">
+<meta property="article:modified_time" content="2024-08-10T11:02:50.510Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          145 字
+          163 字
         
       </span>
     
@@ -281,17 +281,17 @@
             
               <div class="markdown-body">
                 
-                <p>看代码时很多细节不记得了，所以用图帮助回忆下。</p>
-<h1 id="抽奖规则"><a href="#抽奖规则" class="headerlink" title="抽奖规则"></a>抽奖规则</h1><p>使用模板模式、责任链模式、组合模式定义抽奖规则</p>
+                <p>看代码时很多细节不记得了，所以用图帮助回忆项目的主要部分。</p>
+<h1 id="抽奖规则"><a href="#抽奖规则" class="headerlink" title="抽奖规则"></a>抽奖规则</h1><p>使用模板模式、责任链模式、组合模式定义抽奖规则，详情请见设计模式一节内容。</p>
 <p><img src="/../../images/image-20240801161653031.png" srcset="/img/loading.gif" lazyload alt="image-20240801161653031"></p>
 <h1 id="抽奖流程-draw"><a href="#抽奖流程-draw" class="headerlink" title="抽奖流程(draw)"></a>抽奖流程(draw)</h1><h2 id="逻辑流程"><a href="#逻辑流程" class="headerlink" title="逻辑流程"></a>逻辑流程</h2><p><img src="/../../images/image-20240801154950350.png" srcset="/img/loading.gif" lazyload alt="image-20240801154950350"></p>
-<h2 id="与代码结合"><a href="#与代码结合" class="headerlink" title="与代码结合"></a>与代码结合</h2><p><img src="/../../images/image-20240801155546242.png" srcset="/img/loading.gif" lazyload alt="image-20240801155546242"></p>
+<h2 id="与代码结合"><a href="#与代码结合" class="headerlink" title="与代码结合"></a>与代码结合</h2><p><img src="/../../images/image-20240810184901602.png" srcset="/img/loading.gif" lazyload alt="image-20240810184901602"></p>
 <h1 id="签到返利（calendarSignRebate）"><a href="#签到返利（calendarSignRebate）" class="headerlink" title="签到返利（calendarSignRebate）"></a>签到返利（calendarSignRebate）</h1><p>日常的返利会根据用户所完成的行为动作来触达，这包括；打卡、签到、连签、支付、开户、交易、信贷、拉新等各类的动作。</p>
 <p>我们以签到为例子：</p>
 <h2 id="逻辑流程-1"><a href="#逻辑流程-1" class="headerlink" title="逻辑流程"></a>逻辑流程</h2><p><img src="/../../images/image-20240801161007955.png" srcset="/img/loading.gif" lazyload alt="image-20240801161007955"></p>
-<h2 id="与代码结合-1"><a href="#与代码结合-1" class="headerlink" title="与代码结合"></a>与代码结合</h2><p><img src="/../../images/image-20240801161449077.png" srcset="/img/loading.gif" lazyload alt="image-20240801161449077"></p>
+<h2 id="与代码结合-1"><a href="#与代码结合-1" class="headerlink" title="与代码结合"></a>与代码结合</h2><p><img src="/../../images/image-20240810184919925.png" srcset="/img/loading.gif" lazyload alt="image-20240810184919925"></p>
 <h1 id="积分兑换sku商品（creditPayExchangeSku）"><a href="#积分兑换sku商品（creditPayExchangeSku）" class="headerlink" title="积分兑换sku商品（creditPayExchangeSku）"></a>积分兑换sku商品（creditPayExchangeSku）</h1><h2 id="逻辑流程-2"><a href="#逻辑流程-2" class="headerlink" title="逻辑流程"></a>逻辑流程</h2><p><img src="/../../images/image-20240801161956950.png" srcset="/img/loading.gif" lazyload alt="image-20240801161956950"></p>
-<h2 id="与代码结合-2"><a href="#与代码结合-2" class="headerlink" title="与代码结合"></a>与代码结合</h2><p><img src="/../../images/image-20240801163206431.png" srcset="/img/loading.gif" lazyload alt="image-20240801163206431"></p>
+<h2 id="与代码结合-2"><a href="#与代码结合-2" class="headerlink" title="与代码结合"></a>与代码结合</h2><p><img src="/../../images/image-20240810185606976.png" srcset="/img/loading.gif" lazyload alt="image-20240810185606976"></p>
 
                 
               </div>
