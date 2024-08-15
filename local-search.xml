@@ -23,6 +23,25 @@
   
   
   <entry>
+    <title>抽奖系统未来的可拓展的功能</title>
+    <link href="/2024/07/25/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/"/>
+    <url>/2024/07/25/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/</url>
+    
+    <content type="html"><![CDATA[<p>未来抽奖系统需要添加的功能：</p><h1 id="分布式动态配置活动降级"><a href="#分布式动态配置活动降级" class="headerlink" title="分布式动态配置活动降级"></a>分布式动态配置活动降级</h1><h2 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h2><p>基于 Zookeeper 实现分布式动态配置中心服务，用于分布式应用节点系统中的环境属性值变更。</p><p>我们设置一个开关，当其打开时，所有服务节点正常工作；当其关闭时，所有抽奖服务做活动降级处理，停止服务。</p><p><img src="/../../images/image-20240715193725238.png" alt="image-20240815193725238"></p><h1 id="分库分表同步ES"><a href="#分库分表同步ES" class="headerlink" title="分库分表同步ES"></a>分库分表同步ES</h1><p>对于C端的场景来说，我们经常会采用分库分表的方案承载数据流量的压力，以用户ID为切分键，让用户的行为数据分散到各个库表中。那么在C端除了给用户提供数据服务以外，还需要给运营提供数据，但分库分表后的数据都已经散列到各个库表了，对于聚合查询就变得复杂，所以我们还需要另外一套方案。就是把分散在各个数据库表的数据，通过使用 canal 组件，基于 binlog 日志，把数据同步到 ElasticSearch 文件服务中再提供使用。</p><p><img src="/../../images/image-20240715194120283.png" alt="image-20240815194120283"></p><h1 id="分布式任务调度引入"><a href="#分布式任务调度引入" class="headerlink" title="分布式任务调度引入"></a>分布式任务调度引入</h1><p>分布式环境下，@Scheduled注解就不再适用，需要引入分布式任务调度组件xxjob。</p><p><img src="/../../images/image-20240715194301798.png" alt="image-20240715194301798"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>抽奖系统</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>浪潮实习——小论文的总结</title>
     <link href="/2024/07/25/%E7%A7%91%E7%A0%94/%E6%B5%AA%E6%BD%AE%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <url>/2024/07/25/%E7%A7%91%E7%A0%94/%E6%B5%AA%E6%BD%AE%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
@@ -80,25 +99,6 @@
   
   
   <entry>
-    <title>未来的可拓展的功能</title>
-    <link href="/2024/07/24/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/"/>
-    <url>/2024/07/24/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/</url>
-    
-    <content type="html"><![CDATA[<h1 id="分布式动态配置活动降级"><a href="#分布式动态配置活动降级" class="headerlink" title="分布式动态配置活动降级"></a>分布式动态配置活动降级</h1><h2 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h2><p>基于 Zookeeper 实现分布式动态配置中心服务，用于分布式应用节点系统中的环境属性值变更。</p><p>我们设置一个开关，当其打开时，所有服务节点正常工作；当其关闭时，所有抽奖服务做活动降级处理，停止服务。</p><p><img src="/../../images/image-20240815193725238.png" alt="image-20240815193725238"></p><h1 id="分库分表同步ES"><a href="#分库分表同步ES" class="headerlink" title="分库分表同步ES"></a>分库分表同步ES</h1><p>对于C端的场景来说，我们经常会采用分库分表的方案承载数据流量的压力，以用户ID为切分键，让用户的行为数据分散到各个库表中。那么在C端除了给用户提供数据服务以外，还需要给运营提供数据，但分库分表后的数据都已经散列到各个库表了，对于聚合查询就变得复杂，所以我们还需要另外一套方案。就是把分散在各个数据库表的数据，通过使用 canal 组件，基于 binlog 日志，把数据同步到 ElasticSearch 文件服务中再提供使用。</p><p><img src="/../../images/image-20240815194120283.png" alt="image-20240815194120283"></p><h1 id="分布式任务调度代替-Scheduled注解"><a href="#分布式任务调度代替-Scheduled注解" class="headerlink" title="分布式任务调度代替@Scheduled注解"></a>分布式任务调度代替@Scheduled注解</h1><p><img src="/../../images/image-20240715194301798.png" alt="image-20240715194301798"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>抽奖系统</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>虚拟机克隆</title>
     <link href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/"/>
     <url>/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/</url>
@@ -141,50 +141,12 @@
     <link href="/2024/06/21/linux/"/>
     <url>/2024/06/21/linux/</url>
     
-    <content type="html"><![CDATA[<h1 id="防止IP变化"><a href="#防止IP变化" class="headerlink" title="防止IP变化"></a>防止IP变化</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。</p><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化：</p><p>主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；<br>主机关机，重新开机；<br>卸载VMware，重新导入虚拟机。</p><h2 id="解决（固定ip地址）"><a href="#解决（固定ip地址）" class="headerlink" title="解决（固定ip地址）"></a>解决（固定ip地址）</h2><p><strong>（一）准备工作</strong><br>1.查询虚拟机ip地址</p><p>ifconfig</p><p>2.查询网关ip</p><p>编辑一&gt;虚拟网络编译器一&gt;更改设置一&gt;上方选择NAT模式，下方选择NAT设置一&gt;网关IP</p><p><strong>（二）固定ip</strong><br>位置一&gt;计算机</p><p>进入以下位置<br>etc&#x2F;sysconfig&#x2F;network-scripts</p><p>右键进入终端，并打开虚拟机网卡配置文件 ifcfg-ens33</p><p>vim ifcfg-ens33</p><p>将dhcp更改为static，让IP分配规则静态化，不再改变<br>BOOTPROTO&#x3D;”static”</p><p> 在网卡配置文件的结尾处配置上虚拟机ip地址，网关IP，以及域名解析服务器。<br>IPADDR&#x3D;”自己的IP地址”<br>GATEWAY&#x3D;”自己的网关IP”</p><p>NAS1&#x3D;”同网关IP”</p><p>退出编辑并保存退出<br>Esc一&gt;:wq </p><p>重启网卡</p><p>systemctl restart network</p><p><strong>（三）查看网络是否联通</strong><br>1.本机查看</p><blockquote><p>ping 虚拟机的IP</p></blockquote><p>2.虚拟机查看</p><p>ping 本机IP</p><h1 id="未知的名称或服务"><a href="#未知的名称或服务" class="headerlink" title="未知的名称或服务"></a>未知的名称或服务</h1><p>有时候ping baidu.com会出现报错，未知的名称或服务</p><p>对接口添加dns信息；编辑&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ethxxxxxxx，x可能是其他数字，但一般是ifcfg-eth0的，具体的X根据你的网卡确定，在最下面添加：<br>DNS1&#x3D;8.8.8.8<br>DNS2&#x3D;114.114.114.114<br>保存后重启网络</p><p>systemctl restart NetworkManager.service</p><h1 id="虚拟ip的原理及使用"><a href="#虚拟ip的原理及使用" class="headerlink" title="虚拟ip的原理及使用"></a><strong>虚拟ip的原理及使用</strong></h1><p><a href="https://www.cnblogs.com/jmcui/p/13055283.html">虚拟IP原理及使用 - JMCui - 博客园 (cnblogs.com)</a></p><p><strong>举个通俗的例子</strong></p><p>老王开了一个会所，地址是虹X路1.1.1.1，经营范围不太正规，经常被封，顾客以为店已经关门，其实里面热火朝天，所以老王急啊，于是开了一个后门，地址是2.2.2.1，于是顾客纷纷从后门进入，老王笑开了花…</p><p>过几天大门解封了，但后门由于弄堂改造，临时关闭了，<strong>熟门熟路</strong>的顾客从后门进不来了，有同学会问，大门都开着，顾客为何不从前门进店？因为这些<strong>顾客头脑比较简单</strong>，老王苦啊，痛定思痛，老王想出了一个好主意。</p><p>老王给顾客自己的电话号码<strong>4.4.4.1</strong>，叮嘱他们，以后来店消费之前，只要电话能打通（4.4.4.1路由可达），说明店还营业，前门进不来（1.1.1.1接口down）就走后门（2.2.2.1接口UP)；同理，如果后门进不来，可以走前门。</p><p>如果电话打不通（4.4.4.1路由消失），说明老王被关进去了，顾客就别来了，因为前门被封（1.1.1.1接口down)，后门也被封（2.2.2.1接口down），来了也是白来。</p><p><strong>谈点正经的</strong></p><p>其实电脑上的<strong>127.0.0.1</strong>也是一个VIP，只是用于本机进程间的通信标识符。</p><p>如果没有127.0.0.1，那么一旦物理接口down，TCP&#x2F;IP协议栈绑定在此接口上的IP就无法提供进程间的通信，所以非常不方便。</p><p>而有了127.0.0.1，不管物理接口状态如何，都可以进程间通信。</p><p>题主问题里的VIP，也是不依赖于任何物理接口，只要有一个物理接口处于工作状态（UP，可以和外部联系），就可以提供服务器的访问，当然需要通过路由发布将4.4.4.1发布出去，别的三层设备、主机需要知道如何到达4.4.4.1。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="防止IP变化"><a href="#防止IP变化" class="headerlink" title="防止IP变化"></a>防止IP变化</h1><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>​        每次在自己电脑打开VMware，进入Linux时，发现有时候ip会改变，导致传输文件或者远程连接出现问题，每次更改ip都要去更改其它文件相对麻烦。</p><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>因为虚拟机的ip是动态分配的，是可能存在以下几种原因导致其发生变化：</p><p>主机连接的网络不一样，比如上次连接的是自己手机热点，这次换成网线连接；<br>主机关机，重新开机；<br>卸载VMware，重新导入虚拟机。</p><h2 id="解决（固定ip地址）"><a href="#解决（固定ip地址）" class="headerlink" title="解决（固定ip地址）"></a>解决（固定ip地址）</h2><p><strong>（一）准备工作</strong><br>1.查询虚拟机ip地址</p><p>ifconfig</p><p>2.查询网关ip</p><p>编辑一&gt;虚拟网络编译器一&gt;更改设置一&gt;上方选择NAT模式，下方选择NAT设置一&gt;网关IP</p><p><strong>（二）固定ip</strong><br>位置一&gt;计算机</p><p>进入以下位置<br>etc&#x2F;sysconfig&#x2F;network-scripts</p><p>右键进入终端，并打开虚拟机网卡配置文件 ifcfg-ens33</p><p>vim ifcfg-ens33</p><p>将dhcp更改为static，让IP分配规则静态化，不再改变<br>BOOTPROTO&#x3D;”static”</p><p> 在网卡配置文件的结尾处配置上虚拟机ip地址，网关IP，以及域名解析服务器。<br>IPADDR&#x3D;”自己的IP地址”<br>GATEWAY&#x3D;”自己的网关IP”</p><p>NAS1&#x3D;”同网关IP”</p><p>退出编辑并保存退出<br>Esc一&gt;:wq </p><p>重启网卡</p><p>systemctl restart network</p><p><strong>（三）查看网络是否联通</strong><br>1.本机查看</p><blockquote><p>ping 虚拟机的IP</p></blockquote><p>2.虚拟机查看</p><p>ping 本机IP</p><h1 id="未知的名称或服务"><a href="#未知的名称或服务" class="headerlink" title="未知的名称或服务"></a>未知的名称或服务</h1><p>有时候ping baidu.com会出现报错，未知的名称或服务</p><p>对接口添加dns信息；编辑&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ethxxxxxxx，x可能是其他数字，但一般是ifcfg-eth0的，具体的X根据你的网卡确定，在最下面添加：<br>DNS1&#x3D;8.8.8.8<br>DNS2&#x3D;114.114.114.114<br>保存后重启网络</p><p>systemctl restart NetworkManager.service</p><h1 id="虚拟ip的原理及使用"><a href="#虚拟ip的原理及使用" class="headerlink" title="虚拟ip的原理及使用"></a><strong>虚拟ip的原理及使用</strong></h1><p><strong>用于nginx实现高可用</strong></p><p><a href="https://www.cnblogs.com/jmcui/p/13055283.html">虚拟IP原理及使用 - JMCui - 博客园 (cnblogs.com)</a></p><p><strong>举个通俗的例子</strong></p><p>老王开了一个会所，地址是虹X路1.1.1.1，经营范围不太正规，经常被封，顾客以为店已经关门，其实里面热火朝天，所以老王急啊，于是开了一个后门，地址是2.2.2.1，于是顾客纷纷从后门进入，老王笑开了花…</p><p>过几天大门解封了，但后门由于弄堂改造，临时关闭了，熟门熟路的顾客从后门进不来了，有同学会问，大门都开着，顾客为何不从前门进店？因为这些顾客头脑比较简单，老王苦啊，痛定思痛，老王想出了一个好主意。</p><p>老王给顾客自己的电话号码4.4.4.1，叮嘱他们，以后来店消费之前，只要电话能打通（4.4.4.1路由可达），说明店还营业，前门进不来（1.1.1.1接口down）就走后门（2.2.2.1接口UP)；同理，如果后门进不来，可以走前门。</p><p>如果电话打不通（4.4.4.1路由消失），说明老王被关进去了，顾客就别来了，因为前门被封（1.1.1.1接口down)，后门也被封（2.2.2.1接口down），来了也是白来。</p><p><strong>谈点正经的</strong></p><p>其实电脑上的127.0.0.1也是一个VIP，只是用于本机进程间的通信标识符。</p><p>如果没有127.0.0.1，那么一旦物理接口down，TCP&#x2F;IP协议栈绑定在此接口上的IP就无法提供进程间的通信，所以非常不方便。</p><p>而有了127.0.0.1，不管物理接口状态如何，都可以进程间通信。</p><p>题主问题里的VIP，也是不依赖于任何物理接口，只要有一个物理接口处于工作状态（UP，可以和外部联系），就可以提供服务器的访问，当然需要通过路由发布将4.4.4.1发布出去，别的三层设备、主机需要知道如何到达4.4.4.1。</p>]]></content>
     
     
     <categories>
       
       <category>常用工具问题及解决办法</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>rabbitMQ</title>
-    <link href="/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"/>
-    <url>/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
-    
-    <content type="html"><![CDATA[<h2 id="DOCKER安装RABBITMQ教程（详细图文）"><a href="#DOCKER安装RABBITMQ教程（详细图文）" class="headerlink" title="DOCKER安装RABBITMQ教程（详细图文）"></a><a href="https://www.cnblogs.com/csjoz/p/18176355">DOCKER安装RABBITMQ教程（详细图文）</a></h2><p>1.下载Rabbitmq的镜像<br>拉取最新的rabbitmq的镜像</p><p>docker pull rabbitmq<br>拉取指定版本的rabbitmq镜像</p><p>docker pull rabbitmq:版本号<br>2.创建并运行rabbitmq容器<br>docker run -d -p 15673:15672 -p 5674:5672 <br>    –restart&#x3D;always <br>    -e RABBITMQ_DEFAULT_VHOST&#x3D;my_vhost  <br>    -e RABBITMQ_DEFAULT_USER&#x3D;admin <br>    -e RABBITMQ_DEFAULT_PASS&#x3D;admin123456 <br>    –hostname myRabbit <br>    –name rabbitmq-new<br>    rabbitmq:latest<br>注意：在映射的端口号的时候不要映射 5671端口，端口5671是 RabbitMQ 的默认AMQP over TLS&#x2F;SSL端口。AMQP（Advanced Message Queuing Protocol）是一种消息传递协议，用于在应用程序之间进行可靠的消息传递。</p><p>参数说明：</p><p>-d：表示在后台运行容器；<br>-p：将主机的端口 15673（Web访问端口号）对应当前rabbitmq容器中的 15672 端口，将主机的5674（应用访问端口）端口映射到rabbitmq中的5672端口；<br>–restart&#x3D;alawys：设置开机自启动<br>-e：指定环境变量：<br>  RABBITMQ_DEFAULT_VHOST：默认虚拟机名；<br>  RABBITMQ_DEFAULT_USER：默认的用户名；<br>  RABBITMQ_DEFAULT_PASS：默认的用户密码；<br>–hostname：指定主机名（RabbitMQ 的一个重要注意事项是它根据所谓的 节点名称 存储数据，默认为主机名）；<br>–name rabbitmq-new：设置容器名称；<br>查看启动情况</p><p>3.启动web客户端<br>方法一：进入容器开启</p><p>#进入rabbitmq容器<br>docker exec -it 容器名&#x2F;容器id &#x2F;bin&#x2F;bash<br>#开启web客户端<br>rabbitmq-plugins enable rabbitmq_management<br>方法二：不进入容器开启</p><p>docker exec -it 容器名&#x2F;容器id rabbitmq-plugins enable rabbitmq_management<br>4.访问rabbitmq的微博客户端<br>在浏览器上输入 ip+端口 访问rabbitmq的web客户端</p><p>输入上面在初始化Rabbitmq容器时我们自己指定了默认账号和密码：admin&#x2F;admin123456，如果没有指定的话那么rabbitmq的默认账号密码是:guest&#x2F;guest</p><p>登录成功如下图所示：</p><p> 如果提示网页无法访问的话，可检查服务器的防火墙是否开启了这个端口。</p><p>#查看防火墙规则中打开的端口列表<br>firewall-cmd –list-ports<br>#添加端口<br>firewall-cmd –zone&#x3D;public –add-port&#x3D;15673&#x2F;tcp –permanent<br>#重新加载，使配置生效<br>firewall-cmd –reload<br>–zone&#x3D;public 指定了要添加规则的区域（这里是公共区域）<br>–add-port&#x3D;15673&#x2F;tcp 指定了要添加的端口及其协议（这里是 TCP 协议的 15673 端口）<br>–permanent 则表示将规则永久保存，使其在系统重启后仍然有效。<br>5.遇到的问题<br>问题描述：在rabbitmq的web客户端发现界面会弹出如下提示框Stats in management UI are disabled on this node</p><p>解决方法<br>（1）进入到启动的rabbitmq的容器中<br>docker exec -it 容器名称&#x2F;容器id &#x2F;bin&#x2F;bash</p><p>（2）切换到rabbitmq的配置文件目录<br>cd &#x2F;etc&#x2F;rabbitmq&#x2F;conf.d&#x2F;</p><p>（3）修改配置文件- management_agent.disable_metrics_collector.conf<br>echo management_agent.disable_metrics_collector &#x3D; false &gt; management_agent.disable_metrics_collector.conf<br>（4）查看配置文件-cat</p><p>（5）退出容器<br>exit</p><p>（6）重启容器<br> docker restart 容器名称&#x2F;容器id</p><p>再次进入rabbitmq的web客户端页面，点击各个页面就不会出现那个提示，并且出现了统计图表以及可以添加一下展示的信息字段。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>其他</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>桥接模式、nat模式和主机模式</title>
-    <link href="/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
-    <url>/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</url>
-    
-    <content type="html"><![CDATA[<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>虚拟机可以和外部系统通讯，但会浪费宿主的ip</p><img src="../images/image-20240711200106245.png" alt="image-20240711200106245" style="zoom: 50%;" /><h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><p>虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯</p><p><img src="/../images/image-20240711201909422.png" alt="image-20240711201909422"></p><h2 id="内部网络"><a href="#内部网络" class="headerlink" title="内部网络"></a>内部网络</h2><p>虚拟机之间可以互相通讯，但和外部无联系</p><p><img src="/../images/image-20240711195727113.png" alt="image-20240711195727113"></p><h2 id="仅主机模式"><a href="#仅主机模式" class="headerlink" title="仅主机模式"></a>仅主机模式</h2><p>独立系统，不和外部发生联系</p><img src="../images/image-20240711202304552.png" alt="image-20240711202304552" style="zoom:50%;" /><h2 id="docker中的网络"><a href="#docker中的网络" class="headerlink" title="docker中的网络"></a>docker中的网络</h2><p>默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上：</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>计算机基础知识</category>
       
     </categories>
     
@@ -432,6 +394,25 @@
     <categories>
       
       <category>抽奖系统</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>桥接模式、nat模式和主机模式</title>
+    <link href="/2024/01/01/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
+    <url>/2024/01/01/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</url>
+    
+    <content type="html"><![CDATA[<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>虚拟机可以和外部系统通讯，但会浪费宿主的ip</p><p><img src="/../images/image-20240711200106245.png" alt="image-20240711200106245"></p><h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><p>虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯</p><p><img src="/../images/image-20240711201909422.png" alt="image-20240711201909422"></p><h2 id="内部网络"><a href="#内部网络" class="headerlink" title="内部网络"></a>内部网络</h2><p>虚拟机之间可以互相通讯，但和外部无联系</p><p><img src="/../images/image-20240711195727113.png" alt="image-20240711195727113"></p><h2 id="仅主机模式"><a href="#仅主机模式" class="headerlink" title="仅主机模式"></a>仅主机模式</h2><p>独立系统，不和外部发生联系</p><p><img src="/../images/image-20240711202304552.png" alt="image-20240711202304552"></p><h2 id="docker中的网络"><a href="#docker中的网络" class="headerlink" title="docker中的网络"></a>docker中的网络</h2><p>默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>计算机基础知识</category>
       
     </categories>
     

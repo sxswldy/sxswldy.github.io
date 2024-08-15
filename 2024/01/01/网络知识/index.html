@@ -16,22 +16,27 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta name="description" content="DOCKER安装RABBITMQ教程（详细图文）1.下载Rabbitmq的镜像拉取最新的rabbitmq的镜像 docker pull rabbitmq拉取指定版本的rabbitmq镜像 docker pull rabbitmq:版本号2.创建并运行rabbitmq容器docker run -d -p 15673:15672 -p 5674:5672     –restart&#x3D;alway">
+    <meta name="description" content="桥接模式虚拟机可以和外部系统通讯，但会浪费宿主的ip  NAT模式虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯  内部网络虚拟机之间可以互相通讯，但和外部无联系  仅主机模式独立系统，不和外部发生联系  docker中的网络默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rabbitMQ">
-<meta property="og:url" content="http://example.com/2024/06/19/rabbitMQ%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="桥接模式、nat模式和主机模式">
+<meta property="og:url" content="http://example.com/2024/01/01/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
-<meta property="og:description" content="DOCKER安装RABBITMQ教程（详细图文）1.下载Rabbitmq的镜像拉取最新的rabbitmq的镜像 docker pull rabbitmq拉取指定版本的rabbitmq镜像 docker pull rabbitmq:版本号2.创建并运行rabbitmq容器docker run -d -p 15673:15672 -p 5674:5672     –restart&#x3D;alway">
+<meta property="og:description" content="桥接模式虚拟机可以和外部系统通讯，但会浪费宿主的ip  NAT模式虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯  内部网络虚拟机之间可以互相通讯，但和外部无联系  仅主机模式独立系统，不和外部发生联系  docker中的网络默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-19T05:59:28.474Z">
-<meta property="article:modified_time" content="2024-07-31T09:53:02.161Z">
+<meta property="og:image" content="http://example.com/images/image-20240711200106245.png">
+<meta property="og:image" content="http://example.com/images/image-20240711201909422.png">
+<meta property="og:image" content="http://example.com/images/image-20240711195727113.png">
+<meta property="og:image" content="http://example.com/images/image-20240711202304552.png">
+<meta property="article:published_time" content="2023-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-15T12:11:43.988Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/image-20240711200106245.png">
   
   
   
-  <title>rabbitMQ - 李东阳的个人博客</title>
+  <title>桥接模式、nat模式和主机模式 - 李东阳的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="rabbitMQ"></span>
+            <span id="subtitle" data-typed-text="桥接模式、nat模式和主机模式"></span>
           
         </div>
 
@@ -208,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-06-19 13:59" pubdate>
-          2024年6月19日 下午
+        <time datetime="2024-01-01 00:00" pubdate>
+          2024年1月1日 凌晨
         </time>
       </span>
     
@@ -220,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          740 字
+          129 字
         
       </span>
     
@@ -231,7 +236,7 @@
         
         
         
-          7 分钟
+          2 分钟
         
       </span>
     
@@ -268,29 +273,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">rabbitMQ</h1>
+            <h1 id="seo-header">桥接模式、nat模式和主机模式</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="DOCKER安装RABBITMQ教程（详细图文）"><a href="#DOCKER安装RABBITMQ教程（详细图文）" class="headerlink" title="DOCKER安装RABBITMQ教程（详细图文）"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/csjoz/p/18176355">DOCKER安装RABBITMQ教程（详细图文）</a></h2><p>1.下载Rabbitmq的镜像<br>拉取最新的rabbitmq的镜像</p>
-<p>docker pull rabbitmq<br>拉取指定版本的rabbitmq镜像</p>
-<p>docker pull rabbitmq:版本号<br>2.创建并运行rabbitmq容器<br>docker run -d -p 15673:15672 -p 5674:5672 <br>    –restart&#x3D;always <br>    -e RABBITMQ_DEFAULT_VHOST&#x3D;my_vhost  <br>    -e RABBITMQ_DEFAULT_USER&#x3D;admin <br>    -e RABBITMQ_DEFAULT_PASS&#x3D;admin123456 <br>    –hostname myRabbit <br>    –name rabbitmq-new<br>    rabbitmq:latest<br>注意：在映射的端口号的时候不要映射 5671端口，端口5671是 RabbitMQ 的默认AMQP over TLS&#x2F;SSL端口。AMQP（Advanced Message Queuing Protocol）是一种消息传递协议，用于在应用程序之间进行可靠的消息传递。</p>
-<p>参数说明：</p>
-<p>-d：表示在后台运行容器；<br>-p：将主机的端口 15673（Web访问端口号）对应当前rabbitmq容器中的 15672 端口，将主机的5674（应用访问端口）端口映射到rabbitmq中的5672端口；<br>–restart&#x3D;alawys：设置开机自启动<br>-e：指定环境变量：<br>  RABBITMQ_DEFAULT_VHOST：默认虚拟机名；<br>  RABBITMQ_DEFAULT_USER：默认的用户名；<br>  RABBITMQ_DEFAULT_PASS：默认的用户密码；<br>–hostname：指定主机名（RabbitMQ 的一个重要注意事项是它根据所谓的 节点名称 存储数据，默认为主机名）；<br>–name rabbitmq-new：设置容器名称；<br>查看启动情况</p>
-<p>3.启动web客户端<br>方法一：进入容器开启</p>
-<p>#进入rabbitmq容器<br>docker exec -it 容器名&#x2F;容器id &#x2F;bin&#x2F;bash<br>#开启web客户端<br>rabbitmq-plugins enable rabbitmq_management<br>方法二：不进入容器开启</p>
-<p>docker exec -it 容器名&#x2F;容器id rabbitmq-plugins enable rabbitmq_management<br>4.访问rabbitmq的微博客户端<br>在浏览器上输入 ip+端口 访问rabbitmq的web客户端</p>
-<p>输入上面在初始化Rabbitmq容器时我们自己指定了默认账号和密码：admin&#x2F;admin123456，如果没有指定的话那么rabbitmq的默认账号密码是:guest&#x2F;guest</p>
-<p>登录成功如下图所示：</p>
-<p> 如果提示网页无法访问的话，可检查服务器的防火墙是否开启了这个端口。</p>
-<p>#查看防火墙规则中打开的端口列表<br>firewall-cmd –list-ports<br>#添加端口<br>firewall-cmd –zone&#x3D;public –add-port&#x3D;15673&#x2F;tcp –permanent<br>#重新加载，使配置生效<br>firewall-cmd –reload<br>–zone&#x3D;public 指定了要添加规则的区域（这里是公共区域）<br>–add-port&#x3D;15673&#x2F;tcp 指定了要添加的端口及其协议（这里是 TCP 协议的 15673 端口）<br>–permanent 则表示将规则永久保存，使其在系统重启后仍然有效。<br>5.遇到的问题<br>问题描述：在rabbitmq的web客户端发现界面会弹出如下提示框Stats in management UI are disabled on this node</p>
-<p>解决方法<br>（1）进入到启动的rabbitmq的容器中<br>docker exec -it 容器名称&#x2F;容器id &#x2F;bin&#x2F;bash</p>
-<p>（2）切换到rabbitmq的配置文件目录<br>cd &#x2F;etc&#x2F;rabbitmq&#x2F;conf.d&#x2F;</p>
-<p>（3）修改配置文件- management_agent.disable_metrics_collector.conf<br>echo management_agent.disable_metrics_collector &#x3D; false &gt; management_agent.disable_metrics_collector.conf<br>（4）查看配置文件-cat</p>
-<p>（5）退出容器<br>exit</p>
-<p>（6）重启容器<br> docker restart 容器名称&#x2F;容器id</p>
-<p>再次进入rabbitmq的web客户端页面，点击各个页面就不会出现那个提示，并且出现了统计图表以及可以添加一下展示的信息字段。</p>
+                <h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>虚拟机可以和外部系统通讯，但会浪费宿主的ip</p>
+<p><img src="/../images/image-20240711200106245.png" srcset="/img/loading.gif" lazyload alt="image-20240711200106245"></p>
+<h2 id="NAT模式"><a href="#NAT模式" class="headerlink" title="NAT模式"></a>NAT模式</h2><p>虚拟机互通、可以和外部通讯，但用的不是同一个网段；外部不可以和虚拟器通讯</p>
+<p><img src="/../images/image-20240711201909422.png" srcset="/img/loading.gif" lazyload alt="image-20240711201909422"></p>
+<h2 id="内部网络"><a href="#内部网络" class="headerlink" title="内部网络"></a>内部网络</h2><p>虚拟机之间可以互相通讯，但和外部无联系</p>
+<p><img src="/../images/image-20240711195727113.png" srcset="/img/loading.gif" lazyload alt="image-20240711195727113"></p>
+<h2 id="仅主机模式"><a href="#仅主机模式" class="headerlink" title="仅主机模式"></a>仅主机模式</h2><p>独立系统，不和外部发生联系</p>
+<p><img src="/../images/image-20240711202304552.png" srcset="/img/loading.gif" lazyload alt="image-20240711202304552"></p>
+<h2 id="docker中的网络"><a href="#docker中的网络" class="headerlink" title="docker中的网络"></a>docker中的网络</h2><p>默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上</p>
 
                 
               </div>
@@ -309,7 +305,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="category-chain-item">计算机基础知识</a>
   
   
 
@@ -329,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>rabbitMQ</div>
-      <div>http://example.com/2024/06/19/rabbitMQ使用总结/</div>
+      <div>桥接模式、nat模式和主机模式</div>
+      <div>http://example.com/2024/01/01/网络知识/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +338,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年6月19日</div>
+          <div>2024年1月1日</div>
         </div>
       
       
@@ -374,9 +370,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/21/linux/" title="记录linux的一些问题及解决方法">
+                      <a href="/2024/01/07/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="抽奖过程中设计模式的运用">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">记录linux的一些问题及解决方法</span>
+                        <span class="hidden-mobile">抽奖过程中设计模式的运用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -384,8 +380,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/06/17/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/" title="桥接模式、nat模式和主机模式">
-                        <span class="hidden-mobile">桥接模式、nat模式和主机模式</span>
+                      <a href="/2023/12/20/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/" title="表的设计">
+                        <span class="hidden-mobile">表的设计</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
