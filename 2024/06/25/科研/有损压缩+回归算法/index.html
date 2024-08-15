@@ -16,12 +16,12 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta name="description" content="代码代码量调研 SZ代码进展：可以使用，不能调试。 本周：尝试修改CMakeList文件，希望在编译过程中加入调试信息，然后使用 gdb调试工具 进行调试  ——  失败！ ps: C项目调试：  对于简单项目使用gcc -g，大型项目使用cmake。 Cmake cache  使用例子 压缩  testdouble_8_8_128.dat是一个128X8X8维的double类型数组  原文件大小">
+    <meta name="description" content="因毕业论文第二个研究点是压缩算法，所以最近展开一些调研，以下总结按照时间线由近到远总结： SZ压缩算法代码调研代码量调研针对SZ提供的代码中testdouble_compress.exe的源代码testdouble_compress.c调研：  结论：要复现并不困难，后续可以先进行复现，然后在其基础上进行改进。 SZ代码初使用进展：可以使用，不能调试。 本周：尝试修改CMakeList文件，希望在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="压缩算法的调研">
-<meta property="og:url" content="http://example.com/2024/07/24/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:url" content="http://example.com/2024/06/25/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
-<meta property="og:description" content="代码代码量调研 SZ代码进展：可以使用，不能调试。 本周：尝试修改CMakeList文件，希望在编译过程中加入调试信息，然后使用 gdb调试工具 进行调试  ——  失败！ ps: C项目调试：  对于简单项目使用gcc -g，大型项目使用cmake。 Cmake cache  使用例子 压缩  testdouble_8_8_128.dat是一个128X8X8维的double类型数组  原文件大小">
+<meta property="og:description" content="因毕业论文第二个研究点是压缩算法，所以最近展开一些调研，以下总结按照时间线由近到远总结： SZ压缩算法代码调研代码量调研针对SZ提供的代码中testdouble_compress.exe的源代码testdouble_compress.c调研：  结论：要复现并不困难，后续可以先进行复现，然后在其基础上进行改进。 SZ代码初使用进展：可以使用，不能调试。 本周：尝试修改CMakeList文件，希望在">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/image-20240807161422562.png">
 <meta property="og:image" content="http://example.com/images/image-20240802095407018.png">
@@ -44,8 +44,8 @@
 <meta property="og:image" content="http://example.com/images/image-20240620092148893.png">
 <meta property="og:image" content="http://example.com/images/image-20240620100703301.png">
 <meta property="og:image" content="http://example.com/images/image-20240620170314345.png">
-<meta property="article:published_time" content="2024-07-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-15T11:57:49.719Z">
+<meta property="article:published_time" content="2024-06-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-15T12:25:53.778Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -230,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-24 00:00" pubdate>
-          2024年7月24日 凌晨
+        <time datetime="2024-06-25 00:00" pubdate>
+          2024年6月25日 凌晨
         </time>
       </span>
     
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.7k 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -295,14 +295,17 @@
             
               <div class="markdown-body">
                 
-                <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><h2 id="代码量调研"><a href="#代码量调研" class="headerlink" title="代码量调研"></a>代码量调研</h2><p><img src="/../../images/image-20240807161422562.png" srcset="/img/loading.gif" lazyload alt="image-20240807161422562"></p>
-<h1 id="SZ代码"><a href="#SZ代码" class="headerlink" title="SZ代码"></a>SZ代码</h1><p>进展：可以使用，不能调试。</p>
+                <p>因毕业论文第二个研究点是压缩算法，所以最近展开一些调研，以下总结按照时间线由近到远总结：</p>
+<h1 id="SZ压缩算法代码调研"><a href="#SZ压缩算法代码调研" class="headerlink" title="SZ压缩算法代码调研"></a>SZ压缩算法代码调研</h1><h2 id="代码量调研"><a href="#代码量调研" class="headerlink" title="代码量调研"></a>代码量调研</h2><p>针对SZ提供的代码中testdouble_compress.exe的源代码testdouble_compress.c调研：</p>
+<p><img src="/../../images/image-20240807161422562.png" srcset="/img/loading.gif" lazyload alt="image-20240807161422562"></p>
+<p>结论：要复现并不困难，后续可以先进行复现，然后在其基础上进行改进。</p>
+<h1 id="SZ代码初使用"><a href="#SZ代码初使用" class="headerlink" title="SZ代码初使用"></a>SZ代码初使用</h1><p>进展：可以使用，不能调试。</p>
 <p>本周：尝试修改CMakeList文件，希望在编译过程中加入调试信息，然后使用 gdb调试工具 进行调试  ——  失败！</p>
 <p>ps:</p>
 <p>C项目调试：</p>
 <p><img src="/../../images/image-20240802095407018.png" srcset="/img/loading.gif" lazyload alt="image-20240802095407018"></p>
 <p>对于简单项目使用gcc -g，大型项目使用cmake。</p>
-<p>Cmake cache </p>
+<p>结论：需要进一步修改Cmake cache文件。</p>
 <h2 id="使用例子"><a href="#使用例子" class="headerlink" title="使用例子"></a>使用例子</h2><ul>
 <li>压缩</li>
 </ul>
@@ -325,7 +328,7 @@
 <p><img src="/../../images/image-20240717144836303.png" srcset="/img/loading.gif" lazyload alt="image-20240717144836303"></p>
 <p><img src="/../../images/image-20240717144948793.png" srcset="/img/loading.gif" lazyload alt="image-20240717144948793"></p>
 <h1 id="KaiwuDB中的压缩算法"><a href="#KaiwuDB中的压缩算法" class="headerlink" title="KaiwuDB中的压缩算法"></a>KaiwuDB中的压缩算法</h1><p><img src="/../../images/image-20240719130128012.png" srcset="/img/loading.gif" lazyload alt="image-20240719130128012"></p>
-<p>实验应该是针对无损压缩进行的。</p>
+<p>针对无损压缩进行的，可以结合TDengine中的TSZ算法进一步提高性能。</p>
 <p>TSZ算法是基于数据预测技术的有损压缩，在tdengine中作为可选项，默认不开启，针对浮点数。</p>
 <h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>把TDengine中的压缩算法在KaiwuDB中实现，然后哪里有问题再去解决问题。</p>
 <h1 id="TDengine压缩实验"><a href="#TDengine压缩实验" class="headerlink" title="TDengine压缩实验"></a>TDengine压缩实验</h1><p>验证写入数据被 TDengine 存储后再次读取出来的正确性。</p>
@@ -441,7 +444,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>压缩算法的调研</div>
-      <div>http://example.com/2024/07/24/科研/有损压缩+回归算法/</div>
+      <div>http://example.com/2024/06/25/科研/有损压缩+回归算法/</div>
     </div>
     <div class="license-meta">
       
@@ -453,7 +456,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月24日</div>
+          <div>2024年6月25日</div>
         </div>
       
       
@@ -485,9 +488,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/24/%E7%A7%91%E7%A0%94/word/" title="word">
+                      <a href="/2024/07/25/%E7%A7%91%E7%A0%94/%E6%B5%AA%E6%BD%AE%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/" title="浪潮实习——小论文的总结">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">word</span>
+                        <span class="hidden-mobile">浪潮实习——小论文的总结</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -495,8 +498,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/15/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%85%8B%E9%9A%86/" title="虚拟机克隆">
-                        <span class="hidden-mobile">虚拟机克隆</span>
+                      <a href="/2024/06/24/%E7%A7%91%E7%A0%94/word/" title="word">
+                        <span class="hidden-mobile">word</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
