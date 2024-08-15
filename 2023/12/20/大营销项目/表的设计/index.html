@@ -24,12 +24,9 @@
 <meta property="og:description" content="表的关系经常容易搞混，所以记录一下，方便回忆。 系统表策略表（strategy）：定义了不同的抽奖策略：不同策略抽奖的概率不同，抽奖的规则不同。 策略奖品表（strategy_award）：不同策略对应的奖品信息：包含奖品的概率、奖品的库存、抽到奖品的后置规则等。 策略规则表（strategy_rule）：不同策略有哪些前置规则：比如配置的黑名单、权重信息。 规则树表（rule_tree）、规则树">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/image-20240729151119053.png">
-<meta property="og:image" content="http://example.com/images/image-20240729151448053.png">
-<meta property="og:image" content="http://example.com/images/image-20240801160717940.png">
-<meta property="og:image" content="http://example.com/images/image-20240801160007803.png">
-<meta property="og:image" content="http://example.com/images/image-20240801155903682.png">
+<meta property="og:image" content="http://example.com/images/FhHmf7peFTpnWqoBgWbhlZ_rXXGZ.png">
 <meta property="article:published_time" content="2023-12-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-01T08:49:52.454Z">
+<meta property="article:modified_time" content="2024-08-15T02:58:41.318Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          444 字
+          441 字
         
       </span>
     
@@ -289,18 +286,15 @@
 <p><img src="/../../images/image-20240729151119053.png" srcset="/img/loading.gif" lazyload alt="image-20240729151119053"></p>
 <p>活动sku库存表（raffle_activity_count）：包含sku返利信息：比如能加多少次抽奖次数。</p>
 <p>签到返利配置表（daily_behavior_rebate）：签到返利配置</p>
-<h2 id="系统表总体结构如下"><a href="#系统表总体结构如下" class="headerlink" title="系统表总体结构如下"></a>系统表总体结构如下</h2><p><img src="/../../images/image-20240729151448053.png" srcset="/img/loading.gif" lazyload alt="image-20240729151448053"></p>
 <h1 id="用户表"><a href="#用户表" class="headerlink" title="用户表"></a>用户表</h1><p>活动账户表（raffle_activity_account）：包含某个用户总共的抽奖次数、可用的抽奖次数</p>
-<p><img src="/../../images/image-20240801160717940.png" srcset="/img/loading.gif" lazyload alt="image-20240801160717940"></p>
 <p>活动订单表（raffle_activity_order）：涉及用户与sku商品交易的订单表，包括：签到返利、积分兑换</p>
 <p>用户抽奖订单表（user_raffle_order）：参与活动产生的订单</p>
-<p><img src="/../../images/image-20240801160007803.png" srcset="/img/loading.gif" lazyload alt="image-20240801160007803"></p>
 <p>返利订单表（user_behavior_rebate_order）：签到返利产生的订单</p>
 <p>积分账户表（user_credit_account）：积分账户</p>
 <p>积分订单表（user_credit_order）：积分变化产生的订单，比如：签到返利、积分兑换sku</p>
 <p>奖品记录表（user_award_record）：抽奖记录表</p>
 <p>task表：任务补偿。如果MQ发送失败，使用定时任务补偿。</p>
-<p><img src="/../../images/image-20240801155903682.png" srcset="/img/loading.gif" lazyload alt="image-20240801155903682"></p>
+<h1 id="总体结构如下"><a href="#总体结构如下" class="headerlink" title="总体结构如下"></a>总体结构如下</h1><p><img src="/../../images/FhHmf7peFTpnWqoBgWbhlZ_rXXGZ.png" srcset="/img/loading.gif" lazyload alt="FhHmf7peFTpnWqoBgWbhlZ_rXXGZ"></p>
 
                 
               </div>

@@ -61,6 +61,25 @@
   
   
   <entry>
+    <title>未来的可拓展的功能</title>
+    <link href="/2024/07/24/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/"/>
+    <url>/2024/07/24/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/</url>
+    
+    <content type="html"><![CDATA[<h1 id="分布式动态配置活动降级"><a href="#分布式动态配置活动降级" class="headerlink" title="分布式动态配置活动降级"></a>分布式动态配置活动降级</h1><h2 id="功能描述"><a href="#功能描述" class="headerlink" title="功能描述"></a>功能描述</h2><p>基于 Zookeeper 实现分布式动态配置中心服务，用于分布式应用节点系统中的环境属性值变更。</p><p>我们设置一个开关，当其打开时，所有服务节点正常工作；当其关闭时，所有抽奖服务做活动降级处理，停止服务。</p><p><img src="/../../images/image-20240815193725238.png" alt="image-20240815193725238"></p><h1 id="分库分表同步ES"><a href="#分库分表同步ES" class="headerlink" title="分库分表同步ES"></a>分库分表同步ES</h1><p>对于C端的场景来说，我们经常会采用分库分表的方案承载数据流量的压力，以用户ID为切分键，让用户的行为数据分散到各个库表中。那么在C端除了给用户提供数据服务以外，还需要给运营提供数据，但分库分表后的数据都已经散列到各个库表了，对于聚合查询就变得复杂，所以我们还需要另外一套方案。就是把分散在各个数据库表的数据，通过使用 canal 组件，基于 binlog 日志，把数据同步到 ElasticSearch 文件服务中再提供使用。</p><p><img src="/../../images/image-20240815194120283.png" alt="image-20240815194120283"></p><h1 id="分布式任务调度代替-Scheduled注解"><a href="#分布式任务调度代替-Scheduled注解" class="headerlink" title="分布式任务调度代替@Scheduled注解"></a>分布式任务调度代替@Scheduled注解</h1><p><img src="/../../images/image-20240715194301798.png" alt="image-20240715194301798"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>抽奖系统</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>压缩算法的调研</title>
     <link href="/2024/07/24/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/"/>
     <url>/2024/07/24/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/</url>
@@ -426,7 +445,7 @@
     <link href="/2023/12/20/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
     <url>/2023/12/20/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
     
-    <content type="html"><![CDATA[<p>表的关系经常容易搞混，所以记录一下，方便回忆。</p><h1 id="系统表"><a href="#系统表" class="headerlink" title="系统表"></a>系统表</h1><p>策略表（strategy）：定义了不同的抽奖策略：不同策略抽奖的概率不同，抽奖的规则不同。</p><p>策略奖品表（strategy_award）：不同策略对应的奖品信息：包含奖品的概率、奖品的库存、抽到奖品的后置规则等。</p><p>策略规则表（strategy_rule）：不同策略有哪些前置规则：比如配置的黑名单、权重信息。</p><p>规则树表（rule_tree）、规则树节点表（rule_tree_node）、规则树节点连线表（rule_tree_node_line）：这三个表可以构成抽奖的后置规则树。</p><p>活动表（raffle_activity）：配置了用户参与一个活动的时候，需要进行的必要信息。比如：起始和终止时间、活动对应的策略。</p><p>活动sku表（raffle_activity_sku）：用于后续积分兑换的商品，也用于签到返利。包含：sku的库存、价格等信息</p><p><img src="/../../images/image-20240729151119053.png" alt="image-20240729151119053"></p><p>活动sku库存表（raffle_activity_count）：包含sku返利信息：比如能加多少次抽奖次数。</p><p>签到返利配置表（daily_behavior_rebate）：签到返利配置</p><h2 id="系统表总体结构如下"><a href="#系统表总体结构如下" class="headerlink" title="系统表总体结构如下"></a>系统表总体结构如下</h2><p><img src="/../../images/image-20240729151448053.png" alt="image-20240729151448053"></p><h1 id="用户表"><a href="#用户表" class="headerlink" title="用户表"></a>用户表</h1><p>活动账户表（raffle_activity_account）：包含某个用户总共的抽奖次数、可用的抽奖次数</p><p><img src="/../../images/image-20240801160717940.png" alt="image-20240801160717940"></p><p>活动订单表（raffle_activity_order）：涉及用户与sku商品交易的订单表，包括：签到返利、积分兑换</p><p>用户抽奖订单表（user_raffle_order）：参与活动产生的订单</p><p><img src="/../../images/image-20240801160007803.png" alt="image-20240801160007803"></p><p>返利订单表（user_behavior_rebate_order）：签到返利产生的订单</p><p>积分账户表（user_credit_account）：积分账户</p><p>积分订单表（user_credit_order）：积分变化产生的订单，比如：签到返利、积分兑换sku</p><p>奖品记录表（user_award_record）：抽奖记录表</p><p>task表：任务补偿。如果MQ发送失败，使用定时任务补偿。</p><p><img src="/../../images/image-20240801155903682.png" alt="image-20240801155903682"></p>]]></content>
+    <content type="html"><![CDATA[<p>表的关系经常容易搞混，所以记录一下，方便回忆。</p><h1 id="系统表"><a href="#系统表" class="headerlink" title="系统表"></a>系统表</h1><p>策略表（strategy）：定义了不同的抽奖策略：不同策略抽奖的概率不同，抽奖的规则不同。</p><p>策略奖品表（strategy_award）：不同策略对应的奖品信息：包含奖品的概率、奖品的库存、抽到奖品的后置规则等。</p><p>策略规则表（strategy_rule）：不同策略有哪些前置规则：比如配置的黑名单、权重信息。</p><p>规则树表（rule_tree）、规则树节点表（rule_tree_node）、规则树节点连线表（rule_tree_node_line）：这三个表可以构成抽奖的后置规则树。</p><p>活动表（raffle_activity）：配置了用户参与一个活动的时候，需要进行的必要信息。比如：起始和终止时间、活动对应的策略。</p><p>活动sku表（raffle_activity_sku）：用于后续积分兑换的商品，也用于签到返利。包含：sku的库存、价格等信息</p><p><img src="/../../images/image-20240729151119053.png" alt="image-20240729151119053"></p><p>活动sku库存表（raffle_activity_count）：包含sku返利信息：比如能加多少次抽奖次数。</p><p>签到返利配置表（daily_behavior_rebate）：签到返利配置</p><h1 id="用户表"><a href="#用户表" class="headerlink" title="用户表"></a>用户表</h1><p>活动账户表（raffle_activity_account）：包含某个用户总共的抽奖次数、可用的抽奖次数</p><p>活动订单表（raffle_activity_order）：涉及用户与sku商品交易的订单表，包括：签到返利、积分兑换</p><p>用户抽奖订单表（user_raffle_order）：参与活动产生的订单</p><p>返利订单表（user_behavior_rebate_order）：签到返利产生的订单</p><p>积分账户表（user_credit_account）：积分账户</p><p>积分订单表（user_credit_order）：积分变化产生的订单，比如：签到返利、积分兑换sku</p><p>奖品记录表（user_award_record）：抽奖记录表</p><p>task表：任务补偿。如果MQ发送失败，使用定时任务补偿。</p><h1 id="总体结构如下"><a href="#总体结构如下" class="headerlink" title="总体结构如下"></a>总体结构如下</h1><p><img src="/../../images/FhHmf7peFTpnWqoBgWbhlZ_rXXGZ.png" alt="FhHmf7peFTpnWqoBgWbhlZ_rXXGZ"></p>]]></content>
     
     
     <categories>
@@ -498,11 +517,11 @@
   
   
   <entry>
-    <title>记录nginx的一些配置</title>
-    <link href="/2023/09/30/nginx%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"/>
-    <url>/2023/09/30/nginx%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+    <title>记录idea的一些问题及解决方法</title>
+    <link href="/2023/09/30/idea%E6%8A%A5%E9%94%99/"/>
+    <url>/2023/09/30/idea%E6%8A%A5%E9%94%99/</url>
     
-    <content type="html"><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#启动脚本是在</span><br>/usr/local/nginx/sbin/nginx<br><span class="hljs-comment">#启动,</span><br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br><span class="hljs-comment">#停止</span><br>/usr/local/nginx/sbin/nginx -s stop<br><span class="hljs-comment">#重载</span><br>/usr/local/nginx/sbin/nginx -s reload<br><span class="hljs-comment">#杀掉nginx</span><br>/usr/local/nginx/sbin/nginx -s quit<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="java-程序包org-junit不存在"><a href="#java-程序包org-junit不存在" class="headerlink" title="java: 程序包org.junit不存在"></a>java: 程序包org.junit不存在</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>版本不匹配，换版本</p><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>进入File–&gt;settings–&gt; Build, Execution, Deployment–&gt;Build Tools–&gt;Maven–&gt;Runner界面<br>勾选“Delegate IDE build&#x2F;run actions to Maven”。如下图</p><p><img src="/../images/image-20240720122241227.png" alt="image-20240720122241227"></p>]]></content>
     
     
     <categories>
@@ -517,11 +536,11 @@
   
   
   <entry>
-    <title>记录idea的一些问题及解决方法</title>
-    <link href="/2023/09/30/idea%E6%8A%A5%E9%94%99/"/>
-    <url>/2023/09/30/idea%E6%8A%A5%E9%94%99/</url>
+    <title>记录nginx的一些配置</title>
+    <link href="/2023/09/30/nginx%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/09/30/nginx%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
     
-    <content type="html"><![CDATA[<h1 id="java-程序包org-junit不存在"><a href="#java-程序包org-junit不存在" class="headerlink" title="java: 程序包org.junit不存在"></a>java: 程序包org.junit不存在</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>版本不匹配，换版本</p><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>进入File–&gt;settings–&gt; Build, Execution, Deployment–&gt;Build Tools–&gt;Maven–&gt;Runner界面<br>勾选“Delegate IDE build&#x2F;run actions to Maven”。如下图</p><p><img src="/../images/image-20240720122241227.png" alt="image-20240720122241227"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#启动脚本是在</span><br>/usr/local/nginx/sbin/nginx<br><span class="hljs-comment">#启动,</span><br>/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br><span class="hljs-comment">#停止</span><br>/usr/local/nginx/sbin/nginx -s stop<br><span class="hljs-comment">#重载</span><br>/usr/local/nginx/sbin/nginx -s reload<br><span class="hljs-comment">#杀掉nginx</span><br>/usr/local/nginx/sbin/nginx -s quit<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
