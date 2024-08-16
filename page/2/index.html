@@ -335,15 +335,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/03/15/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%BA%94%E7%94%A8/" target="_self">
-          读写锁的应用
+        <a href="/2024/03/18/merge%20vs%20rebase/" target="_self">
+          merge vs rebase
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%BA%94%E7%94%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/18/merge%20vs%20rebase/" target="_self">
         <div>
-          背景当我们修改了短链接分组时，需要获取写锁；当我们自增短链接监控记录全局访问 PV、UV、UIP 时，获取读锁。 为什么需要读写锁？因为如果 Gid 变更后，新增短链接监控获取的是旧的 Gid，自增监控记录就会统计错误问题。 例子我们假设没有读写锁，流程如下：  线程 A 将短链接分组从 6688ja 变更为 8866ja。注意，这个是准备要修改，还没有执行成功； 同时记录短链接监控线程 B 获取
+          两种常见的合并方式是 merge 和 rebase，它们各有优缺点，选择哪种方式需要根据具体情况来决定。 Merge 和 Rebase 的区别Mergemerge 是将两个分支的历史记录合并在一起，产生一个新的提交（merge commit）。它的好处是保留了完整的历史记录，所有的提交顺序和分支点都清晰可见。 示例： 12345# 切换到目标分支git checkout main# 合并 feat
         </div>
       </a>
 
@@ -351,8 +351,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-15 00:00" pubdate>
-              2024-03-15
+            <time datetime="2024-03-18 00:00" pubdate>
+              2024-03-18
             </time>
           </div>
         
@@ -367,7 +367,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%9F%AD%E9%93%BE%E6%8E%A5/" class="category-chain-item">短链接</a>
+  <a href="/categories/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="category-chain-item">常用工具问题及解决办法</a>
   
   
 
@@ -389,15 +389,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/03/02/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
-          缓存和数据库一致性
+        <a href="/2024/03/15/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%BA%94%E7%94%A8/" target="_self">
+          读写锁的应用
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/02/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/15/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%BA%94%E7%94%A8/" target="_self">
         <div>
-          方案介绍 我们对比上面讨论的 6 种方案： 1.先写 Redis，再写 MySQL  这种方案，我肯定不会用，万一 DB 挂了，你把数据写到缓存，DB 无数据，这个是灾难性的；  我之前也见同学这么用过，如果写 DB 失败，对 Redis 进行逆操作，那如果逆操作失败呢，是不是还要搞个重试？   2.先写 MySQL，再写 Redis  对于并发量、一致性要求不高的项目，很多就是这么用的，我之前也
+          背景当我们修改了短链接分组时，需要获取写锁；当我们自增短链接监控记录全局访问 PV、UV、UIP 时，获取读锁。 为什么需要读写锁？因为如果 Gid 变更后，新增短链接监控获取的是旧的 Gid，自增监控记录就会统计错误问题。 例子我们假设没有读写锁，流程如下：  线程 A 将短链接分组从 6688ja 变更为 8866ja。注意，这个是准备要修改，还没有执行成功； 同时记录短链接监控线程 B 获取
         </div>
       </a>
 
@@ -405,8 +405,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2024-03-02 00:00" pubdate>
-              2024-03-02
+            <time datetime="2024-03-15 00:00" pubdate>
+              2024-03-15
             </time>
           </div>
         
@@ -476,6 +476,60 @@
       <span class="category-chain">
         
   <a href="/categories/%E6%8A%BD%E5%A5%96%E7%B3%BB%E7%BB%9F/" class="category-chain-item">抽奖系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/03/02/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
+          缓存和数据库一致性
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/03/02/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%BC%93%E5%AD%98%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%80%E8%87%B4%E6%80%A7/" target="_self">
+        <div>
+          方案介绍 我们对比上面讨论的 6 种方案： 1.先写 Redis，再写 MySQL  这种方案，我肯定不会用，万一 DB 挂了，你把数据写到缓存，DB 无数据，这个是灾难性的；  我之前也见同学这么用过，如果写 DB 失败，对 Redis 进行逆操作，那如果逆操作失败呢，是不是还要搞个重试？   2.先写 MySQL，再写 Redis  对于并发量、一致性要求不高的项目，很多就是这么用的，我之前也
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-03-02 00:00" pubdate>
+              2024-03-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%9F%AD%E9%93%BE%E6%8E%A5/" class="category-chain-item">短链接</a>
   
   
 
@@ -707,65 +761,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/01/26/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C/" target="_self">
-          用户注册
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/01/26/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C/" target="_self">
-        <div>
-          检查用户名是否存在使用布隆过滤器  用户注册如何防止用户名重复？通过布隆过滤器把所有用户名进行加载。这样该功能就能完全隔离数据库。 数据库层面添加唯一索引。 如何防止恶意请求毫秒级触发大量请求去一个未注册的用户名？因为用户名没注册，所以布隆过滤器不存在，代表着可以触发注册流程插入数据库。但是如果恶意请求短时间海量请求，这些请求都会落到数据库，造成数据库访问压力。这里通过分布式锁，锁定用户名进行串行
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-01-26 00:00" pubdate>
-              2024-01-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%9F%AD%E9%93%BE%E6%8E%A5/" class="category-chain-item">短链接</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
