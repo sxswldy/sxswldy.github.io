@@ -24,7 +24,7 @@
 <meta property="og:description" content="环境：SpringBoot3.2.5 1. 获取进程ID如果你想在程序中获取当前SpringBoot运行的进程号，那么你可以使用ApplicationPid，该类非常方便的获取当前进程ID。 123ApplicationPid pid &#x3D; new ApplicationPid() ;System.out.printf(&quot;进程ID: %s%n&quot;, pid.toString())">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-16T07:23:29.664Z">
+<meta property="article:modified_time" content="2024-08-16T07:28:54.962Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -286,7 +286,7 @@
 <p>该监听器会将当前的进程ID写入文件中，通过如下配置文件路径</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">pid:</span><br>    <span class="hljs-attr">file:</span> <span class="hljs-string">d:/app.pid</span><br><span class="hljs-number">1.2</span><span class="hljs-number">.3</span><span class="hljs-string">.</span><br></code></pre></td></tr></table></figure>
 
-<p>如果你觉得无聊，那么你还可以通过如下方式：</p>
+<p>还可以通过如下方式：</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs scss">String pid = ManagementFactory<span class="hljs-selector-class">.getRuntimeMXBean</span>()<span class="hljs-selector-class">.getName</span>()<span class="hljs-selector-class">.split</span>(&quot;@&quot;)<span class="hljs-selector-attr">[0]</span><br><span class="hljs-number">1</span>.<br></code></pre></td></tr></table></figure>
 
 <p>这样也可以获取进程ID。</p>
