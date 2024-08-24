@@ -8,7 +8,7 @@
     <link href="/2024/07/29/C/gcc/"/>
     <url>/2024/07/29/C/gcc/</url>
     
-    <content type="html"><![CDATA[<h1 id="当前编译命令"><a href="#当前编译命令" class="headerlink" title="当前编译命令"></a>当前编译命令</h1><p>gcc -I &#x2F;root&#x2F;SZ&#x2F;include&#x2F; -o tsf testfloat_compress.o &#x2F;root&#x2F;SZ&#x2F;lib&#x2F;libSZ.a </p><h1 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h1><p><strong>预处理——编译——汇编——链接</strong></p><p>只编译不链接，生成.o</p><p>gcc -c main.c</p><p>进行链接</p><p>gcc -o main main.o</p><h2 id="多个文件编译"><a href="#多个文件编译" class="headerlink" title="多个文件编译"></a>多个文件编译</h2><p>一个.c文件中用到了其他.c的内容</p><p>编译时需要注意顺序，一般先把多个.c文件编译为.o文件，然后再gcc -o组合起来。</p><p><img src="/../../images/image-20240729190253623.png" alt="image-20240729190253623"></p><p>但是文件多的时候，就需要makefile了。</p><h1 id="找不到头文件的目录"><a href="#找不到头文件的目录" class="headerlink" title="找不到头文件的目录"></a>找不到头文件的目录</h1><p>gcc -I指定</p><h1 id="静态链接库"><a href="#静态链接库" class="headerlink" title="静态链接库"></a>静态链接库</h1><p>把一堆.o文件组织到一起形成.a文件</p><p>命名：lib+库名+.a</p><p>ar命令生成静态链接库</p><p><strong>使用静态链接库</strong></p><p><img src="/../../images/image-20240729191652598.png" alt="image-20240729191652598"></p><p>链接时把库加后面</p><h1 id="动态链接库"><a href="#动态链接库" class="headerlink" title="动态链接库"></a>动态链接库</h1><p>Windows：.dll文件；linux：.so文件</p><p><img src="/../../images/image-20240729192534567.png" alt="image-20240729192534567"></p><h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>当.c文件特别多时，gcc编译显得吃力。makefile可以帮忙。</p><p>和os强相关，引出cmake</p>]]></content>
+    <content type="html"><![CDATA[<p>最近需要跑一个C的项目，C项目编译过程：</p><h1 id="编译过程"><a href="#编译过程" class="headerlink" title="编译过程"></a>编译过程</h1><p><strong>预处理——编译——汇编——链接</strong></p><p>只编译不链接，生成.o</p><p>gcc -c main.c</p><p>进行链接</p><p>gcc -o main main.o</p><h2 id="多个文件编译"><a href="#多个文件编译" class="headerlink" title="多个文件编译"></a>多个文件编译</h2><p>一个.c文件中用到了其他.c的内容</p><p>编译时需要注意顺序，一般先把多个.c文件编译为.o文件，然后再gcc -o组合起来。</p><p><img src="/../../images/image-20240729190253623.png" alt="image-20240729190253623"></p><p>但是文件多的时候，就需要makefile了。</p><h1 id="找不到头文件的目录"><a href="#找不到头文件的目录" class="headerlink" title="找不到头文件的目录"></a>找不到头文件的目录</h1><p>gcc -I指定</p><h1 id="静态链接库"><a href="#静态链接库" class="headerlink" title="静态链接库"></a>静态链接库</h1><p>把一堆.o文件组织到一起形成.a文件</p><p>命名：lib+库名+.a</p><p>ar命令生成静态链接库</p><p><strong>使用静态链接库</strong></p><p><img src="/../../images/image-20240729191652598.png" alt="image-20240729191652598"></p><p>链接时把库加后面</p><h1 id="动态链接库"><a href="#动态链接库" class="headerlink" title="动态链接库"></a>动态链接库</h1><p>Windows：.dll文件；linux：.so文件</p><p><img src="/../../images/image-20240729192534567.png" alt="image-20240729192534567"></p><h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>当.c文件特别多时，gcc编译显得吃力。makefile可以帮忙。</p><p>和os强相关，引出cmake。</p>]]></content>
     
     
     <categories>
@@ -194,25 +194,6 @@
   
   
   <entry>
-    <title>短链接云服务器项目部署</title>
-    <link href="/2024/04/02/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/"/>
-    <url>/2024/04/02/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E7%9F%AD%E9%93%BE%E6%8E%A5%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</url>
-    
-    <content type="html"><![CDATA[<h1 id="云服务器"><a href="#云服务器" class="headerlink" title="云服务器"></a>云服务器</h1><p>购买阿里云2c4g服务器；</p><p>开放相应端口；</p><h1 id="基础环境安装"><a href="#基础环境安装" class="headerlink" title="基础环境安装"></a>基础环境安装</h1><h2 id="jdk"><a href="#jdk" class="headerlink" title="jdk"></a>jdk</h2><p>进入 <code>/usr/local</code> 目录，创建 java 文件夹。并将 JDK17 上传到 java 目录下。</p><p>上传成功后，解压 JDK17 压缩包，命令 </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">unzip zulu17.44.53-ca-jdk17.0.8.1-linux_x64.zip<br></code></pre></td></tr></table></figure><p>另外执行一条命令，修改文件名，让它看着没那么长：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> zulu17.44.53-ca-jdk17.0.8.1-linux_x64 jdk17.0.8.1<br></code></pre></td></tr></table></figure><h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum update<br>sudo yum install nginx<br>sudo systemctl start nginx<br>sudo systemctl <span class="hljs-built_in">enable</span> nginx<br></code></pre></td></tr></table></figure><h1 id="项目打包上传"><a href="#项目打包上传" class="headerlink" title="项目打包上传"></a>项目打包上传</h1><p>通过命令创建短链接相关文件夹。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p /home/shortlink/logs<br></code></pre></td></tr></table></figure><h2 id="1-聚合-网关项目"><a href="#1-聚合-网关项目" class="headerlink" title="1. 聚合&amp;网关项目"></a>1. 聚合&amp;网关项目</h2><p>shortlink-all 下执行 <code>mvn clean install</code></p><p>将 <code>aggregation-service</code> 还有网关服务 <code>gateway-service</code> 上传到服务器 <code>/home/shortlink</code> 目录下。</p><h2 id="2-前端项目"><a href="#2-前端项目" class="headerlink" title="2.前端项目"></a>2.前端项目</h2><p>进入到 <code>console-vue</code> 目录下，执行 <code>npm run build</code> 命令。</p><p>将该 dist 目录上传到云服务器 <code>/home/shortlink</code> 目录下。上传前记得压缩下 dist 目录，上传方便些，上传成功后再解压。</p><h1 id="中间件安装"><a href="#中间件安装" class="headerlink" title="中间件安装"></a>中间件安装</h1><p>docker、mysql、redis、nacos</p><p>网上有教程</p><h1 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h1><h2 id="1-后端项目"><a href="#1-后端项目" class="headerlink" title="1.后端项目"></a>1.后端项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">后端项目<br><span class="hljs-built_in">nohup</span> /usr/local/java/jdk17.0.8.1/bin/java \<br>-Dshort-link.domain.default=120.26.138.90:8003 \<br>-jar /home/shortlink/shortlink-aggregation.jar &gt; logs/shortlink-aggregation.file 2&gt;&amp;1 &amp;<br><br>网关项目<br><span class="hljs-built_in">nohup</span> /usr/local/java/jdk17.0.8.1/bin/java \<br>-jar /home/shortlink/shortlink-gateway.jar &gt; logs/shortlink-gateway.file 2&gt;&amp;1 &amp;<br></code></pre></td></tr></table></figure><p><strong>查看是否启动成功</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#聚合项目</span><br><span class="hljs-built_in">tail</span> -f logs/shortlink-aggregation.file<br><br><span class="hljs-comment">#网关项目</span><br><span class="hljs-built_in">tail</span> -f logs/shortlink-gateway.file<br></code></pre></td></tr></table></figure><p><strong>查看服务状态</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">ps -ef | grep java<br><br><span class="hljs-comment">#关闭服务</span><br><span class="hljs-built_in">kill</span> -9 [进程号]<br></code></pre></td></tr></table></figure><h2 id="2-nginx挂载前端项目"><a href="#2-nginx挂载前端项目" class="headerlink" title="2.nginx挂载前端项目"></a>2.nginx挂载前端项目</h2><p>修改 Nginx 的配置，让前端可以访问。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vim /etc/nginx/nginx.conf<br></code></pre></td></tr></table></figure><p>将默认 Nginx <code>http/server</code>配置改为下述配置：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">http &#123;<br>    <span class="hljs-comment"># 只要保证 server 里的配置在 nginx 的 http 配置下就好</span><br>server &#123;<br>        listen       80;<br>        server_name  localhost;<br><br>         location / &#123;<br>            root   /home/shortlink/dist;<br>            index  index.html index.htm;<br>            try_files <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html;<br>        &#125;<br><br>        location /api &#123;<br>            proxy_read_timeout 10s;<br>            proxy_pass http://127.0.0.1:8000/api;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>重启nginx。</p><h1 id="公网访问"><a href="#公网访问" class="headerlink" title="公网访问"></a>公网访问</h1><p>浏览器访问：<code>http://公网IP</code> 即可看到对应的前端页面。</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>短链接</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>云服务器端口不能使用的问题</title>
     <link href="/2024/04/01/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%8F%A3%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8/"/>
     <url>/2024/04/01/%E7%9F%AD%E9%93%BE%E6%8E%A5/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E5%8F%A3%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8/</url>
@@ -261,25 +242,6 @@
     <categories>
       
       <category>短链接</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>抽奖系统部署</title>
-    <link href="/2024/03/02/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/"/>
-    <url>/2024/03/02/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</url>
-    
-    <content type="html"><![CDATA[<h1 id="需要的项目"><a href="#需要的项目" class="headerlink" title="需要的项目"></a><strong>需要的项目</strong></h1><p> <a href="........%5Cjavaproject%5Cbig-market-front">big-market-front</a>（前端） 、 <a href="........%5Cjavaproject%5Cbig-market">big-market</a> （后端）、 <a href="........%5Cjavaproject%5Cbig-market-dev-ops">big-market-dev-ops</a> （部署）</p><h1 id="构建后端镜像"><a href="#构建后端镜像" class="headerlink" title="构建后端镜像"></a>构建后端镜像</h1><p>1.进入后端项目，切换到指定分支</p><p>2.mvn clean install</p><p>3.根据dockfile文件docker build创建后端镜像</p><h1 id="构建前端镜像"><a href="#构建前端镜像" class="headerlink" title="构建前端镜像"></a>构建前端镜像</h1><p>1.进入前端项目，切换到相应分支</p><p>2.修改.env文件相应内容</p><p>3.根据dockfile文件docker build构建镜像</p><p>问题1：直接在云服务器上build前端镜像报错，显示next命令无权限，修改Dockerfile，在RUN yarn build指令之前，添加RUN chmod +x .&#x2F;node_modules&#x2F;.bin&#x2F;next即可</p><h1 id="整体构建"><a href="#整体构建" class="headerlink" title="整体构建"></a>整体构建</h1><p>1.进入部署项目</p><p>2.运行两个docker-compose文件</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>抽奖系统</category>
       
     </categories>
     

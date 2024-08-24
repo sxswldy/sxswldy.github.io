@@ -235,7 +235,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/07/29/C/gcc/" target="_self">
         <div>
-          当前编译命令gcc -I &#x2F;root&#x2F;SZ&#x2F;include&#x2F; -o tsf testfloat_compress.o &#x2F;root&#x2F;SZ&#x2F;lib&#x2F;libSZ.a  编译过程预处理——编译——汇编——链接 只编译不链接，生成.o gcc -c main.c 进行链接 gcc -o main main.o 多个文件编译一个.
+          最近需要跑一个C的项目，C项目编译过程： 编译过程预处理——编译——汇编——链接 只编译不链接，生成.o gcc -c main.c 进行链接 gcc -o main main.o 多个文件编译一个.c文件中用到了其他.c的内容 编译时需要注意顺序，一般先把多个.c文件编译为.o文件，然后再gcc -o组合起来。  但是文件多的时候，就需要makefile了。 找不到头文件的目录gcc -I指定
         </div>
       </a>
 
@@ -765,7 +765,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
