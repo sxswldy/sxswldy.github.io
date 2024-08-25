@@ -16,15 +16,15 @@
   <meta name="author" content="sxswldy">
   <meta name="keywords" content="java">
   
-    <meta name="description" content="因毕业论文第二个研究点是压缩算法，所以最近展开一些调研： 引言目前监控业务中绝大多数数据仍旧是浮点，且更让人关心的其实是大盘的趋势而不是精确的秒级数据，虽然Continuous Queries，预降采样可以以极低的成本满足部分查询的需求，但是源数据本身的存储也是必不可少的；分层存储已经可以使得冷数据可以降低到COS这样的低成本介质中，但是存储带宽也是一个不可忽略的因素，所以对于时序数据来说数据量本">
+    <meta name="description" content="因毕业论文第二个研究点是压缩算法，所以最近展开一些调研： 引言目前监控业务中绝大多数数据仍旧是浮点，对于浮点数据而言，其实是可以接受些许的损失的，所以使用有损压缩算法可以极大的提高压缩比。所以对近些年来的有损压缩研究做一些调研，挑选了些最有可能进行工业落地的论文进行梳理。 Part1IPDPS16的论文《Fast Error-bounded Lossy HPC Data Compression w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="压缩算法的调研">
 <meta property="og:url" content="http://example.com/2024/06/25/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="李东阳的个人博客">
-<meta property="og:description" content="因毕业论文第二个研究点是压缩算法，所以最近展开一些调研： 引言目前监控业务中绝大多数数据仍旧是浮点，且更让人关心的其实是大盘的趋势而不是精确的秒级数据，虽然Continuous Queries，预降采样可以以极低的成本满足部分查询的需求，但是源数据本身的存储也是必不可少的；分层存储已经可以使得冷数据可以降低到COS这样的低成本介质中，但是存储带宽也是一个不可忽略的因素，所以对于时序数据来说数据量本">
+<meta property="og:description" content="因毕业论文第二个研究点是压缩算法，所以最近展开一些调研： 引言目前监控业务中绝大多数数据仍旧是浮点，对于浮点数据而言，其实是可以接受些许的损失的，所以使用有损压缩算法可以极大的提高压缩比。所以对近些年来的有损压缩研究做一些调研，挑选了些最有可能进行工业落地的论文进行梳理。 Part1IPDPS16的论文《Fast Error-bounded Lossy HPC Data Compression w">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-06-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-22T11:28:25.277Z">
+<meta property="article:modified_time" content="2024-08-25T09:14:59.028Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -231,7 +231,7 @@
         
         
         
-          16 分钟
+          15 分钟
         
       </span>
     
@@ -274,7 +274,7 @@
               <div class="markdown-body">
                 
                 <p>因毕业论文第二个研究点是压缩算法，所以最近展开一些调研：</p>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>目前监控业务中绝大多数数据仍旧是浮点，且更让人关心的其实是大盘的趋势而不是精确的秒级数据，虽然Continuous Queries，预降采样可以以极低的成本满足部分查询的需求，但是源数据本身的存储也是必不可少的；分层存储已经可以使得冷数据可以降低到COS这样的低成本介质中，但是存储带宽也是一个不可忽略的因素，所以对于时序数据来说数据量本身是需要仔细斟酌的点。</p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>目前监控业务中绝大多数数据仍旧是浮点，对于浮点数据而言，其实是可以接受些许的损失的，所以使用有损压缩算法可以极大的提高压缩比。所以对近些年来的有损压缩研究做一些调研，挑选了些最有可能进行工业落地的论文进行梳理。</p>
 <h1 id="Part1"><a href="#Part1" class="headerlink" title="Part1"></a>Part1</h1><p>IPDPS16的论文《Fast Error-bounded Lossy HPC Data Compression with SZ》阐述了一种新的可限定误差边界的浮点有损压缩算法，和VLDB2015《A time-series compression technique and its application to the smart grid》中提出的基于贪心的分片多项式近似法基本类似，都是基于临近几个点去在目标错误限定范围内找到合适的曲线测定模型。</p>
 <ul>
 <li><p>对于在限定误差边界以内的点称为 Predictable Data（可预测点），进而用两个比特结合前面几个点的预测值来描述这个点，因为这个描述曲线模型的结构重复较高，可以继续使用LZ77压缩以达到更优秀的压缩比。</p>

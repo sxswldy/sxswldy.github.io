@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="李东阳的个人博客">
 <meta property="og:description" content="面向时序数据库的预计算推荐系统摘要随着数据量的激增，时序数据库在面对复杂查询分析时，往往效率不高。为了解决该问题，预计算发挥着重要作用，因为它可以将复杂查询的结果持久化存储，为后续查询省去了重新计算的时间。然而，当前所有时序数据库都需要用户手动去创建预计算，需要对具体场景有较为深入的理解，对普通用户极为不友好。因此本文设计了面向时序数据库的预计算推荐系统，自动分析数据库中的负载信息，并根据基于规则">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/image-20240716102133851.png">
+<meta property="og:image" content="http://example.com/images/image-20240725150104335.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132244736.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132300145.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132306617.png">
@@ -36,11 +36,11 @@
 <meta property="og:image" content="http://example.com/images/image-20240804132713893.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132746455.png">
 <meta property="article:published_time" content="2024-07-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-22T11:31:42.913Z">
+<meta property="article:modified_time" content="2024-08-25T07:04:09.940Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/image-20240716102133851.png">
+<meta name="twitter:image" content="http://example.com/images/image-20240725150104335.png">
   
   
   
@@ -317,7 +317,7 @@
 
 <p>该预计算语句是指在cpu这张表上进行预计算任务，即每隔时间间隔60s对usage_user列进行max聚合计算。</p>
 <h2 id="3-2预计算匹配"><a href="#3-2预计算匹配" class="headerlink" title="3.2预计算匹配"></a>3.2预计算匹配</h2><p>第 i 条查询 q_i 可以匹配到第 j 条预计算 p_j 的条件是：q_i 的聚合函数集合 g_i 是 p_j 聚合函数集合 g_j 的子集，并且 q_i 的时间间隔 I_i 要为 p_j 时间间隔 I_j 的整数倍，即:</p>
-<p><img src="/../../images/image-20240716102133851.png" srcset="/img/loading.gif" lazyload alt="image-20240816102133851"></p>
+<p><img src="/../../images/image-20240725150104335.png" srcset="/img/loading.gif" lazyload alt="image-20240725150104335"></p>
 <h2 id="3-3预计算收益和成本"><a href="#3-3预计算收益和成本" class="headerlink" title="3.3预计算收益和成本"></a>3.3预计算收益和成本</h2><p>第 j 条预计算 p_j 能够为第 i 条查询 q_i 带来的收益为 B_i,j，即 q_i 的原始查询时间 t_i 减去该查询匹配预计算 p_j 的查询时间 t_i,j。  p_j  的成本 c_j 为其本身所占有的存储空间。</p>
 <h2 id="3-4整数规划问题求解器"><a href="#3-4整数规划问题求解器" class="headerlink" title="3.4整数规划问题求解器"></a>3.4整数规划问题求解器</h2><p>Gurobi是由美国Gurobi Optimization公司开发新一代大规模优化器。无论在生产制造领域，还是在金融、保险、交通、服务等其他各种领域，当实际问题越来越复杂，问题规模越来越庞大的时候，需要一个经过证明可以信赖的大规模优化工具，为决策提供质量保证。在理论和实践中，Gurobi优化工具都被证明是全球性能领先的大规模优化器，具有突出的性价比，可以为客户在开发和实施中极大降低成本。</p>
 <p>应用最广泛的数学规划问题类型包括：混合整数线性规划（MILP）、混合整数二次凸规划（MIQP&#x2F;MIQCQP）、混合整数非线性规划等。Gurobi 是唯一一个可以适用上述全部类型，并且在每一个类型中都排名第一，并且大幅度领先第二名的优化器。第三方评比报告做出了明确说明[1]。</p>
