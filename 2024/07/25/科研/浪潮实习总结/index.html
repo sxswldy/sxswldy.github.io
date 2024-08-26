@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/images/image-20240804132713893.png">
 <meta property="og:image" content="http://example.com/images/image-20240804132746455.png">
 <meta property="article:published_time" content="2024-07-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-26T00:46:36.915Z">
+<meta property="article:modified_time" content="2024-08-26T00:50:51.043Z">
 <meta property="article:author" content="sxswldy">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
@@ -309,7 +309,7 @@
 <p>（2）索引优化：InfluxDB[5]主要通过时间戳索引来加速时间范围查询。时间戳是所有数据点的关键属性，查询通常基于时间范围进行。除了时间戳索引，还使用了标签来标识数据点的属性，标签索引可以加速基于标签的过滤查询。标签是键值对形式，可以用于高效查询和聚合。TDengine同样使用了多级索引结构，包括时间索引和标签索引，以加速时间范围查询和标签过滤查询。</p>
 <p>（3）预计算：OpenTSDB[4]中实现了Rollup和Pre-aggregates，Rollup是一种数据汇总技术，它可以将原始的高分辨率数据按照一定的规则进行聚合，生成低分辨率的数据。这样做的好处是可以减少存储需求，提高查询性能，并且可以更好地处理大规模的时间序列数据。Rollup可以按照时间间隔（例如每小时、每天、每周等）来进行数据聚合，也可以按照指定的标签（例如按照不同的设备、地区等）来进行聚合。Pre-Aggregates是一种预先计算并存储好的聚合数据，在OpenTSDB中，用户可以通过定义预先计算的聚合函数（例如求和、平均值、最大值、最小值等）和时间间隔来创建Pre-Aggregates。一旦创建了Pre-Aggregates，系统就会在后台定期计算并存储好这些聚合数据，用户可以在查询时直接使用这些预先计算好的聚合数据，而不需要实时计算。这样可以大大提高查询性能，并且可以降低对底层存储的压力。InfluxDB支持CQ(continous query)的功能，CQ通过定期 pull 原始时序数据进行计算，将计算结果存储在内部特殊metric 中。用户通过创建 CQ 来实现对数据预处理。TDengine中实现了SMA索引，即Small Materialized Aggregates，提供基于数据块的自定义预计算功能。如果查询处理涉及整个数据块的全部数据，直接使用预计算结果，完全不需要读取数据块的内容。由于预计算数据量远小于磁盘上存储的数据块数据的大小，对于磁盘 I&#x2F;O 为瓶颈的查询处理，使用预计算结果可以极大地减小读取 I&#x2F;O 压力，加速查询处理的流程。</p>
 <p>然而，分布式架构和索引优化在查询执行时仍然无可避免地需要对已有数据进行大量计算，导致查询响应时间较长。相比之下，预计算技术具有很多好处，通过预先计算和存储查询结果避免了大量计算。但是，预计算都需要用户手动生成，需要用户对具体场景有较为深入的理解，对于普通用户极为不友好。因此我们设计了一种面向时序数据库的预计算推荐系统，自动分析数据库中的负载信息，并根据基于规则和基于收益两种算法自动为用户推荐合适的预计算，以提升数据库的查询性能，减少用户的响应时间。</p>
-<h1 id="3-问题定义"><a href="#3-问题定义" class="headerlink" title="3.问题定义"></a>3.问题定义</h1><h2 id="3-1查询和预计算"><a href="#3-1查询和预计算" class="headerlink" title="3.1查询和预计算"></a>3.1查询和预计算</h2><p>时序数据库中的查询带有特有的时间信息，查询语句主要由以下几点构成：时间间隔，聚合函数，时间范围。以如下KaiwuDB中的一条普通查询为例子：</p>
+<h1 id="3、问题定义"><a href="#3、问题定义" class="headerlink" title="3、问题定义"></a>3、问题定义</h1><h2 id="3-1查询和预计算"><a href="#3-1查询和预计算" class="headerlink" title="3.1查询和预计算"></a>3.1查询和预计算</h2><p>时序数据库中的查询带有特有的时间信息，查询语句主要由以下几点构成：时间间隔，聚合函数，时间范围。以如下KaiwuDB中的一条普通查询为例子：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> time_bucket(k_timestamp, <span class="hljs-string">&#x27;60s&#x27;</span>) <span class="hljs-keyword">as</span> k_timestamp, <span class="hljs-built_in">max</span>(usage_user)<br><span class="hljs-keyword">FROM</span> cpu<br><span class="hljs-keyword">WHERE</span> k_timestamp <span class="hljs-operator">&gt;=</span> <span class="hljs-string">&#x27;2023-01-01 00:00:00&#x27;</span> <span class="hljs-keyword">AND</span> k_timestamp <span class="hljs-operator">&lt;</span> <span class="hljs-string">&#x27;2023-01-06 00:00:00&#x27;</span> <br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> time_bucket(k_timestamp, <span class="hljs-string">&#x27;60s&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 <p>该查询是指在cpu这张表上，在时间范围为[2023-01-01 00:00:00，2023-01-06 00:00:00]内，每隔时间间隔60s，生成usage_user列上的max聚合结果。</p>
@@ -557,9 +557,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/29/C/gcc/" title="C项目的编译">
+                      <a href="/2024/07/25/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/" title="抽奖系统未来的可拓展的功能">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C项目的编译</span>
+                        <span class="hidden-mobile">抽奖系统未来的可拓展的功能</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -567,8 +567,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/25/%E5%A4%A7%E8%90%A5%E9%94%80%E9%A1%B9%E7%9B%AE/%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%8F%AF%E6%8B%93%E5%B1%95%E7%9A%84%E5%8A%9F%E8%83%BD/" title="抽奖系统未来的可拓展的功能">
-                        <span class="hidden-mobile">抽奖系统未来的可拓展的功能</span>
+                      <a href="/2024/06/25/%E7%A7%91%E7%A0%94/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9+%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95/" title="压缩算法的调研">
+                        <span class="hidden-mobile">压缩算法的调研</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
